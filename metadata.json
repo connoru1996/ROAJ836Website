@@ -1,5 +1,8 @@
 {
   "name": "OCR Cambridge National in IT (J836) - Unit R050 Exam Simulation",
   "description": "Interactive 80-mark OCR Cambridge National in IT (J836) Unit R050 examination simulation covering Topic Areas 1 through 6 with instant grading and examiner feedback.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

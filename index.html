@@ -92,9 +92,13 @@
 
       <!-- Home Screen Header Action -->
       <div id="nav-home-actions" class="flex items-center gap-2 shrink-0">
+        <button type="button" onclick="openOfficialPapersWorkspace()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs px-3 py-2 rounded-lg transition-colors flex items-center space-x-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          <i class="fa-solid fa-file-pdf text-indigo-100"></i>
+          <span>Official Past Papers</span>
+        </button>
         <button type="button" onclick="openPapersHub('catalog')" class="bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-3 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
           <i class="fa-solid fa-shuffle text-sky-400"></i>
-          <span class="hidden sm:inline">Papers &amp; Shuffler</span>
+          <span class="hidden sm:inline">Practice &amp; Shuffler</span>
         </button>
         <button type="button" onclick="openNineMarkCoach()" class="bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-3 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
           <i class="fa-solid fa-pen-nib text-amber-400"></i>
@@ -152,6 +156,30 @@
         <button type="button" onclick="openQuickReference('TA1', true)" class="bg-slate-800 hover:bg-slate-700 text-indigo-200 hover:text-white font-semibold text-xs px-3.5 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
           <i class="fa-solid fa-book-open text-indigo-400"></i>
           <span class="hidden sm:inline">Quick Reference</span>
+        </button>
+      </div>
+
+      <!-- Official OCR Past Papers & AI Examiner Header Controls -->
+      <div id="nav-official-controls" class="hidden flex items-center space-x-2.5 sm:space-x-3 shrink-0">
+        <button type="button" onclick="returnToHomeScreen()" class="text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-xs px-3 py-2 rounded-lg transition-colors flex items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          <i class="fa-solid fa-house text-xs"></i>
+          <span>Home</span>
+        </button>
+        <button type="button" id="nav-official-back-btn" onclick="backToOfficialCatalog()" class="hidden text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-xs px-3 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-1.5 whitespace-nowrap shrink-0">
+          <i class="fa-solid fa-grid-2 text-xs"></i>
+          <span>All 10 Papers</span>
+        </button>
+        <div id="nav-official-timer-box" class="hidden flex items-center space-x-2 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 shrink-0">
+          <i class="fa-solid fa-clock text-amber-400 text-xs"></i>
+          <span id="nav-official-timer" class="font-mono tabular-nums text-xs sm:text-sm font-bold text-amber-300">90:00</span>
+        </div>
+        <button type="button" id="nav-official-quickref-btn" onclick="openOfficialQuickRef()" class="bg-slate-800 hover:bg-slate-700 text-indigo-200 hover:text-white font-semibold text-xs px-3 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-2 whitespace-nowrap shrink-0">
+          <i id="nav-official-quickref-icon" class="fa-solid fa-book-open text-indigo-400"></i>
+          <span class="hidden sm:inline">Quick Reference</span>
+        </button>
+        <button type="button" id="nav-official-submit-btn" onclick="confirmGradeOfficialPaper()" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs px-3.5 py-2 rounded-lg transition-colors flex items-center space-x-2 whitespace-nowrap shrink-0">
+          <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
+          <span>AI Mark Paper</span>
         </button>
       </div>
 
@@ -255,6 +283,36 @@
         </button>
         <button type="button" onclick="resetExamProgress()" class="px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400">
           Reset Progress
+        </button>
+      </div>
+    </div>
+
+    <!-- Official OCR Past Papers & AI Examiner Featured Deck -->
+    <div class="bg-slate-900 text-white rounded-2xl border border-slate-800 p-6 sm:p-7 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div class="space-y-2.5 max-w-3xl">
+        <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-indigo-300">
+          <span class="font-bold text-white">Official OCR R050/01 Past Papers</span>
+          <span aria-hidden="true" class="text-slate-500">·</span>
+          <span class="tabular-nums">10 Exam Board PDFs Loaded</span>
+          <span aria-hidden="true" class="text-slate-500">·</span>
+          <span>AI Examiner &amp; Diagram Canvas</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white">
+          Sit real OCR exam papers and get instant AI Examiner marking
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Answer full OCR papers from 2022 to 2026 (including Practice, Specimen, and interactive wireframe/mind map/flowchart drawing canvases), view original PDF figures side by side, and attach official Mark Scheme PDFs for exact mark-scheme checking.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 shrink-0">
+        <button type="button" onclick="openOfficialPapersWorkspace()" class="px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs sm:text-sm rounded-xl transition-colors flex items-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          <i class="fa-solid fa-file-pdf text-xs"></i>
+          <span>Open 10 Official Papers</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+        <button type="button" onclick="openUploadPaperModal('new')" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs sm:text-sm rounded-xl border border-slate-700 transition-colors flex items-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          <i class="fa-solid fa-upload text-indigo-400 text-xs"></i>
+          <span>Upload Paper / Mark Scheme</span>
         </button>
       </div>
     </div>
@@ -1049,6 +1107,205 @@
 
   </section>
 
+  <!-- OFFICIAL OCR PAST PAPERS & AI EXAMINER WORKSPACE -->
+  <section id="official-papers-view" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-6 no-print">
+
+    <!-- SUB-VIEW 1: OFFICIAL PAPERS CATALOG -->
+    <div id="official-catalog-pane" class="space-y-6">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+        <div>
+          <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500">
+            <button type="button" onclick="returnToHomeScreen()" class="hover:text-slate-900 transition-colors font-semibold">Home</button>
+            <span aria-hidden="true">/</span>
+            <span class="text-indigo-700 font-semibold">Official OCR Past Papers</span>
+            <span aria-hidden="true">·</span>
+            <span id="official-catalog-summary" class="tabular-nums">10 OCR R050/01 Papers · AI Examiner</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 mt-1" style="text-wrap: balance;">
+            Official OCR R050 Exam Papers &amp; AI Examiner
+          </h1>
+        </div>
+        <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+          <button type="button" onclick="openUploadPaperModal('new')" class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors flex items-center space-x-2 whitespace-nowrap">
+            <i class="fa-solid fa-file-arrow-up text-xs"></i>
+            <span>Upload Paper / Mark Scheme PDF</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mark Scheme Guidance Strip -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex items-start gap-3">
+          <i class="fa-solid fa-circle-info text-indigo-600 text-base mt-0.5 shrink-0"></i>
+          <div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <strong class="text-slate-900">How AI Marking works:</strong> Open any of the 10 official OCR R050/01 question papers below to answer MCQs, tables, short responses, 8-mark diagrams, and extended essays. The AI Examiner checks answers against OCR R050 standards immediately—and if you attach an official <strong class="text-slate-900">OCR Mark Scheme PDF</strong> to any paper, it marks strictly against that exact mark scheme.
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap items-center gap-2">
+        <button type="button" onclick="setOfficialCatalogFilter('all')" data-official-filter="all" class="official-filter-btn px-3.5 py-2 text-xs font-semibold rounded-xl border transition-colors whitespace-nowrap">
+          All Papers
+        </button>
+        <button type="button" onclick="setOfficialCatalogFilter('past')" data-official-filter="past" class="official-filter-btn px-3.5 py-2 text-xs font-semibold rounded-xl border transition-colors whitespace-nowrap">
+          2024–2026 Past Papers (6)
+        </button>
+        <button type="button" onclick="setOfficialCatalogFilter('practice')" data-official-filter="practice" class="official-filter-btn px-3.5 py-2 text-xs font-semibold rounded-xl border transition-colors whitespace-nowrap">
+          Practice &amp; Specimen (2)
+        </button>
+        <button type="button" onclick="setOfficialCatalogFilter('mapped')" data-official-filter="mapped" class="official-filter-btn px-3.5 py-2 text-xs font-semibold rounded-xl border transition-colors whitespace-nowrap">
+          2022 Mapped (2)
+        </button>
+        <button type="button" onclick="setOfficialCatalogFilter('custom')" data-official-filter="custom" class="official-filter-btn px-3.5 py-2 text-xs font-semibold rounded-xl border transition-colors whitespace-nowrap">
+          My Uploads
+        </button>
+      </div>
+
+      <!-- Papers Grid -->
+      <div id="official-papers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Populated dynamically via /api/official-papers + local custom papers -->
+      </div>
+    </div>
+
+    <!-- SUB-VIEW 2: ACTIVE OFFICIAL PAPER RUNNER -->
+    <div id="official-runner-pane" class="hidden space-y-5">
+
+      <!-- Loading Extraction State -->
+      <div id="official-loading-state" class="hidden bg-white rounded-2xl border border-slate-200 p-10 text-center space-y-4">
+        <div class="mx-auto h-12 w-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+          <i class="fa-solid fa-spinner fa-spin text-xl"></i>
+        </div>
+        <div class="space-y-1 max-w-md mx-auto">
+          <h2 id="official-loading-title" class="text-base font-bold text-slate-900">Preparing official OCR paper...</h2>
+          <p id="official-loading-desc" class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Reading questions, tables, diagram prompts, and mark allocations from the OCR PDF. Once extracted, this paper is cached for instant reopening.
+          </p>
+        </div>
+      </div>
+
+      <!-- Error State -->
+      <div id="official-error-state" class="hidden bg-white rounded-2xl border border-rose-200 p-8 text-center space-y-4">
+        <div class="mx-auto h-12 w-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">
+          <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+        </div>
+        <div class="space-y-1 max-w-lg mx-auto">
+          <h2 class="text-base font-bold text-slate-900">Unable to load interactive questions</h2>
+          <p id="official-error-msg" class="text-xs sm:text-sm text-slate-600"></p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <button type="button" onclick="retryParseActiveOfficialPaper()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors">
+            Try Again
+          </button>
+          <button type="button" id="official-error-pdf-btn" onclick="openActiveOfficialPdfModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-xl transition-colors">
+            View Original PDF
+          </button>
+          <button type="button" onclick="backToOfficialCatalog()" class="px-4 py-2 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 transition-colors">
+            Back to Papers
+          </button>
+        </div>
+      </div>
+
+      <!-- Loaded Interactive Exam Shell -->
+      <div id="official-exam-shell" class="hidden space-y-5">
+
+        <!-- Paper Summary & Toolbar -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div class="space-y-1.5 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 text-xs text-slate-500 font-medium">
+              <span id="official-active-series" class="font-semibold text-indigo-700">Jan 2026 · R050/01</span>
+              <span aria-hidden="true">·</span>
+              <span id="official-active-mode-label">Practice Mode (AI Check Per Question)</span>
+              <span aria-hidden="true">·</span>
+              <span id="official-active-progress" class="tabular-nums font-semibold text-slate-700">0 of 0 answered</span>
+            </div>
+            <h2 id="official-active-title" class="text-xl font-extrabold text-slate-900 truncate">January 2026 Exam Paper</h2>
+            <div id="official-ms-status-line" class="flex items-center gap-2 text-xs font-medium text-slate-600">
+              <i class="fa-solid fa-circle-info text-indigo-500"></i>
+              <span>Marking against OCR R050 Specification</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <button type="button" onclick="openUploadPaperModal('attach', officialState.activePaperId)" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-xl border border-slate-200 transition-colors flex items-center space-x-1.5 whitespace-nowrap">
+              <i class="fa-solid fa-paperclip text-indigo-600 text-xs"></i>
+              <span id="official-attach-ms-label">Attach Mark Scheme PDF</span>
+            </button>
+            <button type="button" id="official-toggle-pdf-btn" onclick="toggleOfficialPdfSplit()" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-xl border border-slate-200 transition-colors flex items-center space-x-1.5 whitespace-nowrap">
+              <i class="fa-solid fa-file-pdf text-rose-600 text-xs"></i>
+              <span id="official-toggle-pdf-label">Show Original PDF</span>
+            </button>
+            <button type="button" onclick="confirmGradeOfficialPaper()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition-colors flex items-center space-x-1.5 whitespace-nowrap">
+              <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
+              <span>AI Mark Complete Paper</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Compact Question Navigator Strip -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 space-y-2.5">
+          <div class="flex items-center justify-between gap-2 text-xs">
+            <span class="font-bold text-slate-800">Question Jump Strip</span>
+            <span id="official-score-pill-text" class="font-semibold text-slate-600 tabular-nums">Not yet marked</span>
+          </div>
+          <div id="official-question-jump-strip" class="flex flex-wrap gap-1.5">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Split Workspace: Interactive Questions + Optional Side-by-Side PDF Viewer -->
+        <div id="official-split-grid" class="grid grid-cols-1 gap-6 items-start">
+          <!-- Questions Column -->
+          <div id="official-questions-col" class="space-y-5 min-w-0">
+            <div id="official-questions-list" class="space-y-5">
+              <!-- Populated dynamically -->
+            </div>
+
+            <!-- Bottom Action Card -->
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900">Ready for your full OCR R050 AI Examiner report?</h3>
+                <p class="text-xs text-slate-600 mt-0.5">Grades all answered questions (including drawn diagrams), calculates your Level 1/2 grade, and breaks down marks across TA1–TA6.</p>
+              </div>
+              <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+                <button type="button" id="official-view-report-btn" onclick="openOfficialResultsModal()" class="hidden px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-xl transition-colors whitespace-nowrap">
+                  View Results Report
+                </button>
+                <button type="button" id="official-bottom-grade-btn" onclick="confirmGradeOfficialPaper()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold rounded-xl transition-colors flex items-center space-x-2 whitespace-nowrap">
+                  <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
+                  <span>AI Mark Complete Paper</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side-by-Side Original OCR PDF Panel -->
+          <aside id="official-pdf-pane" class="hidden bg-white rounded-2xl border border-slate-200 overflow-hidden lg:sticky lg:top-20 flex flex-col h-[78vh]">
+            <div class="bg-slate-900 text-white px-4 py-3 flex items-center justify-between gap-2 shrink-0">
+              <div class="min-w-0">
+                <div class="text-xs font-bold truncate">Original OCR Question Paper PDF</div>
+                <div id="official-pdf-page-label" class="text-[11px] text-slate-300 tabular-nums">Page 1</div>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="stepOfficialPdfPage(-1)" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700" aria-label="Previous PDF page">
+                  <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                </button>
+                <button type="button" onclick="stepOfficialPdfPage(1)" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700" aria-label="Next PDF page">
+                  <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </button>
+                <button type="button" onclick="toggleOfficialPdfSplit(false)" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg border border-slate-700">
+                  Close
+                </button>
+              </div>
+            </div>
+            <iframe id="official-pdf-iframe" title="Original OCR Exam Paper PDF" class="w-full flex-1 bg-slate-100 border-0"></iframe>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- MAIN APP CONTAINER -->
   <div id="app-container" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full flex flex-col lg:flex-row gap-6">
 
@@ -1394,6 +1651,124 @@
         <button type="button" id="confirm-modal-ok" class="px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors">
           Confirm
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPLOAD CUSTOM PAPER / ATTACH MARK SCHEME MODAL -->
+  <div id="upload-paper-modal" role="dialog" aria-modal="true" aria-labelledby="upload-modal-title" onclick="if (event.target === event.currentTarget) closeUploadPaperModal()" class="hidden fixed inset-0 z-[64] bg-slate-900/75 backdrop-blur-sm flex items-center justify-center p-4 no-print">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full border border-slate-200 overflow-hidden">
+      <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between gap-3">
+        <div>
+          <h3 id="upload-modal-title" class="text-base font-bold">Upload Exam Paper or Mark Scheme</h3>
+          <p id="upload-modal-subtitle" class="text-xs text-slate-300 mt-0.5">Add any OCR PDF question paper and/or official mark scheme (max 16 MB per PDF).</p>
+        </div>
+        <button type="button" onclick="closeUploadPaperModal()" class="text-slate-300 hover:text-white p-1.5 rounded-lg" aria-label="Close modal">
+          <i class="fa-solid fa-xmark text-base"></i>
+        </button>
+      </div>
+
+      <form id="upload-paper-form" onsubmit="handleUploadPaperSubmit(event)" class="p-6 space-y-4">
+        <div class="inline-flex p-1 bg-slate-100 rounded-xl border border-slate-200 w-full">
+          <button type="button" id="upload-mode-btn-attach" onclick="setUploadModalMode('attach')" class="flex-1 py-2 text-xs font-semibold rounded-lg transition-colors">
+            Attach Mark Scheme to Paper
+          </button>
+          <button type="button" id="upload-mode-btn-new" onclick="setUploadModalMode('new')" class="flex-1 py-2 text-xs font-semibold rounded-lg transition-colors">
+            Upload New Question Paper
+          </button>
+        </div>
+
+        <!-- Attach Mark Scheme Target Selector -->
+        <div id="upload-attach-target-group" class="space-y-1.5">
+          <label for="upload-target-paper-select" class="block text-xs font-semibold text-slate-700">Select Exam Paper</label>
+          <select id="upload-target-paper-select" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <!-- New Paper Metadata Fields -->
+        <div id="upload-new-paper-fields" class="hidden space-y-3.5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="upload-paper-title" class="block text-xs font-semibold text-slate-700 mb-1">Paper Title</label>
+              <input type="text" id="upload-paper-title" placeholder="e.g., June 2027 Mock Paper" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div>
+              <label for="upload-paper-series" class="block text-xs font-semibold text-slate-700 mb-1">Series / Label</label>
+              <input type="text" id="upload-paper-series" placeholder="e.g., R050/01 · Custom" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+          </div>
+          <div>
+            <label for="upload-qp-file" class="block text-xs font-semibold text-slate-700 mb-1">Question Paper PDF (Required)</label>
+            <input type="file" id="upload-qp-file" accept="application/pdf,.pdf" class="w-full text-xs text-slate-700 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 border border-slate-300 rounded-xl p-1.5">
+          </div>
+        </div>
+
+        <!-- Mark Scheme PDF File Input -->
+        <div>
+          <label for="upload-ms-file" id="upload-ms-label" class="block text-xs font-semibold text-slate-700 mb-1">Official Mark Scheme PDF</label>
+          <input type="file" id="upload-ms-file" accept="application/pdf,.pdf" class="w-full text-xs text-slate-700 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 border border-slate-300 rounded-xl p-1.5">
+          <p class="text-[11px] text-slate-500 mt-1">The AI reads the mark scheme PDF and links official marking points and level descriptors to each question.</p>
+        </div>
+
+        <p id="upload-modal-error" class="hidden text-xs font-semibold text-rose-700 bg-rose-50 border border-rose-200 rounded-xl p-3"></p>
+
+        <div class="flex items-center justify-end gap-2.5 pt-2 border-t border-slate-100">
+          <button type="button" onclick="closeUploadPaperModal()" class="px-4 py-2 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors">
+            Cancel
+          </button>
+          <button type="submit" id="upload-modal-submit-btn" class="px-4 py-2 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-colors flex items-center space-x-2">
+            <i id="upload-modal-spinner" class="hidden fa-solid fa-spinner fa-spin"></i>
+            <span id="upload-modal-submit-label">Attach Mark Scheme</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- IN-APP PDF PREVIEW MODAL -->
+  <div id="pdf-preview-modal" role="dialog" aria-modal="true" aria-labelledby="pdf-preview-title" onclick="if (event.target === event.currentTarget) closePdfPreviewModal()" class="hidden fixed inset-0 z-[64] bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 no-print">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-5xl w-full h-[88vh] border border-slate-200 overflow-hidden flex flex-col">
+      <div class="px-5 py-3.5 bg-slate-900 text-white flex items-center justify-between gap-3 shrink-0">
+        <div class="min-w-0">
+          <h3 id="pdf-preview-title" class="text-sm font-bold truncate">Original OCR Question Paper</h3>
+          <p class="text-[11px] text-slate-300">Official OCR Cambridge National in IT (J836) Unit R050/01 PDF</p>
+        </div>
+        <button type="button" onclick="closePdfPreviewModal()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700">
+          Close
+        </button>
+      </div>
+      <iframe id="pdf-preview-iframe" title="OCR Question Paper Preview" class="w-full flex-1 bg-slate-100 border-0"></iframe>
+    </div>
+  </div>
+
+  <!-- OFFICIAL PAPER AI EXAMINER RESULTS MODAL -->
+  <div id="official-results-modal" role="dialog" aria-modal="true" aria-labelledby="official-results-title" onclick="if (event.target === event.currentTarget) closeOfficialResultsModal()" class="hidden fixed inset-0 z-[64] bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full border border-slate-200 overflow-hidden my-8">
+      <div class="px-6 py-5 bg-slate-900 text-white flex items-center justify-between gap-3">
+        <div>
+          <div id="official-results-series" class="text-xs font-semibold text-indigo-300">Official OCR Past Paper</div>
+          <h3 id="official-results-title" class="text-xl font-extrabold mt-0.5">AI Examiner Marking Report</h3>
+        </div>
+        <button type="button" onclick="closeOfficialResultsModal()" class="text-slate-300 hover:text-white p-2 rounded-lg no-print" aria-label="Close report">
+          <i class="fa-solid fa-xmark text-base"></i>
+        </button>
+      </div>
+
+      <div id="official-results-body" class="p-6 space-y-6 max-h-[75vh] overflow-y-auto custom-scrollbar">
+        <!-- Populated dynamically -->
+      </div>
+
+      <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 no-print">
+        <button type="button" onclick="exportOfficialResultsCsv()" class="px-4 py-2 bg-white hover:bg-slate-100 text-slate-800 text-xs font-semibold rounded-xl border border-slate-300 transition-colors flex items-center space-x-2">
+          <i class="fa-solid fa-download text-indigo-600"></i>
+          <span>Export CSV Results</span>
+        </button>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="closeOfficialResultsModal()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition-colors">
+            Review Feedback on Paper
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -2226,15 +2601,18 @@
     }
 
     function enterExamWorkspace() {
+      stopOfficialTimer();
       const activePaper = getActivePaperData();
       document.getElementById('home-screen').classList.add('hidden');
       document.getElementById('flashcards-view').classList.add('hidden');
       document.getElementById('coach-view').classList.add('hidden');
       document.getElementById('papers-view').classList.add('hidden');
+      document.getElementById('official-papers-view').classList.add('hidden');
       document.getElementById('nav-home-actions').classList.add('hidden');
       document.getElementById('nav-flashcards-controls').classList.add('hidden');
       document.getElementById('nav-coach-controls').classList.add('hidden');
       document.getElementById('nav-papers-controls').classList.add('hidden');
+      document.getElementById('nav-official-controls').classList.add('hidden');
       document.getElementById('app-container').classList.remove('hidden');
       document.getElementById('nav-controls').classList.remove('hidden');
 
@@ -2299,16 +2677,20 @@
         clearInterval(state.timerInterval);
         state.timerInterval = null;
       }
+      stopOfficialTimer();
       saveState();
       document.getElementById('app-container').classList.add('hidden');
       document.getElementById('flashcards-view').classList.add('hidden');
       document.getElementById('coach-view').classList.add('hidden');
       document.getElementById('papers-view').classList.add('hidden');
+      document.getElementById('official-papers-view').classList.add('hidden');
       document.getElementById('nav-controls').classList.add('hidden');
       document.getElementById('nav-flashcards-controls').classList.add('hidden');
       document.getElementById('nav-coach-controls').classList.add('hidden');
       document.getElementById('nav-papers-controls').classList.add('hidden');
+      document.getElementById('nav-official-controls').classList.add('hidden');
       document.getElementById('results-modal').classList.add('hidden');
+      document.getElementById('official-results-modal').classList.add('hidden');
       document.getElementById('home-screen').classList.remove('hidden');
       document.getElementById('nav-home-actions').classList.remove('hidden');
       renderHomeScreen();
@@ -4372,15 +4754,18 @@
       fcState.queueMode = "all";
       fcQuiz.active = false;
 
+      stopOfficialTimer();
       document.getElementById('home-screen').classList.add('hidden');
       document.getElementById('app-container').classList.add('hidden');
       document.getElementById('coach-view').classList.add('hidden');
       document.getElementById('papers-view').classList.add('hidden');
+      document.getElementById('official-papers-view').classList.add('hidden');
       document.getElementById('results-modal').classList.add('hidden');
       document.getElementById('nav-home-actions').classList.add('hidden');
       document.getElementById('nav-controls').classList.add('hidden');
       document.getElementById('nav-coach-controls').classList.add('hidden');
       document.getElementById('nav-papers-controls').classList.add('hidden');
+      document.getElementById('nav-official-controls').classList.add('hidden');
 
       document.getElementById('flashcards-view').classList.remove('hidden');
       document.getElementById('nav-flashcards-controls').classList.remove('hidden');
@@ -5381,15 +5766,18 @@
         }
       }
 
+      stopOfficialTimer();
       document.getElementById('home-screen').classList.add('hidden');
       document.getElementById('app-container').classList.add('hidden');
       document.getElementById('flashcards-view').classList.add('hidden');
       document.getElementById('papers-view').classList.add('hidden');
+      document.getElementById('official-papers-view').classList.add('hidden');
       document.getElementById('results-modal').classList.add('hidden');
       document.getElementById('nav-home-actions').classList.add('hidden');
       document.getElementById('nav-controls').classList.add('hidden');
       document.getElementById('nav-flashcards-controls').classList.add('hidden');
       document.getElementById('nav-papers-controls').classList.add('hidden');
+      document.getElementById('nav-official-controls').classList.add('hidden');
 
       document.getElementById('coach-view').classList.remove('hidden');
       document.getElementById('nav-coach-controls').classList.remove('hidden');
@@ -6940,15 +7328,18 @@
 
       papersUiState.activeTab = tab === "shuffler" ? "shuffler" : "catalog";
 
+      stopOfficialTimer();
       document.getElementById('home-screen').classList.add('hidden');
       document.getElementById('app-container').classList.add('hidden');
       document.getElementById('flashcards-view').classList.add('hidden');
       document.getElementById('coach-view').classList.add('hidden');
+      document.getElementById('official-papers-view').classList.add('hidden');
       document.getElementById('results-modal').classList.add('hidden');
       document.getElementById('nav-home-actions').classList.add('hidden');
       document.getElementById('nav-controls').classList.add('hidden');
       document.getElementById('nav-flashcards-controls').classList.add('hidden');
       document.getElementById('nav-coach-controls').classList.add('hidden');
+      document.getElementById('nav-official-controls').classList.add('hidden');
 
       document.getElementById('papers-view').classList.remove('hidden');
       document.getElementById('nav-papers-controls').classList.remove('hidden');
@@ -7500,6 +7891,1658 @@
       enterExamWorkspace();
       showToast(`${bp.title} (${bp.totalMarks} Marks) launched!`, "success");
     }
+
+    /* ==========================================================================
+       8. OFFICIAL OCR PAST PAPERS & AI EXAMINER STUDIO
+       ========================================================================== */
+
+    const OFFICIAL_ATTEMPTS_KEY = 'OCR_R050_OFFICIAL_ATTEMPTS_V1';
+    const OFFICIAL_CUSTOM_PAPERS_KEY = 'OCR_R050_CUSTOM_PAPERS_V1';
+
+    const officialState = {
+      catalog: [],
+      customPapers: [],
+      attempts: {},
+      filter: 'all',
+      activePaperId: null,
+      activePaper: null,
+      activeMode: 'practice', // 'practice' | 'mock'
+      pdfSplitOpen: false,
+      pdfPage: 1,
+      timerInterval: null,
+      timeRemaining: 5400,
+      gradingQuestionId: null,
+      gradingWholePaper: false,
+      uploadModalMode: 'attach',
+      canvasControllers: {},
+    };
+
+    function loadOfficialStorage() {
+      try {
+        const rawAttempts = localStorage.getItem(OFFICIAL_ATTEMPTS_KEY);
+        officialState.attempts = rawAttempts ? JSON.parse(rawAttempts) : {};
+      } catch {
+        officialState.attempts = {};
+      }
+      try {
+        const rawCustom = localStorage.getItem(OFFICIAL_CUSTOM_PAPERS_KEY);
+        officialState.customPapers = rawCustom ? JSON.parse(rawCustom) : [];
+      } catch {
+        officialState.customPapers = [];
+      }
+    }
+
+    function saveOfficialAttempts() {
+      try {
+        localStorage.setItem(OFFICIAL_ATTEMPTS_KEY, JSON.stringify(officialState.attempts));
+      } catch (e) {
+        console.warn('Official paper attempt save error (storage quota may be full if many large sketches exist):', e);
+      }
+    }
+
+    function saveOfficialCustomPapers() {
+      try {
+        localStorage.setItem(OFFICIAL_CUSTOM_PAPERS_KEY, JSON.stringify(officialState.customPapers));
+      } catch (e) {
+        console.warn('Custom paper save error:', e);
+      }
+    }
+
+    function getOfficialAttempt(paperId) {
+      if (!officialState.attempts[paperId]) {
+        officialState.attempts[paperId] = {
+          answers: {},
+          diagrams: {},
+          grades: {},
+          summary: null,
+          submitted: false,
+          updatedAt: null,
+        };
+      }
+      return officialState.attempts[paperId];
+    }
+
+    function stopOfficialTimer() {
+      if (officialState.timerInterval) {
+        clearInterval(officialState.timerInterval);
+        officialState.timerInterval = null;
+      }
+    }
+
+    function updateOfficialTimerDisplay() {
+      const el = document.getElementById('nav-official-timer');
+      if (!el) return;
+      const mins = Math.floor(Math.max(0, officialState.timeRemaining) / 60);
+      const secs = Math.max(0, officialState.timeRemaining) % 60;
+      el.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function startOfficialTimer(durationSeconds) {
+      stopOfficialTimer();
+      officialState.timeRemaining = durationSeconds;
+      updateOfficialTimerDisplay();
+      const box = document.getElementById('nav-official-timer-box');
+      if (box) box.classList.remove('hidden');
+
+      officialState.timerInterval = setInterval(() => {
+        officialState.timeRemaining--;
+        updateOfficialTimerDisplay();
+        if (officialState.timeRemaining <= 0) {
+          stopOfficialTimer();
+          showToast('Timed mock finished — sending your paper to the AI Examiner!', 'warning');
+          gradeCompleteOfficialPaper();
+        }
+      }, 1000);
+    }
+
+    function openOfficialQuickRef() {
+      const attempt = officialState.activePaperId ? getOfficialAttempt(officialState.activePaperId) : null;
+      if (officialState.activePaper && officialState.activeMode === 'mock' && (!attempt || !attempt.submitted)) {
+        showToast('Quick Reference is locked during Timed Mock mode until your paper is marked.', 'warning');
+        return;
+      }
+      openQuickReference('TA1', true);
+    }
+
+    async function fetchOfficialPapersCatalog() {
+      try {
+        const res = await fetch('/api/official-papers');
+        if (!res.ok) throw new Error('Unable to fetch official papers list.');
+        const data = await res.json();
+        officialState.catalog = Array.isArray(data.papers) ? data.papers : [];
+      } catch (err) {
+        console.error('Failed to fetch official papers:', err);
+        showToast('Could not reach the server to load the official papers catalog.', 'error');
+      }
+    }
+
+    async function openOfficialPapersWorkspace(initialPaperId = null, mode = 'practice') {
+      if (state.timerInterval) {
+        clearInterval(state.timerInterval);
+        state.timerInterval = null;
+      }
+      saveState();
+      loadOfficialStorage();
+
+      document.getElementById('home-screen').classList.add('hidden');
+      document.getElementById('app-container').classList.add('hidden');
+      document.getElementById('flashcards-view').classList.add('hidden');
+      document.getElementById('coach-view').classList.add('hidden');
+      document.getElementById('papers-view').classList.add('hidden');
+      document.getElementById('results-modal').classList.add('hidden');
+      document.getElementById('nav-home-actions').classList.add('hidden');
+      document.getElementById('nav-controls').classList.add('hidden');
+      document.getElementById('nav-flashcards-controls').classList.add('hidden');
+      document.getElementById('nav-coach-controls').classList.add('hidden');
+      document.getElementById('nav-papers-controls').classList.add('hidden');
+
+      document.getElementById('official-papers-view').classList.remove('hidden');
+      document.getElementById('nav-official-controls').classList.remove('hidden');
+
+      if (officialState.catalog.length === 0) {
+        await fetchOfficialPapersCatalog();
+      }
+
+      if (initialPaperId) {
+        await openOfficialPaperRunner(initialPaperId, mode);
+      } else {
+        backToOfficialCatalog();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function backToOfficialCatalog() {
+      stopOfficialTimer();
+      officialState.activePaperId = null;
+      officialState.activePaper = null;
+      officialState.pdfSplitOpen = false;
+      officialState.canvasControllers = {};
+
+      document.getElementById('official-runner-pane').classList.add('hidden');
+      document.getElementById('official-catalog-pane').classList.remove('hidden');
+      document.getElementById('nav-official-back-btn').classList.add('hidden');
+      document.getElementById('nav-official-timer-box').classList.add('hidden');
+      document.getElementById('nav-official-submit-btn').classList.add('hidden');
+      updateOfficialQuickRefIcon();
+      renderOfficialCatalog();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function setOfficialCatalogFilter(filter) {
+      officialState.filter = filter;
+      renderOfficialCatalog();
+    }
+
+    function getAllOfficialCatalogEntries() {
+      const bundled = officialState.catalog.map(p => ({ ...p, isCustom: false }));
+      const customs = officialState.customPapers.map(cp => ({
+        id: cp.paperId,
+        title: cp.title,
+        series: cp.series || 'Uploaded PDF',
+        year: new Date(cp.parsedAt || Date.now()).getFullYear(),
+        category: 'custom',
+        scenario: `${cp.questions ? cp.questions.length : 0} extracted questions · ${cp.totalMarks || 70} marks`,
+        pages: 0,
+        pdfUrl: cp.pdfUrl || '',
+        isParsed: true,
+        totalMarks: cp.totalMarks || 70,
+        questionCount: cp.questions ? cp.questions.length : 0,
+        durationMinutes: cp.durationMinutes || 90,
+        hasOfficialMarkScheme: Boolean(cp.hasOfficialMarkScheme),
+        markSchemeSummary: cp.markSchemeSummary || '',
+        isCustom: true,
+      }));
+      return [...bundled, ...customs];
+    }
+
+    function renderOfficialCatalog() {
+      const allEntries = getAllOfficialCatalogEntries();
+      const summaryEl = document.getElementById('official-catalog-summary');
+      if (summaryEl) {
+        const msCount = allEntries.filter(p => p.hasOfficialMarkScheme).length;
+        summaryEl.innerText = `${allEntries.length} Exam Papers · ${msCount} with Official Mark Scheme Attached`;
+      }
+
+      document.querySelectorAll('.official-filter-btn').forEach(btn => {
+        const key = btn.getAttribute('data-official-filter');
+        const active = key === officialState.filter;
+        btn.className = active
+          ? 'official-filter-btn px-3.5 py-2 text-xs font-semibold rounded-xl border border-indigo-600 bg-indigo-600 text-white transition-colors whitespace-nowrap'
+          : 'official-filter-btn px-3.5 py-2 text-xs font-semibold rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-colors whitespace-nowrap';
+      });
+
+      const filtered = allEntries.filter(entry => {
+        if (officialState.filter === 'all') return true;
+        if (officialState.filter === 'practice') return entry.category === 'practice' || entry.category === 'specimen';
+        return entry.category === officialState.filter;
+      });
+
+      const grid = document.getElementById('official-papers-grid');
+      if (!grid) return;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white rounded-2xl border border-slate-200 p-8 text-center space-y-3">
+            <p class="text-sm font-bold text-slate-900">No papers in this category yet</p>
+            <p class="text-xs text-slate-500">Upload any OCR question paper PDF and optional mark scheme PDF to add it here.</p>
+            <button type="button" onclick="openUploadPaperModal('new')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors">
+              Upload Question Paper PDF
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(paper => {
+        const attempt = officialState.attempts[paper.id];
+        const answeredCount = attempt ? countAnsweredInOfficialAttempt(attempt) : 0;
+        const summary = attempt && attempt.summary ? attempt.summary : null;
+
+        const msStatusHtml = paper.hasOfficialMarkScheme
+          ? `<div class="flex items-center gap-1.5 text-xs font-semibold text-emerald-700"><i class="fa-solid fa-circle-check text-emerald-600"></i><span>Official Mark Scheme Attached</span></div>`
+          : `<div class="flex items-center gap-1.5 text-xs font-medium text-slate-500"><i class="fa-solid fa-wand-magic-sparkles text-indigo-500"></i><span>OCR Spec AI Marking · Attach MS anytime</span></div>`;
+
+        const progressLine = summary
+          ? `<div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100"><span class="font-semibold text-emerald-700"><i class="fa-solid fa-award mr-1"></i>${escapeHtml(summary.grade)}</span><span class="font-bold text-slate-900 tabular-nums">${summary.totalAwarded} / ${summary.totalMax} (${summary.percentage}%)</span></div>`
+          : answeredCount > 0
+          ? `<div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100"><span class="font-medium text-indigo-700">In Progress</span><span class="font-semibold text-slate-700 tabular-nums">${answeredCount} answers saved</span></div>`
+          : '';
+
+        return `
+          <article class="bg-white rounded-2xl border border-slate-200 hover:border-indigo-300 transition-colors p-5 flex flex-col justify-between gap-5">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between gap-2 text-xs">
+                <span class="font-semibold text-indigo-700">${escapeHtml(paper.series)}</span>
+                <span class="text-slate-500 tabular-nums">${paper.pages ? `${paper.pages} pages · ` : ''}${paper.totalMarks} Marks</span>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-slate-900">${escapeHtml(paper.title)}</h3>
+                <p class="text-xs text-slate-600 mt-1 leading-relaxed">${escapeHtml(paper.scenario)}</p>
+              </div>
+              ${msStatusHtml}
+              ${progressLine}
+            </div>
+
+            <div class="space-y-2">
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="openOfficialPaperRunner('${escapeHtml(paper.id)}', 'practice')" class="py-2.5 px-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap">
+                  <i class="fa-solid fa-wand-magic-sparkles text-[11px]"></i>
+                  <span>Practice + AI</span>
+                </button>
+                <button type="button" onclick="openOfficialPaperRunner('${escapeHtml(paper.id)}', 'mock')" class="py-2.5 px-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap">
+                  <i class="fa-solid fa-stopwatch text-amber-400 text-[11px]"></i>
+                  <span>Timed Mock</span>
+                </button>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="openUploadPaperModal('attach', '${escapeHtml(paper.id)}')" class="flex-1 py-2 px-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap">
+                  <i class="fa-solid fa-paperclip text-indigo-600 text-[11px]"></i>
+                  <span>${paper.hasOfficialMarkScheme ? 'Update Mark Scheme' : 'Attach Mark Scheme'}</span>
+                </button>
+                ${paper.pdfUrl ? `
+                  <button type="button" onclick="openPdfPreviewModal('${escapeHtml(paper.pdfUrl)}', '${escapeHtml(paper.title)}')" class="py-2 px-3 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap" title="View original OCR PDF">
+                    <i class="fa-solid fa-file-pdf text-rose-600 text-[11px]"></i>
+                    <span>PDF</span>
+                  </button>
+                ` : ''}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function countAnsweredInOfficialAttempt(attempt) {
+      if (!attempt) return 0;
+      const ids = new Set();
+      Object.entries(attempt.answers || {}).forEach(([k, v]) => {
+        if (hasMeaningfulOfficialAnswer(v)) ids.add(k);
+      });
+      Object.entries(attempt.diagrams || {}).forEach(([k, v]) => {
+        if (v && v.hasDrawing) ids.add(k);
+      });
+      return ids.size;
+    }
+
+    function hasMeaningfulOfficialAnswer(val) {
+      if (val == null) return false;
+      if (typeof val === 'string') return val.trim().length > 0;
+      if (Array.isArray(val)) return val.some(item => hasMeaningfulOfficialAnswer(item));
+      if (typeof val === 'object') return Object.values(val).some(item => hasMeaningfulOfficialAnswer(item));
+      return false;
+    }
+
+    function updateOfficialQuickRefIcon() {
+      const icon = document.getElementById('nav-official-quickref-icon');
+      const btn = document.getElementById('nav-official-quickref-btn');
+      if (!icon || !btn) return;
+      const attempt = officialState.activePaperId ? getOfficialAttempt(officialState.activePaperId) : null;
+      const locked = Boolean(officialState.activePaper && officialState.activeMode === 'mock' && (!attempt || !attempt.submitted));
+      icon.className = locked ? 'fa-solid fa-lock text-amber-400' : 'fa-solid fa-book-open text-indigo-400';
+      btn.classList.toggle('opacity-60', locked);
+    }
+
+    async function openOfficialPaperRunner(paperId, mode = 'practice') {
+      stopOfficialTimer();
+      officialState.activePaperId = paperId;
+      officialState.activeMode = mode === 'mock' ? 'mock' : 'practice';
+      officialState.pdfSplitOpen = false;
+      officialState.pdfPage = 1;
+      officialState.canvasControllers = {};
+
+      document.getElementById('official-catalog-pane').classList.add('hidden');
+      document.getElementById('official-runner-pane').classList.remove('hidden');
+      document.getElementById('official-exam-shell').classList.add('hidden');
+      document.getElementById('official-error-state').classList.add('hidden');
+      document.getElementById('official-loading-state').classList.remove('hidden');
+      document.getElementById('nav-official-back-btn').classList.remove('hidden');
+      document.getElementById('nav-official-submit-btn').classList.add('hidden');
+
+      const meta = getAllOfficialCatalogEntries().find(p => p.id === paperId);
+      const loadingTitle = document.getElementById('official-loading-title');
+      if (loadingTitle && meta) {
+        loadingTitle.innerText = meta.isParsed
+          ? `Opening ${meta.title}...`
+          : `Extracting interactive questions from ${meta.title}...`;
+      }
+
+      // Custom uploaded paper lives in localStorage
+      const customPaper = officialState.customPapers.find(cp => cp.paperId === paperId);
+      if (customPaper) {
+        officialState.activePaper = customPaper;
+        renderActiveOfficialPaper();
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/official-papers/${encodeURIComponent(paperId)}/parse`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({}),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.paper) {
+          throw new Error(data.error || 'Failed to parse official OCR exam paper.');
+        }
+
+        officialState.activePaper = data.paper;
+        // Refresh catalog metadata in background
+        fetchOfficialPapersCatalog();
+        renderActiveOfficialPaper();
+      } catch (err) {
+        document.getElementById('official-loading-state').classList.add('hidden');
+        document.getElementById('official-error-state').classList.remove('hidden');
+        const msgEl = document.getElementById('official-error-msg');
+        if (msgEl) msgEl.innerText = err instanceof Error ? err.message : 'Unable to parse PDF.';
+        const pdfBtn = document.getElementById('official-error-pdf-btn');
+        if (pdfBtn) pdfBtn.classList.toggle('hidden', !(meta && meta.pdfUrl));
+      }
+    }
+
+    function retryParseActiveOfficialPaper() {
+      if (officialState.activePaperId) {
+        openOfficialPaperRunner(officialState.activePaperId, officialState.activeMode);
+      }
+    }
+
+    function openActiveOfficialPdfModal() {
+      const meta = getAllOfficialCatalogEntries().find(p => p.id === officialState.activePaperId);
+      if (meta && meta.pdfUrl) {
+        openPdfPreviewModal(meta.pdfUrl, meta.title);
+      }
+    }
+
+    function renderActiveOfficialPaper() {
+      const paper = officialState.activePaper;
+      if (!paper) return;
+      const attempt = getOfficialAttempt(paper.paperId);
+
+      document.getElementById('official-loading-state').classList.add('hidden');
+      document.getElementById('official-error-state').classList.add('hidden');
+      document.getElementById('official-exam-shell').classList.remove('hidden');
+      document.getElementById('nav-official-submit-btn').classList.remove('hidden');
+
+      document.getElementById('official-active-series').innerText = `${paper.series || 'OCR R050/01'} · ${paper.totalMarks} Marks`;
+      document.getElementById('official-active-title').innerText = paper.title;
+      document.getElementById('official-active-mode-label').innerText =
+        officialState.activeMode === 'mock'
+          ? `Timed Mock (${paper.durationMinutes || 90} mins · Cheat Sheets Locked)`
+          : 'Practice Mode (Instant AI Examiner Check Per Question)';
+
+      const msLine = document.getElementById('official-ms-status-line');
+      const msBtnLabel = document.getElementById('official-attach-ms-label');
+      if (paper.hasOfficialMarkScheme) {
+        msLine.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i><span class="text-emerald-700 font-semibold">Official Mark Scheme Active: ${escapeHtml(paper.markSchemeSummary || 'Attached')}</span>`;
+        if (msBtnLabel) msBtnLabel.innerText = 'Replace Mark Scheme PDF';
+      } else {
+        msLine.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles text-indigo-500"></i><span>Marking against OCR R050 Specification · Attach the official Mark Scheme PDF anytime for exact mark-scheme criteria.</span>`;
+        if (msBtnLabel) msBtnLabel.innerText = 'Attach Mark Scheme PDF';
+      }
+
+      const togglePdfBtn = document.getElementById('official-toggle-pdf-btn');
+      if (togglePdfBtn) {
+        togglePdfBtn.classList.toggle('hidden', !paper.pdfUrl);
+      }
+
+      const viewReportBtn = document.getElementById('official-view-report-btn');
+      if (viewReportBtn) {
+        viewReportBtn.classList.toggle('hidden', !attempt.summary);
+      }
+
+      // Timer handling
+      if (officialState.activeMode === 'mock' && !attempt.submitted) {
+        startOfficialTimer((paper.durationMinutes || 90) * 60);
+      } else {
+        stopOfficialTimer();
+        document.getElementById('nav-official-timer-box').classList.add('hidden');
+      }
+      updateOfficialQuickRefIcon();
+      applyOfficialPdfSplitUI();
+
+      // Render questions
+      const listEl = document.getElementById('official-questions-list');
+      listEl.innerHTML = paper.questions.map((q, index) => renderOfficialQuestionCard(q, index, attempt)).join('');
+
+      // Initialise interactive diagram canvases
+      paper.questions.forEach(q => {
+        if (q.inputType === 'diagram') {
+          initOfficialDiagramCanvas(q.id);
+        }
+      });
+
+      refreshOfficialProgressAndStrip();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderOfficialQuestionCard(q, index, attempt) {
+      const savedAnswer = attempt.answers[q.id];
+      const grade = attempt.grades[q.id];
+      const canCheckSingle = officialState.activeMode === 'practice' || attempt.submitted;
+
+      let inputHtml = '';
+
+      if (q.inputType === 'mcq' && Array.isArray(q.options) && q.options.length > 0) {
+        inputHtml = `
+          <div class="space-y-2">
+            ${q.options.map((opt, optIdx) => {
+              const checked = savedAnswer === opt;
+              const safeOpt = escapeHtml(opt);
+              return `
+                <label class="flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition-colors ${checked ? 'border-indigo-500 bg-indigo-50/70' : 'border-slate-200 hover:bg-slate-50'}">
+                  <input type="radio" name="off_mcq_${escapeHtml(q.id)}" value="${optIdx}" ${checked ? 'checked' : ''} onchange="handleOfficialMcqChange('${escapeHtml(q.id)}', ${optIdx})" class="mt-0.5 text-indigo-600 focus:ring-indigo-500">
+                  <span class="text-xs sm:text-sm text-slate-800 font-medium">${safeOpt}</span>
+                </label>
+              `;
+            }).join('')}
+          </div>
+        `;
+      } else if (q.inputType === 'multi' && Array.isArray(q.subFieldLabels) && q.subFieldLabels.length > 0) {
+        const vals = Array.isArray(savedAnswer) ? savedAnswer : [];
+        inputHtml = `
+          <div class="space-y-3">
+            ${q.subFieldLabels.map((lbl, i) => `
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">${escapeHtml(lbl)}</label>
+                <textarea rows="${q.marks >= 4 ? 3 : 2}" oninput="handleOfficialMultiChange('${escapeHtml(q.id)}', ${i}, this.value)" placeholder="Write your answer for ${escapeHtml(lbl)}..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500">${escapeHtml(vals[i] || '')}</textarea>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (q.inputType === 'matching' && Array.isArray(q.matchingLeft) && q.matchingLeft.length > 0 && Array.isArray(q.matchingRight) && q.matchingRight.length > 0) {
+        const mapVal = (savedAnswer && typeof savedAnswer === 'object' && !Array.isArray(savedAnswer)) ? savedAnswer : {};
+        inputHtml = `
+          <div class="space-y-2.5">
+            ${q.matchingLeft.map((leftItem, i) => {
+              const selected = mapVal[i] || '';
+              return `
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:items-center p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <div class="sm:col-span-5 text-xs sm:text-sm font-semibold text-slate-900">${escapeHtml(leftItem)}</div>
+                  <div class="sm:col-span-1 text-center text-slate-400 hidden sm:block"><i class="fa-solid fa-arrow-right text-xs"></i></div>
+                  <div class="sm:col-span-6">
+                    <select onchange="handleOfficialMatchingChange('${escapeHtml(q.id)}', ${i}, this.value)" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-xs sm:text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      <option value="">-- Select matching option --</option>
+                      ${q.matchingRight.map(rightOpt => `<option value="${escapeHtml(rightOpt)}" ${selected === rightOpt ? 'selected' : ''}>${escapeHtml(rightOpt)}</option>`).join('')}
+                    </select>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      } else if (q.inputType === 'table' && Array.isArray(q.tableColumns) && q.tableColumns.length > 0 && Array.isArray(q.tableRows) && q.tableRows.length > 0) {
+        const tableAns = (savedAnswer && typeof savedAnswer === 'object' && !Array.isArray(savedAnswer)) ? savedAnswer : {};
+        inputHtml = `
+          <div class="overflow-x-auto rounded-xl border border-slate-200">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-slate-100 border-b border-slate-200">
+                  ${q.tableColumns.map(col => `<th class="px-3 py-2.5 font-bold text-slate-800">${escapeHtml(col)}</th>`).join('')}
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                ${q.tableRows.map((row, rIdx) => `
+                  <tr>
+                    ${q.tableColumns.map((_, cIdx) => {
+                      const prefill = (row && row[cIdx] != null) ? String(row[cIdx]).trim() : '';
+                      if (prefill && prefill !== '___' && prefill !== '...') {
+                        return `<td class="px-3 py-2.5 text-slate-800 font-medium bg-slate-50/70 align-top">${escapeHtml(prefill)}</td>`;
+                      }
+                      const cellKey = `${rIdx}_${cIdx}`;
+                      const cellVal = tableAns[cellKey] || '';
+                      return `
+                        <td class="p-2 align-top">
+                          <textarea rows="2" oninput="handleOfficialTableChange('${escapeHtml(q.id)}', '${cellKey}', this.value)" placeholder="Enter answer..." class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500">${escapeHtml(cellVal)}</textarea>
+                        </td>
+                      `;
+                    }).join('')}
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      } else if (q.inputType === 'diagram') {
+        const notesVal = typeof savedAnswer === 'string' ? savedAnswer : '';
+        inputHtml = `
+          <div class="space-y-3">
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-3 space-y-2.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex flex-wrap items-center gap-1.5" id="diag-tools-${escapeHtml(q.id)}">
+                  <button type="button" onclick="setDiagramTool('${escapeHtml(q.id)}', 'pen')" data-tool="pen" class="diag-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-indigo-600 bg-indigo-600 text-white"><i class="fa-solid fa-pen mr-1"></i>Pen</button>
+                  <button type="button" onclick="setDiagramTool('${escapeHtml(q.id)}', 'rect')" data-tool="rect" class="diag-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-300 bg-white text-slate-700 hover:bg-slate-100"><i class="fa-regular fa-square mr-1"></i>Box</button>
+                  <button type="button" onclick="setDiagramTool('${escapeHtml(q.id)}', 'diamond')" data-tool="diamond" class="diag-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-300 bg-white text-slate-700 hover:bg-slate-100"><i class="fa-solid fa-diamond mr-1"></i>Decision</button>
+                  <button type="button" onclick="setDiagramTool('${escapeHtml(q.id)}', 'arrow')" data-tool="arrow" class="diag-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-300 bg-white text-slate-700 hover:bg-slate-100"><i class="fa-solid fa-arrow-right-long mr-1"></i>Arrow</button>
+                  <button type="button" onclick="setDiagramTool('${escapeHtml(q.id)}', 'text')" data-tool="text" class="diag-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-300 bg-white text-slate-700 hover:bg-slate-100"><i class="fa-solid fa-font mr-1"></i>Text</button>
+                  <button type="button" onclick="setDiagramTool('${escapeHtml(q.id)}', 'eraser')" data-tool="eraser" class="diag-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-300 bg-white text-slate-700 hover:bg-slate-100"><i class="fa-solid fa-eraser mr-1"></i>Eraser</button>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <button type="button" onclick="undoDiagramCanvas('${escapeHtml(q.id)}')" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-300 bg-white text-slate-700 hover:bg-slate-100"><i class="fa-solid fa-rotate-left mr-1"></i>Undo</button>
+                  <button type="button" onclick="clearDiagramCanvas('${escapeHtml(q.id)}')" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-rose-200 bg-white text-rose-700 hover:bg-rose-50">Clear</button>
+                </div>
+              </div>
+              <div id="diag-text-bar-${escapeHtml(q.id)}" class="hidden flex items-center gap-2 bg-white border border-indigo-200 rounded-lg px-3 py-2">
+                <span class="text-xs font-semibold text-indigo-700 whitespace-nowrap">Label text:</span>
+                <input type="text" id="diag-text-input-${escapeHtml(q.id)}" placeholder="Type label (e.g. Home Screen, Yes, Logo) then click canvas to place" class="flex-1 text-xs text-slate-900 focus:outline-none">
+              </div>
+              <div class="bg-white rounded-xl border border-slate-300 overflow-hidden">
+                <canvas id="diag-canvas-${escapeHtml(q.id)}" width="760" height="380" class="w-full h-auto block cursor-crosshair touch-none"></canvas>
+              </div>
+              <p class="text-[11px] text-slate-500">Sketch your wireframe, mind map, flowchart, or visualisation diagram above. The AI Examiner inspects your drawing visually for OCR Content &amp; Layout marks.</p>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Optional Annotations / Notes (included with your diagram when marking)</label>
+              <textarea rows="2" oninput="handleOfficialTextChange('${escapeHtml(q.id)}', this.value)" placeholder="Add any colour choices, font notes, navigation links, or extra annotations..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500">${escapeHtml(notesVal)}</textarea>
+            </div>
+          </div>
+        `;
+      } else {
+        const textVal = typeof savedAnswer === 'string' ? savedAnswer : '';
+        const rows = q.inputType === 'extended' || q.marks >= 6 ? 7 : q.marks >= 3 ? 4 : 2;
+        const wc = textVal.trim() ? textVal.trim().split(/\s+/).length : 0;
+        inputHtml = `
+          <div class="space-y-1.5">
+            <textarea rows="${rows}" oninput="handleOfficialTextChange('${escapeHtml(q.id)}', this.value, 'off-wc-${escapeHtml(q.id)}')" placeholder="Type your exam answer here..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-900 leading-relaxed focus:outline-none focus:ring-2 focus:ring-indigo-500">${escapeHtml(textVal)}</textarea>
+            ${q.marks >= 5 ? `<div class="flex justify-end text-[11px] text-slate-500 tabular-nums"><span id="off-wc-${escapeHtml(q.id)}">${wc} words</span></div>` : ''}
+          </div>
+        `;
+      }
+
+      const figureNotice = q.hasFigure
+        ? `
+          <div class="flex flex-wrap items-center justify-between gap-2 bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 text-xs text-amber-900">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-image text-amber-600"></i>
+              <span><strong>PDF Figure Reference:</strong> ${escapeHtml(q.figureNote || `See figure/diagram on page ${q.pageNumber} of the original OCR paper.`)}</span>
+            </div>
+            ${officialState.activePaper && officialState.activePaper.pdfUrl ? `
+              <button type="button" onclick="jumpToOfficialPdfPage(${q.pageNumber})" class="px-2.5 py-1 bg-white hover:bg-amber-100 text-amber-900 font-semibold rounded-lg border border-amber-300 transition-colors whitespace-nowrap">
+                Open Page ${q.pageNumber} in PDF
+              </button>
+            ` : ''}
+          </div>
+        `
+        : '';
+
+      return `
+        <article id="official-q-card-${escapeHtml(q.id)}" class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
+            <div class="flex flex-wrap items-center gap-2 text-xs">
+              <span class="font-extrabold text-slate-900">Question ${escapeHtml(q.qNum)}</span>
+              <span aria-hidden="true" class="text-slate-300">·</span>
+              <span class="font-semibold text-indigo-700">${escapeHtml(q.ta)}</span>
+              <span aria-hidden="true" class="text-slate-300">·</span>
+              <span class="font-bold text-slate-700 tabular-nums">${q.marks} ${q.marks === 1 ? 'Mark' : 'Marks'}</span>
+              ${q.pageNumber ? `<span aria-hidden="true" class="text-slate-300">·</span><span class="text-slate-500 tabular-nums">Page ${q.pageNumber}</span>` : ''}
+            </div>
+            <div class="flex items-center gap-2">
+              ${officialState.activePaper && officialState.activePaper.pdfUrl ? `
+                <button type="button" onclick="jumpToOfficialPdfPage(${q.pageNumber || 1})" class="text-xs font-semibold text-slate-600 hover:text-indigo-700 transition-colors flex items-center gap-1 whitespace-nowrap">
+                  <i class="fa-solid fa-file-pdf text-rose-500 text-[11px]"></i>
+                  <span>Page ${q.pageNumber || 1}</span>
+                </button>
+              ` : ''}
+            </div>
+          </div>
+
+          ${q.scenarioContext ? `
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">${escapeHtml(q.scenarioContext)}</div>
+          ` : ''}
+
+          ${figureNotice}
+
+          <div class="text-sm sm:text-base font-semibold text-slate-900 leading-relaxed whitespace-pre-line">${escapeHtml(q.prompt)}</div>
+
+          ${inputHtml}
+
+          <div class="pt-2 flex flex-wrap items-center justify-between gap-3">
+            <div class="text-xs text-slate-500">
+              ${q.officialMarkScheme ? '<span class="text-emerald-700 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i>Official Mark Scheme linked</span>' : '<span>AI Examiner uses OCR R050 specification criteria</span>'}
+            </div>
+            ${canCheckSingle ? `
+              <button type="button" id="official-check-btn-${escapeHtml(q.id)}" onclick="gradeSingleOfficialQuestion('${escapeHtml(q.id)}')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors flex items-center space-x-2 whitespace-nowrap">
+                <i class="fa-solid fa-wand-magic-sparkles text-[11px]"></i>
+                <span>Check with AI Examiner</span>
+              </button>
+            ` : '<span class="text-xs font-medium text-amber-700">Timed Mock: Check unlocks after submission</span>'}
+          </div>
+
+          <div id="official-feedback-${escapeHtml(q.id)}">
+            ${grade ? renderOfficialGradeFeedbackHtml(q.id, grade) : ''}
+          </div>
+        </article>
+      `;
+    }
+
+    function renderOfficialGradeFeedbackHtml(qId, grade) {
+      const isFull = grade.status === 'full';
+      const isPartial = grade.status === 'partial';
+      const boxClasses = isFull
+        ? 'bg-emerald-50/70 border-emerald-200'
+        : isPartial
+        ? 'bg-amber-50/70 border-amber-200'
+        : 'bg-rose-50/70 border-rose-200';
+      const statusHtml = isFull
+        ? '<span class="text-emerald-800 font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-600"></i>Full Marks</span>'
+        : isPartial
+        ? '<span class="text-amber-800 font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-half-stroke text-amber-600"></i>Partial Credit</span>'
+        : '<span class="text-rose-800 font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-xmark text-rose-600"></i>Needs Improvement</span>';
+
+      const sourceLabel = grade.markedAgainst === 'official_mark_scheme'
+        ? 'Checked against Official Mark Scheme'
+        : 'Checked against OCR R050 Specification';
+
+      const strengthsHtml = Array.isArray(grade.strengths) && grade.strengths.length > 0
+        ? `
+          <div>
+            <div class="text-xs font-bold text-emerald-900 mb-1">What Earned Marks</div>
+            <ul class="list-disc pl-4 space-y-1 text-xs text-slate-700">
+              ${grade.strengths.map(s => `<li>${escapeHtml(s)}</li>`).join('')}
+            </ul>
+          </div>
+        `
+        : '';
+
+      const missedHtml = Array.isArray(grade.missedPoints) && grade.missedPoints.length > 0
+        ? `
+          <div>
+            <div class="text-xs font-bold text-amber-900 mb-1">Missed Points / How to Gain Full Marks</div>
+            <ul class="list-disc pl-4 space-y-1 text-xs text-slate-700">
+              ${grade.missedPoints.map(m => `<li>${escapeHtml(m)}</li>`).join('')}
+            </ul>
+          </div>
+        `
+        : '';
+
+      return `
+        <div class="rounded-xl border p-4 space-y-3 ${boxClasses}">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-slate-200/70 text-xs">
+            <div class="flex flex-wrap items-center gap-2">
+              ${statusHtml}
+              <span aria-hidden="true" class="text-slate-400">·</span>
+              <span class="font-semibold text-slate-700">${escapeHtml(grade.band || '')}</span>
+              <span aria-hidden="true" class="text-slate-400">·</span>
+              <span class="text-slate-500">${escapeHtml(sourceLabel)}</span>
+            </div>
+            <div class="text-sm font-extrabold text-slate-900 tabular-nums">${grade.marksAwarded} / ${grade.maxMarks} Marks</div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">${escapeHtml(grade.examinerFeedback || '')}</p>
+
+          ${(strengthsHtml || missedHtml) ? `<div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">${strengthsHtml}${missedHtml}</div>` : ''}
+
+          ${grade.modelAnswer ? `
+            <details class="pt-2 border-t border-slate-200/70">
+              <summary class="text-xs font-bold text-indigo-700 cursor-pointer select-none hover:text-indigo-900">
+                View Exemplar / Mark Scheme Guidance
+              </summary>
+              <div class="mt-2 p-3 bg-white rounded-lg border border-slate-200 text-xs text-slate-700 leading-relaxed whitespace-pre-line">${escapeHtml(grade.modelAnswer)}</div>
+            </details>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    function handleOfficialMcqChange(qId, optIdx) {
+      if (!officialState.activePaper) return;
+      const q = officialState.activePaper.questions.find(item => item.id === qId);
+      if (!q || !q.options[optIdx]) return;
+      const attempt = getOfficialAttempt(officialState.activePaper.paperId);
+      attempt.answers[qId] = q.options[optIdx];
+      attempt.updatedAt = new Date().toISOString();
+      saveOfficialAttempts();
+      refreshOfficialProgressAndStrip();
+    }
+
+    function handleOfficialTextChange(qId, value, wcElId = null) {
+      if (!officialState.activePaper) return;
+      const attempt = getOfficialAttempt(officialState.activePaper.paperId);
+      attempt.answers[qId] = value;
+      attempt.updatedAt = new Date().toISOString();
+      saveOfficialAttempts();
+      if (wcElId) {
+        const el = document.getElementById(wcElId);
+        if (el) {
+          const wc = value.trim() ? value.trim().split(/\s+/).length : 0;
+          el.innerText = `${wc} words`;
+        }
+      }
+      refreshOfficialProgressAndStrip();
+    }
+
+    function handleOfficialMultiChange(qId, idx, value) {
+      if (!officialState.activePaper) return;
+      const attempt = getOfficialAttempt(officialState.activePaper.paperId);
+      if (!Array.isArray(attempt.answers[qId])) attempt.answers[qId] = [];
+      attempt.answers[qId][idx] = value;
+      attempt.updatedAt = new Date().toISOString();
+      saveOfficialAttempts();
+      refreshOfficialProgressAndStrip();
+    }
+
+    function handleOfficialMatchingChange(qId, idx, value) {
+      if (!officialState.activePaper) return;
+      const attempt = getOfficialAttempt(officialState.activePaper.paperId);
+      if (!attempt.answers[qId] || typeof attempt.answers[qId] !== 'object' || Array.isArray(attempt.answers[qId])) {
+        attempt.answers[qId] = {};
+      }
+      attempt.answers[qId][idx] = value;
+      attempt.updatedAt = new Date().toISOString();
+      saveOfficialAttempts();
+      refreshOfficialProgressAndStrip();
+    }
+
+    function handleOfficialTableChange(qId, cellKey, value) {
+      if (!officialState.activePaper) return;
+      const attempt = getOfficialAttempt(officialState.activePaper.paperId);
+      if (!attempt.answers[qId] || typeof attempt.answers[qId] !== 'object' || Array.isArray(attempt.answers[qId])) {
+        attempt.answers[qId] = {};
+      }
+      attempt.answers[qId][cellKey] = value;
+      attempt.updatedAt = new Date().toISOString();
+      saveOfficialAttempts();
+      refreshOfficialProgressAndStrip();
+    }
+
+    function serializeOfficialAnswerForAi(q, attempt) {
+      const raw = attempt.answers[q.id];
+      if (q.inputType === 'multi' && Array.isArray(q.subFieldLabels) && Array.isArray(raw)) {
+        return q.subFieldLabels
+          .map((lbl, i) => `${lbl}: ${(raw[i] || '').trim()}`)
+          .filter(line => !line.endsWith(':'))
+          .join('\n');
+      }
+      if (q.inputType === 'matching' && Array.isArray(q.matchingLeft) && raw && typeof raw === 'object') {
+        return q.matchingLeft
+          .map((left, i) => `${left} -> ${raw[i] || '(unmatched)'}`)
+          .join('\n');
+      }
+      if (q.inputType === 'table' && Array.isArray(q.tableColumns) && Array.isArray(q.tableRows) && raw && typeof raw === 'object') {
+        const lines = [`Columns: ${q.tableColumns.join(' | ')}`];
+        q.tableRows.forEach((row, rIdx) => {
+          const cells = q.tableColumns.map((_, cIdx) => {
+            const pre = (row && row[cIdx] != null) ? String(row[cIdx]).trim() : '';
+            if (pre && pre !== '___' && pre !== '...') return pre;
+            return (raw[`${rIdx}_${cIdx}`] || '(blank)').trim();
+          });
+          lines.push(`Row ${rIdx + 1}: ${cells.join(' | ')}`);
+        });
+        return lines.join('\n');
+      }
+      return typeof raw === 'string' ? raw.trim() : '';
+    }
+
+    function refreshOfficialProgressAndStrip() {
+      const paper = officialState.activePaper;
+      if (!paper) return;
+      const attempt = getOfficialAttempt(paper.paperId);
+
+      const answered = countAnsweredInOfficialAttempt(attempt);
+      const total = paper.questions.length;
+      const progEl = document.getElementById('official-active-progress');
+      if (progEl) progEl.innerText = `${answered} of ${total} answered`;
+
+      let markedAwarded = 0;
+      let markedMax = 0;
+      let markedCount = 0;
+      paper.questions.forEach(q => {
+        const g = attempt.grades[q.id];
+        if (g) {
+          markedAwarded += g.marksAwarded;
+          markedMax += g.maxMarks;
+          markedCount++;
+        }
+      });
+
+      const scoreText = document.getElementById('official-score-pill-text');
+      if (scoreText) {
+        scoreText.innerText = markedCount > 0
+          ? `AI Checked: ${markedAwarded} / ${markedMax} marks (${markedCount}/${total} Qs marked)`
+          : 'Not yet AI-marked';
+      }
+
+      const strip = document.getElementById('official-question-jump-strip');
+      if (strip) {
+        strip.innerHTML = paper.questions.map(q => {
+          const isAns = hasMeaningfulOfficialAnswer(attempt.answers[q.id]) || Boolean(attempt.diagrams[q.id] && attempt.diagrams[q.id].hasDrawing);
+          const g = attempt.grades[q.id];
+          let cls = 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100';
+          if (g) {
+            cls = g.status === 'full'
+              ? 'border-emerald-400 bg-emerald-50 text-emerald-800'
+              : g.status === 'partial'
+              ? 'border-amber-400 bg-amber-50 text-amber-800'
+              : 'border-rose-300 bg-rose-50 text-rose-800';
+          } else if (isAns) {
+            cls = 'border-indigo-400 bg-indigo-50 text-indigo-800';
+          }
+          return `
+            <button type="button" onclick="scrollToOfficialQuestion('${escapeHtml(q.id)}')" class="px-2.5 py-1.5 rounded-lg border text-xs font-bold tabular-nums transition-colors ${cls}">
+              Q${escapeHtml(q.qNum)}
+            </button>
+          `;
+        }).join('');
+      }
+    }
+
+    function scrollToOfficialQuestion(qId) {
+      const el = document.getElementById(`official-q-card-${qId}`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    /* --- Side-by-Side Original PDF Viewer --- */
+    function applyOfficialPdfSplitUI() {
+      const splitGrid = document.getElementById('official-split-grid');
+      const pdfPane = document.getElementById('official-pdf-pane');
+      const toggleLabel = document.getElementById('official-toggle-pdf-label');
+      const iframe = document.getElementById('official-pdf-iframe');
+      const pageLabel = document.getElementById('official-pdf-page-label');
+      const paper = officialState.activePaper;
+
+      if (!paper || !paper.pdfUrl || !officialState.pdfSplitOpen) {
+        splitGrid.className = 'grid grid-cols-1 gap-6 items-start';
+        pdfPane.classList.add('hidden');
+        if (toggleLabel) toggleLabel.innerText = 'Show Original PDF';
+        return;
+      }
+
+      splitGrid.className = 'grid grid-cols-1 lg:grid-cols-12 gap-6 items-start';
+      document.getElementById('official-questions-col').className = 'lg:col-span-7 space-y-5 min-w-0';
+      pdfPane.className = 'lg:col-span-5 bg-white rounded-2xl border border-slate-200 overflow-hidden lg:sticky lg:top-20 flex flex-col h-[78vh]';
+      if (toggleLabel) toggleLabel.innerText = 'Hide Original PDF';
+      if (pageLabel) pageLabel.innerText = `Page ${officialState.pdfPage}`;
+      if (iframe) {
+        iframe.src = `${paper.pdfUrl}#page=${officialState.pdfPage}`;
+      }
+    }
+
+    function toggleOfficialPdfSplit(forceState = null) {
+      officialState.pdfSplitOpen = forceState !== null ? Boolean(forceState) : !officialState.pdfSplitOpen;
+      if (!officialState.pdfSplitOpen) {
+        document.getElementById('official-questions-col').className = 'space-y-5 min-w-0';
+      }
+      applyOfficialPdfSplitUI();
+    }
+
+    function jumpToOfficialPdfPage(pageNum) {
+      officialState.pdfPage = Math.max(1, Number(pageNum) || 1);
+      officialState.pdfSplitOpen = true;
+      applyOfficialPdfSplitUI();
+    }
+
+    function stepOfficialPdfPage(delta) {
+      officialState.pdfPage = Math.max(1, officialState.pdfPage + delta);
+      applyOfficialPdfSplitUI();
+    }
+
+    function openPdfPreviewModal(pdfUrl, title) {
+      document.getElementById('pdf-preview-title').innerText = title || 'Original OCR Question Paper';
+      document.getElementById('pdf-preview-iframe').src = pdfUrl;
+      document.getElementById('pdf-preview-modal').classList.remove('hidden');
+    }
+
+    function closePdfPreviewModal() {
+      document.getElementById('pdf-preview-modal').classList.add('hidden');
+      document.getElementById('pdf-preview-iframe').src = 'about:blank';
+    }
+
+    /* --- Interactive Diagram Canvas Sketchpad (Wireframes, Mind Maps, Flowcharts, Visualisation Diagrams) --- */
+    function initOfficialDiagramCanvas(qId) {
+      const canvas = document.getElementById(`diag-canvas-${qId}`);
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const controller = {
+        canvas,
+        ctx,
+        tool: 'pen',
+        drawing: false,
+        startX: 0,
+        startY: 0,
+        snapshotBeforeShape: null,
+        history: [],
+        hasDrawing: false,
+      };
+      officialState.canvasControllers[qId] = controller;
+
+      // Fill clean white canvas with light blueprint grid
+      drawDiagramBackground(ctx, canvas.width, canvas.height);
+
+      // Restore saved sketch if available
+      const attempt = officialState.activePaper ? getOfficialAttempt(officialState.activePaper.paperId) : null;
+      const savedDiag = attempt && attempt.diagrams[qId];
+      if (savedDiag && savedDiag.dataUrl) {
+        const img = new Image();
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          controller.hasDrawing = Boolean(savedDiag.hasDrawing);
+          controller.history = [canvas.toDataURL('image/png')];
+        };
+        img.src = savedDiag.dataUrl;
+      } else {
+        controller.history = [canvas.toDataURL('image/png')];
+      }
+
+      function getCoords(evt) {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+        const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+        return {
+          x: (clientX - rect.left) * scaleX,
+          y: (clientY - rect.top) * scaleY,
+        };
+      }
+
+      function onDown(evt) {
+        evt.preventDefault();
+        const pt = getCoords(evt);
+
+        if (controller.tool === 'text') {
+          const textInput = document.getElementById(`diag-text-input-${qId}`);
+          const label = (textInput && textInput.value.trim()) || 'Label';
+          ctx.save();
+          ctx.font = '600 15px Inter, sans-serif';
+          ctx.fillStyle = '#0f172a';
+          ctx.fillText(label, pt.x, pt.y);
+          ctx.restore();
+          controller.hasDrawing = true;
+          pushDiagramHistory(qId);
+          return;
+        }
+
+        controller.drawing = true;
+        controller.startX = pt.x;
+        controller.startY = pt.y;
+        controller.snapshotBeforeShape = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+        if (controller.tool === 'pen' || controller.tool === 'eraser') {
+          ctx.beginPath();
+          ctx.moveTo(pt.x, pt.y);
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          ctx.strokeStyle = controller.tool === 'eraser' ? '#ffffff' : '#0f172a';
+          ctx.lineWidth = controller.tool === 'eraser' ? 16 : 2.5;
+        }
+      }
+
+      function onMove(evt) {
+        if (!controller.drawing) return;
+        evt.preventDefault();
+        const pt = getCoords(evt);
+
+        if (controller.tool === 'pen' || controller.tool === 'eraser') {
+          ctx.lineTo(pt.x, pt.y);
+          ctx.stroke();
+          controller.hasDrawing = true;
+          return;
+        }
+
+        if (controller.snapshotBeforeShape) {
+          ctx.putImageData(controller.snapshotBeforeShape, 0, 0);
+        }
+        ctx.save();
+        ctx.strokeStyle = '#1e293b';
+        ctx.lineWidth = 2.2;
+
+        if (controller.tool === 'rect') {
+          ctx.strokeRect(controller.startX, controller.startY, pt.x - controller.startX, pt.y - controller.startY);
+        } else if (controller.tool === 'diamond') {
+          const cx = (controller.startX + pt.x) / 2;
+          const cy = (controller.startY + pt.y) / 2;
+          ctx.beginPath();
+          ctx.moveTo(cx, controller.startY);
+          ctx.lineTo(pt.x, cy);
+          ctx.lineTo(cx, pt.y);
+          ctx.lineTo(controller.startX, cy);
+          ctx.closePath();
+          ctx.stroke();
+        } else if (controller.tool === 'arrow') {
+          drawCanvasArrow(ctx, controller.startX, controller.startY, pt.x, pt.y);
+        }
+        ctx.restore();
+        controller.hasDrawing = true;
+      }
+
+      function onUp() {
+        if (!controller.drawing) return;
+        controller.drawing = false;
+        controller.snapshotBeforeShape = null;
+        pushDiagramHistory(qId);
+      }
+
+      canvas.addEventListener('mousedown', onDown);
+      canvas.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onUp);
+      canvas.addEventListener('touchstart', onDown, { passive: false });
+      canvas.addEventListener('touchmove', onMove, { passive: false });
+      canvas.addEventListener('touchend', onUp);
+    }
+
+    function drawDiagramBackground(ctx, w, h) {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+      ctx.strokeStyle = '#f1f5f9';
+      ctx.lineWidth = 1;
+      for (let x = 20; x < w; x += 20) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = 20; y < h; y += 20) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+    }
+
+    function drawCanvasArrow(ctx, x1, y1, x2, y2) {
+      const headLen = 11;
+      const angle = Math.atan2(y2 - y1, x2 - x1);
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x2 - headLen * Math.cos(angle - Math.PI / 6), y2 - headLen * Math.sin(angle - Math.PI / 6));
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x2 - headLen * Math.cos(angle + Math.PI / 6), y2 - headLen * Math.sin(angle + Math.PI / 6));
+      ctx.stroke();
+    }
+
+    function pushDiagramHistory(qId) {
+      const ctrl = officialState.canvasControllers[qId];
+      if (!ctrl || !officialState.activePaper) return;
+      const dataUrl = ctrl.canvas.toDataURL('image/png');
+      ctrl.history.push(dataUrl);
+      if (ctrl.history.length > 20) ctrl.history.shift();
+
+      const attempt = getOfficialAttempt(officialState.activePaper.paperId);
+      attempt.diagrams[qId] = { dataUrl, hasDrawing: ctrl.hasDrawing };
+      attempt.updatedAt = new Date().toISOString();
+      saveOfficialAttempts();
+      refreshOfficialProgressAndStrip();
+    }
+
+    function setDiagramTool(qId, tool) {
+      const ctrl = officialState.canvasControllers[qId];
+      if (!ctrl) return;
+      ctrl.tool = tool;
+      const container = document.getElementById(`diag-tools-${qId}`);
+      if (container) {
+        container.querySelectorAll('.diag-tool-btn').forEach(btn => {
+          const active = btn.getAttribute('data-tool') === tool;
+          btn.className = active
+            ? 'diag-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-indigo-600 bg-indigo-600 text-white'
+            : 'diag-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-300 bg-white text-slate-700 hover:bg-slate-100';
+        });
+      }
+      const textBar = document.getElementById(`diag-text-bar-${qId}`);
+      if (textBar) textBar.classList.toggle('hidden', tool !== 'text');
+    }
+
+    function undoDiagramCanvas(qId) {
+      const ctrl = officialState.canvasControllers[qId];
+      if (!ctrl || ctrl.history.length <= 1) return;
+      ctrl.history.pop();
+      const prevUrl = ctrl.history[ctrl.history.length - 1];
+      const img = new Image();
+      img.onload = () => {
+        ctrl.ctx.clearRect(0, 0, ctrl.canvas.width, ctrl.canvas.height);
+        ctrl.ctx.drawImage(img, 0, 0, ctrl.canvas.width, ctrl.canvas.height);
+        ctrl.hasDrawing = ctrl.history.length > 1;
+        if (officialState.activePaper) {
+          const attempt = getOfficialAttempt(officialState.activePaper.paperId);
+          attempt.diagrams[qId] = { dataUrl: prevUrl, hasDrawing: ctrl.hasDrawing };
+          saveOfficialAttempts();
+          refreshOfficialProgressAndStrip();
+        }
+      };
+      img.src = prevUrl;
+    }
+
+    function clearDiagramCanvas(qId) {
+      const ctrl = officialState.canvasControllers[qId];
+      if (!ctrl) return;
+      drawDiagramBackground(ctrl.ctx, ctrl.canvas.width, ctrl.canvas.height);
+      ctrl.hasDrawing = false;
+      const blankUrl = ctrl.canvas.toDataURL('image/png');
+      ctrl.history = [blankUrl];
+      if (officialState.activePaper) {
+        const attempt = getOfficialAttempt(officialState.activePaper.paperId);
+        delete attempt.diagrams[qId];
+        saveOfficialAttempts();
+        refreshOfficialProgressAndStrip();
+      }
+    }
+
+    /* --- AI Examiner: Single Question & Full Paper Marking --- */
+    async function gradeSingleOfficialQuestion(qId) {
+      const paper = officialState.activePaper;
+      if (!paper) return;
+      const q = paper.questions.find(item => item.id === qId);
+      if (!q) return;
+
+      const attempt = getOfficialAttempt(paper.paperId);
+      const studentAnswerText = serializeOfficialAnswerForAi(q, attempt);
+      const diag = attempt.diagrams[q.id];
+      const studentDiagramDataUrl = diag && diag.hasDrawing ? diag.dataUrl : null;
+
+      if (!studentAnswerText && !studentDiagramDataUrl) {
+        showToast('Enter an answer or sketch a diagram before asking the AI Examiner to check.', 'warning');
+        return;
+      }
+
+      const btn = document.getElementById(`official-check-btn-${qId}`);
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-[11px]"></i><span>AI Examiner Marking...</span>`;
+      }
+
+      try {
+        const res = await fetch('/api/ai/grade-question', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            paperTitle: paper.title,
+            question: q,
+            studentAnswerText,
+            studentDiagramDataUrl,
+            officialMarkScheme: q.officialMarkScheme || '',
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.grade) {
+          throw new Error(data.error || 'AI Examiner could not mark this question.');
+        }
+
+        attempt.grades[qId] = data.grade;
+        saveOfficialAttempts();
+
+        const fbContainer = document.getElementById(`official-feedback-${qId}`);
+        if (fbContainer) {
+          fbContainer.innerHTML = renderOfficialGradeFeedbackHtml(qId, data.grade);
+        }
+        refreshOfficialProgressAndStrip();
+        showToast(`Q${q.qNum}: ${data.grade.marksAwarded} / ${data.grade.maxMarks} marks awarded`, data.grade.status === 'full' ? 'success' : 'info');
+      } catch (err) {
+        showToast(err instanceof Error ? err.message : 'AI Examiner error.', 'error');
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles text-[11px]"></i><span>Re-check with AI Examiner</span>`;
+        }
+      }
+    }
+
+    function confirmGradeOfficialPaper() {
+      const paper = officialState.activePaper;
+      if (!paper) return;
+      const attempt = getOfficialAttempt(paper.paperId);
+      const answered = countAnsweredInOfficialAttempt(attempt);
+      openConfirmModal(
+        'AI Mark Complete Paper?',
+        `You have answered ${answered} of ${paper.questions.length} questions on "${paper.title}". The AI Examiner will mark all answered questions (including drawn diagrams), calculate your OCR Level 1/2 grade, and generate your Topic Area breakdown.`,
+        () => gradeCompleteOfficialPaper(),
+        'Mark Paper Now'
+      );
+    }
+
+    async function gradeCompleteOfficialPaper() {
+      const paper = officialState.activePaper;
+      if (!paper || officialState.gradingWholePaper) return;
+      officialState.gradingWholePaper = true;
+      stopOfficialTimer();
+
+      const navBtn = document.getElementById('nav-official-submit-btn');
+      const bottomBtn = document.getElementById('official-bottom-grade-btn');
+      if (navBtn) {
+        navBtn.disabled = true;
+        navBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-xs"></i><span>Marking Paper...</span>`;
+      }
+      if (bottomBtn) {
+        bottomBtn.disabled = true;
+        bottomBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-xs"></i><span>AI Examiner Marking All Questions...</span>`;
+      }
+
+      try {
+        const attempt = getOfficialAttempt(paper.paperId);
+        const items = paper.questions.map(q => {
+          const diag = attempt.diagrams[q.id];
+          return {
+            question: q,
+            studentAnswerText: serializeOfficialAnswerForAi(q, attempt),
+            studentDiagramDataUrl: diag && diag.hasDrawing ? diag.dataUrl : null,
+            officialMarkScheme: q.officialMarkScheme || '',
+          };
+        });
+
+        const res = await fetch('/api/ai/grade-paper', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            paperTitle: paper.title,
+            items,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.summary) {
+          throw new Error(data.error || 'AI Examiner could not mark the paper.');
+        }
+
+        attempt.grades = data.gradesByQuestionId || {};
+        attempt.summary = data.summary;
+        attempt.submitted = true;
+        attempt.updatedAt = new Date().toISOString();
+        saveOfficialAttempts();
+
+        // Re-render inline feedback on every question card
+        paper.questions.forEach(q => {
+          const fb = document.getElementById(`official-feedback-${q.id}`);
+          if (fb && attempt.grades[q.id]) {
+            fb.innerHTML = renderOfficialGradeFeedbackHtml(q.id, attempt.grades[q.id]);
+          }
+        });
+
+        updateOfficialQuickRefIcon();
+        refreshOfficialProgressAndStrip();
+        const reportBtn = document.getElementById('official-view-report-btn');
+        if (reportBtn) reportBtn.classList.remove('hidden');
+
+        openOfficialResultsModal();
+        showToast(`Paper marked: ${data.summary.totalAwarded} / ${data.summary.totalMax} (${data.summary.grade})`, 'success');
+      } catch (err) {
+        showToast(err instanceof Error ? err.message : 'Failed to mark complete paper.', 'error');
+      } finally {
+        officialState.gradingWholePaper = false;
+        if (navBtn) {
+          navBtn.disabled = false;
+          navBtn.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles text-xs"></i><span>AI Mark Paper</span>`;
+        }
+        if (bottomBtn) {
+          bottomBtn.disabled = false;
+          bottomBtn.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles text-xs"></i><span>Re-mark Complete Paper</span>`;
+        }
+      }
+    }
+
+    function openOfficialResultsModal() {
+      const paper = officialState.activePaper;
+      if (!paper) return;
+      const attempt = getOfficialAttempt(paper.paperId);
+      const summary = attempt.summary;
+      if (!summary) return;
+
+      document.getElementById('official-results-series').innerText = `${paper.series || 'OCR R050/01'} · ${paper.hasOfficialMarkScheme ? 'Official Mark Scheme' : 'OCR R050 Specification'}`;
+      document.getElementById('official-results-title').innerText = `${paper.title} — AI Examiner Report`;
+
+      const studentName = (document.getElementById('input-student-name')?.value || state.studentName || 'Candidate').trim();
+      const studentClass = (document.getElementById('input-student-class')?.value || state.studentClass || 'R050').trim();
+
+      const taRowsHtml = ['TA1', 'TA2', 'TA3', 'TA4', 'TA5', 'TA6'].map(ta => {
+        const entry = (summary.taBreakdown && summary.taBreakdown[ta]) || { earned: 0, max: 0 };
+        if (entry.max === 0) return '';
+        const pct = Math.round((entry.earned / entry.max) * 100);
+        const topicMeta = QUICK_REFERENCE_DATA.find(t => t.id === ta);
+        return `
+          <div class="space-y-1">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-semibold text-slate-800">${ta}: ${escapeHtml(topicMeta ? topicMeta.title : ta)}</span>
+              <span class="font-bold text-slate-900 tabular-nums">${entry.earned} / ${entry.max} (${pct}%)</span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+              <div class="${pct >= 70 ? 'bg-emerald-500' : pct >= 50 ? 'bg-indigo-500' : 'bg-amber-500'} h-2 rounded-full" style="width: ${Math.max(4, pct)}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const qRowsHtml = paper.questions.map(q => {
+        const g = attempt.grades[q.id];
+        const awarded = g ? g.marksAwarded : 0;
+        const statusColor = g && g.status === 'full' ? 'text-emerald-700' : g && g.status === 'partial' ? 'text-amber-700' : 'text-rose-700';
+        return `
+          <tr class="border-b border-slate-100">
+            <td class="py-2 pr-3 font-bold text-slate-900 whitespace-nowrap">Q${escapeHtml(q.qNum)}</td>
+            <td class="py-2 pr-3 text-slate-600 whitespace-nowrap">${escapeHtml(q.ta)}</td>
+            <td class="py-2 pr-3 text-slate-700 truncate max-w-[260px]">${escapeHtml(q.prompt.slice(0, 75))}${q.prompt.length > 75 ? '…' : ''}</td>
+            <td class="py-2 text-right font-bold tabular-nums whitespace-nowrap ${statusColor}">${awarded} / ${q.marks}</td>
+          </tr>
+        `;
+      }).join('');
+
+      document.getElementById('official-results-body').innerHTML = `
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="bg-slate-50 rounded-xl border border-slate-200 p-4">
+            <div class="text-xs font-medium text-slate-500">Total AI Score</div>
+            <div class="text-2xl font-extrabold text-slate-900 tabular-nums mt-1">${summary.totalAwarded} / ${summary.totalMax}</div>
+            <div class="text-xs text-slate-600 tabular-nums mt-0.5">${summary.percentage}% overall</div>
+          </div>
+          <div class="bg-indigo-50 rounded-xl border border-indigo-200 p-4">
+            <div class="text-xs font-medium text-indigo-700">Estimated OCR Grade</div>
+            <div class="text-lg font-extrabold text-indigo-950 mt-1">${escapeHtml(summary.grade)}</div>
+            <div class="text-xs text-indigo-700 mt-0.5">Cambridge National J836</div>
+          </div>
+          <div class="bg-slate-50 rounded-xl border border-slate-200 p-4">
+            <div class="text-xs font-medium text-slate-500">Candidate</div>
+            <div class="text-sm font-bold text-slate-900 mt-1 truncate">${escapeHtml(studentName)}</div>
+            <div class="text-xs text-slate-600 mt-0.5 truncate">${escapeHtml(studentClass)}</div>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-slate-900">Topic Area Breakdown (TA1–TA6)</h4>
+          <div class="space-y-2.5">${taRowsHtml}</div>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-sm font-bold text-slate-900">Question-by-Question Marks</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="border-b border-slate-200 text-slate-500">
+                  <th class="py-2 pr-3">Q#</th>
+                  <th class="py-2 pr-3">Topic</th>
+                  <th class="py-2 pr-3">Question</th>
+                  <th class="py-2 text-right">Marks</th>
+                </tr>
+              </thead>
+              <tbody>${qRowsHtml}</tbody>
+            </table>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('official-results-modal').classList.remove('hidden');
+    }
+
+    function closeOfficialResultsModal() {
+      document.getElementById('official-results-modal').classList.add('hidden');
+    }
+
+    function exportOfficialResultsCsv() {
+      const paper = officialState.activePaper;
+      if (!paper) return;
+      const attempt = getOfficialAttempt(paper.paperId);
+      const studentName = (document.getElementById('input-student-name')?.value || state.studentName || 'Candidate').trim();
+      const rows = [
+        ['Paper', 'Candidate', 'Question', 'Topic Area', 'Marks Awarded', 'Max Marks', 'Band', 'Examiner Feedback'],
+      ];
+      paper.questions.forEach(q => {
+        const g = attempt.grades[q.id];
+        rows.push([
+          paper.title,
+          studentName,
+          `Q${q.qNum}`,
+          q.ta,
+          String(g ? g.marksAwarded : 0),
+          String(q.marks),
+          g ? g.band : 'Unmarked',
+          g ? g.examinerFeedback : '',
+        ]);
+      });
+      const csv = rows.map(r => r.map(cell => `"${String(cell || '').replace(/"/g, '""')}"`).join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${paper.paperId}_ai_examiner_results.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('CSV results exported!', 'success');
+    }
+
+    /* --- Upload Custom Paper / Attach Mark Scheme PDF Modal --- */
+    function readFileAsBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = String(reader.result || '');
+          const base64 = result.includes(',') ? result.split(',')[1] : result;
+          resolve(base64);
+        };
+        reader.onerror = () => reject(new Error('Could not read the selected PDF file.'));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function openUploadPaperModal(mode = 'attach', targetPaperId = null) {
+      loadOfficialStorage();
+      if (officialState.catalog.length === 0) {
+        await fetchOfficialPapersCatalog();
+      }
+
+      const selectEl = document.getElementById('upload-target-paper-select');
+      const allEntries = getAllOfficialCatalogEntries();
+      if (selectEl) {
+        selectEl.innerHTML = allEntries
+          .map(p => `<option value="${escapeHtml(p.id)}" ${p.id === targetPaperId ? 'selected' : ''}>${escapeHtml(p.title)} (${escapeHtml(p.series)})</option>`)
+          .join('');
+      }
+
+      document.getElementById('upload-paper-form').reset();
+      if (targetPaperId && selectEl) selectEl.value = targetPaperId;
+      document.getElementById('upload-modal-error').classList.add('hidden');
+      setUploadModalMode(mode === 'new' ? 'new' : 'attach');
+      document.getElementById('upload-paper-modal').classList.remove('hidden');
+    }
+
+    function closeUploadPaperModal() {
+      document.getElementById('upload-paper-modal').classList.add('hidden');
+    }
+
+    function setUploadModalMode(mode) {
+      officialState.uploadModalMode = mode;
+      const isAttach = mode === 'attach';
+
+      document.getElementById('upload-attach-target-group').classList.toggle('hidden', !isAttach);
+      document.getElementById('upload-new-paper-fields').classList.toggle('hidden', isAttach);
+      document.getElementById('upload-ms-label').innerText = isAttach
+        ? 'Official Mark Scheme PDF (Required)'
+        : 'Official Mark Scheme PDF (Optional — attach now or later)';
+      document.getElementById('upload-modal-submit-label').innerText = isAttach
+        ? 'Attach Mark Scheme'
+        : 'Import Exam Paper';
+
+      document.getElementById('upload-mode-btn-attach').className = isAttach
+        ? 'flex-1 py-2 text-xs font-semibold rounded-lg transition-colors bg-white text-slate-900 shadow-sm'
+        : 'flex-1 py-2 text-xs font-semibold rounded-lg transition-colors text-slate-600 hover:text-slate-900';
+      document.getElementById('upload-mode-btn-new').className = !isAttach
+        ? 'flex-1 py-2 text-xs font-semibold rounded-lg transition-colors bg-white text-slate-900 shadow-sm'
+        : 'flex-1 py-2 text-xs font-semibold rounded-lg transition-colors text-slate-600 hover:text-slate-900';
+    }
+
+    async function handleUploadPaperSubmit(event) {
+      event.preventDefault();
+      const errEl = document.getElementById('upload-modal-error');
+      const submitBtn = document.getElementById('upload-modal-submit-btn');
+      const spinner = document.getElementById('upload-modal-spinner');
+      errEl.classList.add('hidden');
+
+      const showErr = (msg) => {
+        errEl.innerText = msg;
+        errEl.classList.remove('hidden');
+      };
+
+      submitBtn.disabled = true;
+      spinner.classList.remove('hidden');
+
+      try {
+        if (officialState.uploadModalMode === 'attach') {
+          const targetPaperId = document.getElementById('upload-target-paper-select').value;
+          const msFile = document.getElementById('upload-ms-file').files[0];
+          if (!targetPaperId) {
+            showErr('Please select an exam paper.');
+            return;
+          }
+          if (!msFile) {
+            showErr('Please choose the official Mark Scheme PDF file.');
+            return;
+          }
+
+          // Ensure questions exist for target paper before mapping mark scheme
+          let targetPaperObj = officialState.customPapers.find(cp => cp.paperId === targetPaperId) || null;
+          if (!targetPaperObj && officialState.activePaper && officialState.activePaper.paperId === targetPaperId) {
+            targetPaperObj = officialState.activePaper;
+          }
+          if (!targetPaperObj) {
+            const parseRes = await fetch(`/api/official-papers/${encodeURIComponent(targetPaperId)}/parse`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({}),
+            });
+            const parseData = await parseRes.json();
+            if (!parseRes.ok || !parseData.paper) {
+              throw new Error(parseData.error || 'Could not extract paper questions before attaching mark scheme.');
+            }
+            targetPaperObj = parseData.paper;
+          }
+
+          const markSchemeBase64 = await readFileAsBase64(msFile);
+          const msRes = await fetch('/api/official-papers/attach-markscheme', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              paperId: targetPaperId,
+              markSchemeBase64,
+              questions: targetPaperObj.questions.map(q => ({
+                id: q.id,
+                qNum: q.qNum,
+                marks: q.marks,
+                prompt: q.prompt,
+              })),
+            }),
+          });
+          const msData = await msRes.json();
+          if (!msRes.ok) {
+            throw new Error(msData.error || 'Could not attach mark scheme PDF.');
+          }
+
+          // Apply criteria to custom paper or active paper in memory
+          const applyCriteria = (paperObj) => {
+            paperObj.hasOfficialMarkScheme = true;
+            paperObj.markSchemeSummary = msData.summary || 'Official Mark Scheme Attached';
+            paperObj.questions = paperObj.questions.map(q => ({
+              ...q,
+              officialMarkScheme: (msData.criteriaByQuestionId && msData.criteriaByQuestionId[q.id]) || q.officialMarkScheme || '',
+            }));
+          };
+
+          const customIdx = officialState.customPapers.findIndex(cp => cp.paperId === targetPaperId);
+          if (customIdx >= 0) {
+            applyCriteria(officialState.customPapers[customIdx]);
+            saveOfficialCustomPapers();
+          }
+          if (officialState.activePaper && officialState.activePaper.paperId === targetPaperId) {
+            applyCriteria(officialState.activePaper);
+            renderActiveOfficialPaper();
+          }
+
+          await fetchOfficialPapersCatalog();
+          renderOfficialCatalog();
+          closeUploadPaperModal();
+          showToast(`Official Mark Scheme linked to ${msData.matchedCount || 0} questions!`, 'success');
+        } else {
+          const title = document.getElementById('upload-paper-title').value.trim();
+          const series = document.getElementById('upload-paper-series').value.trim() || 'Uploaded Paper';
+          const qpFile = document.getElementById('upload-qp-file').files[0];
+          const msFile = document.getElementById('upload-ms-file').files[0];
+
+          if (!title) {
+            showErr('Please enter a title for the exam paper.');
+            return;
+          }
+          if (!qpFile) {
+            showErr('Please select a Question Paper PDF file.');
+            return;
+          }
+
+          const questionPaperBase64 = await readFileAsBase64(qpFile);
+          const markSchemeBase64 = msFile ? await readFileAsBase64(msFile) : null;
+
+          const res = await fetch('/api/official-papers/import', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              title,
+              series,
+              questionPaperBase64,
+              markSchemeBase64,
+            }),
+          });
+          const data = await res.json();
+          if (!res.ok || !data.paper) {
+            throw new Error(data.error || 'Failed to import question paper PDF.');
+          }
+
+          officialState.customPapers.unshift(data.paper);
+          saveOfficialCustomPapers();
+          closeUploadPaperModal();
+          await openOfficialPapersWorkspace(data.paper.paperId, 'practice');
+          showToast(`Imported "${data.paper.title}" (${data.paper.questions.length} questions)!`, 'success');
+        }
+      } catch (err) {
+        showErr(err instanceof Error ? err.message : 'Upload failed.');
+      } finally {
+        submitBtn.disabled = false;
+        spinner.classList.add('hidden');
+      }
+    }
+
+    // Close Official Papers modals on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeUploadPaperModal();
+        closePdfPreviewModal();
+        closeOfficialResultsModal();
+      }
+    });
   </script>
 </body>
 </html>
