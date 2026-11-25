@@ -288,32 +288,39 @@
     </div>
 
     <!-- Official OCR Past Papers & AI Examiner Featured Deck -->
-    <div class="bg-slate-900 text-white rounded-2xl border border-slate-800 p-6 sm:p-7 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-      <div class="space-y-2.5 max-w-3xl">
-        <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-indigo-300">
-          <span class="font-bold text-white">Official OCR R050/01 Past Papers</span>
-          <span aria-hidden="true" class="text-slate-500">·</span>
-          <span class="tabular-nums">10 Exam Board PDFs Loaded</span>
-          <span aria-hidden="true" class="text-slate-500">·</span>
-          <span>AI Examiner &amp; Diagram Canvas</span>
+    <div class="bg-slate-900 text-white rounded-2xl border border-slate-800 p-6 sm:p-7 space-y-6">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+        <div class="space-y-2 max-w-3xl">
+          <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-indigo-300">
+            <span class="font-bold text-white">Official OCR R050/01 Past Papers</span>
+            <span aria-hidden="true" class="text-slate-500">·</span>
+            <span id="home-official-count-meta" class="tabular-nums">10 Official Exam Papers Ready</span>
+            <span aria-hidden="true" class="text-slate-500">·</span>
+            <span>AI Examiner &amp; Diagram Canvas</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white">
+            Sit real OCR exam papers and check answers with AI
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Pick any of the 10 uploaded OCR exam papers below to answer every question interactively, sketch wireframe/flowchart/mind map diagrams, view original PDF figures side by side, or attach an official Mark Scheme PDF.
+          </p>
         </div>
-        <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white">
-          Sit real OCR exam papers and get instant AI Examiner marking
-        </h2>
-        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-          Answer full OCR papers from 2022 to 2026 (including Practice, Specimen, and interactive wireframe/mind map/flowchart drawing canvases), view original PDF figures side by side, and attach official Mark Scheme PDFs for exact mark-scheme checking.
-        </p>
+        <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+          <button type="button" onclick="openOfficialPapersWorkspace()" class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl transition-colors flex items-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+            <i class="fa-solid fa-folder-open text-xs"></i>
+            <span>Full Paper Studio</span>
+            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+          </button>
+          <button type="button" onclick="openUploadPaperModal('new')" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs rounded-xl border border-slate-700 transition-colors flex items-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+            <i class="fa-solid fa-upload text-indigo-400 text-xs"></i>
+            <span>Upload Paper / Mark Scheme</span>
+          </button>
+        </div>
       </div>
-      <div class="flex flex-wrap items-center gap-3 shrink-0">
-        <button type="button" onclick="openOfficialPapersWorkspace()" class="px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs sm:text-sm rounded-xl transition-colors flex items-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
-          <i class="fa-solid fa-file-pdf text-xs"></i>
-          <span>Open 10 Official Papers</span>
-          <i class="fa-solid fa-arrow-right text-xs"></i>
-        </button>
-        <button type="button" onclick="openUploadPaperModal('new')" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs sm:text-sm rounded-xl border border-slate-700 transition-colors flex items-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
-          <i class="fa-solid fa-upload text-indigo-400 text-xs"></i>
-          <span>Upload Paper / Mark Scheme</span>
-        </button>
+
+      <!-- Direct Quick-Launch Grid for All 10 Uploaded Official OCR Papers -->
+      <div id="home-official-papers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-5 border-t border-slate-800">
+        <!-- Populated immediately via renderHomeOfficialPapersPreview() -->
       </div>
     </div>
 
@@ -888,9 +895,12 @@
       </div>
 
       <!-- Segmented Mode Switcher -->
-      <div class="inline-flex items-center p-1 bg-slate-200/80 rounded-xl border border-slate-200 self-start md:self-auto shrink-0">
+      <div class="inline-flex flex-wrap items-center p-1 bg-slate-200/80 rounded-xl border border-slate-200 self-start md:self-auto shrink-0">
+        <button type="button" id="papers-tab-btn-official" onclick="switchPapersTab('official')" class="px-4 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap text-slate-600 hover:text-slate-900">
+          Official OCR Papers (10)
+        </button>
         <button type="button" id="papers-tab-btn-catalog" onclick="switchPapersTab('catalog')" class="px-4 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap bg-white text-slate-900 shadow-sm">
-          Ready-Made Papers
+          Practice Papers (3)
         </button>
         <button type="button" id="papers-tab-btn-shuffler" onclick="switchPapersTab('shuffler')" class="px-4 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap text-slate-600 hover:text-slate-900">
           Question Bank Shuffler
@@ -898,8 +908,37 @@
       </div>
     </div>
 
+    <!-- TAB 0: OFFICIAL OCR R050/01 PAST PAPERS (10 PAPERS) -->
+    <div id="papers-tab-official" class="hidden space-y-5">
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-base font-bold text-slate-900">Official OCR R050/01 Past Exam Papers</h2>
+          <p class="text-xs text-slate-600 mt-0.5">All 10 uploaded exam board PDFs (2022–2026, Practice &amp; Specimen) with interactive questions, diagram canvases, and AI Examiner marking.</p>
+        </div>
+        <button type="button" onclick="openUploadPaperModal('new')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors flex items-center space-x-2 whitespace-nowrap self-start sm:self-auto">
+          <i class="fa-solid fa-upload text-[11px]"></i>
+          <span>Upload Paper / Mark Scheme</span>
+        </button>
+      </div>
+      <div id="papers-hub-official-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Populated dynamically via renderPapersHubOfficialGrid() -->
+      </div>
+    </div>
+
     <!-- TAB 1: READY-MADE PRACTICE PAPERS -->
     <div id="papers-tab-catalog" class="space-y-8">
+      <!-- Quick Jump Strip to the 10 Official OCR Past Papers -->
+      <div class="bg-slate-900 text-white rounded-2xl border border-slate-800 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="space-y-0.5">
+          <div class="text-xs font-bold text-indigo-300">Looking for the 10 uploaded OCR exam board papers?</div>
+          <p class="text-xs text-slate-300">January &amp; June 2024–2026, Official Practice, Specimen, and 2022 Mapped Questions are all ready to sit with AI marking.</p>
+        </div>
+        <button type="button" onclick="switchPapersTab('official')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl transition-colors flex items-center space-x-2 whitespace-nowrap self-start sm:self-auto">
+          <i class="fa-solid fa-file-pdf text-[11px]"></i>
+          <span>View 10 Official OCR Papers</span>
+        </button>
+      </div>
+
       <div id="papers-catalog-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
         <!-- Populated dynamically via JS -->
       </div>
@@ -2341,10 +2380,18 @@
       loadPaperArchive();
       loadFlashcardProgress();
       loadCoachDrafts();
+      if (typeof loadOfficialStorage === 'function') {
+        loadOfficialStorage();
+      }
       renderHomeScreen();
       renderExamQuestions();
       renderNavGrid();
       updateUI();
+      if (typeof fetchOfficialPapersCatalog === 'function') {
+        fetchOfficialPapersCatalog().then(() => {
+          renderHomeOfficialPapersPreview();
+        });
+      }
     };
 
     /* In-App Confirmation Modal */
@@ -2543,6 +2590,10 @@
         `;
         taGrid.appendChild(card);
       });
+
+      if (typeof renderHomeOfficialPapersPreview === 'function') {
+        renderHomeOfficialPapersPreview();
+      }
     }
 
     function startActivity(activityType, taId = null) {
@@ -7326,7 +7377,7 @@
       }
       saveState();
 
-      papersUiState.activeTab = tab === "shuffler" ? "shuffler" : "catalog";
+      papersUiState.activeTab = tab === "shuffler" ? "shuffler" : (tab === "official" ? "official" : "catalog");
 
       stopOfficialTimer();
       document.getElementById('home-screen').classList.add('hidden');
@@ -7345,10 +7396,11 @@
       document.getElementById('nav-papers-controls').classList.remove('hidden');
 
       const bank = getUnifiedQuestionBank();
+      const officialCount = typeof getAllOfficialCatalogEntries === 'function' ? getAllOfficialCatalogEntries().length : 10;
       const summaryEl = document.getElementById('papers-bank-summary');
       const navMetaEl = document.getElementById('nav-papers-meta');
-      if (summaryEl) summaryEl.innerText = `3 Curated Papers · ${bank.totalQuestions} Unique Questions · ${bank.totalMarks} Marks`;
-      if (navMetaEl) navMetaEl.innerText = `3 Papers · ${bank.totalQuestions}-Question Bank`;
+      if (summaryEl) summaryEl.innerText = `${officialCount} Official OCR Papers · 3 Practice Papers · ${bank.totalQuestions}-Question Bank`;
+      if (navMetaEl) navMetaEl.innerText = `${officialCount} Official · 3 Practice · Shuffler`;
 
       switchPapersTab(papersUiState.activeTab);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -7356,20 +7408,28 @@
 
     function switchPapersTab(tab) {
       papersUiState.activeTab = tab;
+      const officialBtn = document.getElementById('papers-tab-btn-official');
       const catalogBtn = document.getElementById('papers-tab-btn-catalog');
       const shufflerBtn = document.getElementById('papers-tab-btn-shuffler');
+      const officialPanel = document.getElementById('papers-tab-official');
       const catalogPanel = document.getElementById('papers-tab-catalog');
       const shufflerPanel = document.getElementById('papers-tab-shuffler');
 
       const activeClass = "px-4 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap bg-white text-slate-900 shadow-sm";
       const idleClass = "px-4 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap text-slate-600 hover:text-slate-900";
 
+      if (officialBtn) officialBtn.className = tab === "official" ? activeClass : idleClass;
       catalogBtn.className = tab === "catalog" ? activeClass : idleClass;
       shufflerBtn.className = tab === "shuffler" ? activeClass : idleClass;
+      if (officialPanel) officialPanel.classList.toggle('hidden', tab !== "official");
       catalogPanel.classList.toggle('hidden', tab !== "catalog");
       shufflerPanel.classList.toggle('hidden', tab !== "shuffler");
 
-      if (tab === "catalog") {
+      if (tab === "official") {
+        if (typeof renderPapersHubOfficialGrid === 'function') {
+          renderPapersHubOfficialGrid();
+        }
+      } else if (tab === "catalog") {
         renderPapersCatalog();
       } else {
         if (!papersUiState.blueprint) {
@@ -7899,8 +7959,171 @@
     const OFFICIAL_ATTEMPTS_KEY = 'OCR_R050_OFFICIAL_ATTEMPTS_V1';
     const OFFICIAL_CUSTOM_PAPERS_KEY = 'OCR_R050_CUSTOM_PAPERS_V1';
 
+    const DEFAULT_OFFICIAL_CATALOG = [
+      {
+        id: 'ocr_jan2026',
+        title: 'January 2026 Exam Paper',
+        series: 'Jan 2026 · R050/01',
+        year: 2026,
+        category: 'past',
+        scenario: 'Sports centre online booking system & mind map planning',
+        pages: 12,
+        pdfUrl: '/assets/aistudio/R05001_IT_in_the_Digital_World_Level_12_January_2026_fee57e78.pdf',
+        isParsed: true,
+        totalMarks: 70,
+        questionCount: 28,
+        durationMinutes: 90,
+        hasOfficialMarkScheme: false,
+        markSchemeSummary: '',
+      },
+      {
+        id: 'ocr_jun2026',
+        title: 'June 2026 Exam Paper',
+        series: 'June 2026 · R050/01',
+        year: 2026,
+        category: 'past',
+        scenario: 'Energy supplier smart meter device & flowchart design',
+        pages: 10,
+        pdfUrl: '/assets/aistudio/R05001_IT_in_the_Digital_World_Level_12_June_2026_4a7569d6.pdf',
+        isParsed: true,
+        totalMarks: 70,
+        questionCount: 28,
+        durationMinutes: 90,
+        hasOfficialMarkScheme: false,
+        markSchemeSummary: '',
+      },
+      {
+        id: 'ocr_jun2025',
+        title: 'June 2025 Exam Paper',
+        series: 'June 2025 · R050/01',
+        year: 2025,
+        category: 'past',
+        scenario: 'Wearable fitness device, HCI & cyber security',
+        pages: 12,
+        pdfUrl: '/assets/aistudio/R05001_IT_in_the_Digital_World_Level_12_June_2025_347afdda.pdf',
+        isParsed: true,
+        totalMarks: 70,
+        questionCount: 27,
+        durationMinutes: 90,
+        hasOfficialMarkScheme: false,
+        markSchemeSummary: '',
+      },
+      {
+        id: 'ocr_jan2025',
+        title: 'January 2025 Exam Paper',
+        series: 'Jan 2025 · R050/01',
+        year: 2025,
+        category: 'past',
+        scenario: 'Online bank savings account, validation & security',
+        pages: 9,
+        pdfUrl: '/assets/aistudio/R05001_IT_in_the_Digital_World_Level_12_January_2025_3e0f845e.pdf',
+        isParsed: true,
+        totalMarks: 70,
+        questionCount: 27,
+        durationMinutes: 90,
+        hasOfficialMarkScheme: false,
+        markSchemeSummary: '',
+      },
+      {
+        id: 'ocr_jun2024',
+        title: 'June 2024 Exam Paper',
+        series: 'June 2024 · R050/01',
+        year: 2024,
+        category: 'past',
+        scenario: 'Road safety computer game, IoE pillars & visualisation',
+        pages: 10,
+        pdfUrl: '/assets/aistudio/R05001_IT_in_the_Digital_World_Level_12_June_2024_a1e12af4.pdf',
+        isParsed: true,
+        totalMarks: 70,
+        questionCount: 26,
+        durationMinutes: 90,
+        hasOfficialMarkScheme: false,
+        markSchemeSummary: '',
+      },
+      {
+        id: 'ocr_jan2024',
+        title: 'January 2024 Exam Paper',
+        series: 'Jan 2024 · R050/01',
+        year: 2024,
+        category: 'past',
+        scenario: 'Animal charity discovery trail app & data types',
+        pages: 12,
+        pdfUrl: '/assets/aistudio/R05001_IT_in_the_Digital_World_Level_12_January_2024_1ef33e71.pdf',
+        isParsed: true,
+        totalMarks: 70,
+        questionCount: 27,
+        durationMinutes: 90,
+        hasOfficialMarkScheme: false,
+        markSchemeSummary: '',
+      },
+      {
+        id: 'ocr_practice',
+        title: 'Official Practice Paper',
+        series: 'Practice · R050/01',
+        year: 2023,
+        category: 'practice',
+        scenario: 'Progress Fitness Centre membership & wireframe planning',
+        pages: 8,
+        pdfUrl: '/assets/aistudio/R05001_IT_in_the_Digital_World_Level_12_Practice_21c405be.pdf',
+        isParsed: true,
+        totalMarks: 70,
+        questionCount: 28,
+        durationMinutes: 90,
+        hasOfficialMarkScheme: false,
+        markSchemeSummary: '',
+      },
+      {
+        id: 'ocr_specimen',
+        title: 'Official Specimen Paper',
+        series: 'Specimen · R050/01',
+        year: 2022,
+        category: 'specimen',
+        scenario: 'Monty Bella takeaway restaurant ordering & database design',
+        pages: 13,
+        pdfUrl: '/assets/aistudio/R05001_IT_in_the_Digital_World_Level_12_Specimen_d821d165.pdf',
+        isParsed: true,
+        totalMarks: 70,
+        questionCount: 30,
+        durationMinutes: 90,
+        hasOfficialMarkScheme: false,
+        markSchemeSummary: '',
+      },
+      {
+        id: 'ocr_jan2022',
+        title: 'January 2022 Mapped Questions',
+        series: 'Jan 2022 Mapped · R050/01',
+        year: 2022,
+        category: 'mapped',
+        scenario: 'Progress Performance & Westwood Catering (with figures)',
+        pages: 15,
+        pdfUrl: '/assets/aistudio/R05001_IT_in_the_Digital_World_Level_12_January_2022_mapped_questions_b3115deb.pdf',
+        isParsed: true,
+        totalMarks: 55,
+        questionCount: 19,
+        durationMinutes: 70,
+        hasOfficialMarkScheme: false,
+        markSchemeSummary: '',
+      },
+      {
+        id: 'ocr_jun2022',
+        title: 'June 2022 Mapped Questions',
+        series: 'June 2022 Mapped · R050/01',
+        year: 2022,
+        category: 'mapped',
+        scenario: 'Progress Talent Show & Ski Trip spreadsheet scenario',
+        pages: 6,
+        pdfUrl: '/assets/aistudio/R05001_IT_in_the_Digital_World_Level_12_June_2022_mapped_questions_25007a7e.pdf',
+        isParsed: true,
+        totalMarks: 29,
+        questionCount: 10,
+        durationMinutes: 40,
+        hasOfficialMarkScheme: false,
+        markSchemeSummary: '',
+      },
+    ];
+
     const officialState = {
-      catalog: [],
+      catalog: DEFAULT_OFFICIAL_CATALOG.map(p => ({ ...p })),
       customPapers: [],
       attempts: {},
       filter: 'all',
@@ -8009,11 +8232,119 @@
         const res = await fetch('/api/official-papers');
         if (!res.ok) throw new Error('Unable to fetch official papers list.');
         const data = await res.json();
-        officialState.catalog = Array.isArray(data.papers) ? data.papers : [];
+        if (Array.isArray(data.papers) && data.papers.length > 0) {
+          officialState.catalog = data.papers;
+        }
       } catch (err) {
-        console.error('Failed to fetch official papers:', err);
-        showToast('Could not reach the server to load the official papers catalog.', 'error');
+        console.warn('Using bundled official papers catalog fallback:', err);
+        if (!officialState.catalog || officialState.catalog.length === 0) {
+          officialState.catalog = DEFAULT_OFFICIAL_CATALOG.map(p => ({ ...p }));
+        }
       }
+    }
+
+    function renderHomeOfficialPapersPreview() {
+      const grid = document.getElementById('home-official-papers-grid');
+      if (!grid) return;
+      const entries = getAllOfficialCatalogEntries();
+      const countMeta = document.getElementById('home-official-count-meta');
+      if (countMeta) {
+        countMeta.innerText = `${entries.length} Official Exam Papers Ready`;
+      }
+
+      grid.innerHTML = entries.map(paper => {
+        const attempt = officialState.attempts[paper.id];
+        const summary = attempt && attempt.summary ? attempt.summary : null;
+        const answeredCount = attempt ? countAnsweredInOfficialAttempt(attempt) : 0;
+        const statusText = summary
+          ? `${summary.totalAwarded}/${summary.totalMax} (${summary.percentage}%)`
+          : answeredCount > 0
+          ? `${answeredCount} answered`
+          : `${paper.questionCount || 27} Qs · ${paper.totalMarks} Marks`;
+
+        return `
+          <div class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-400/60 rounded-xl p-3.5 flex flex-col justify-between gap-3 transition-colors">
+            <div class="space-y-1">
+              <div class="flex items-center justify-between gap-1.5 text-[11px]">
+                <span class="font-semibold text-indigo-300 truncate">${escapeHtml(paper.series.replace(' · R050/01', ''))}</span>
+                <span class="text-slate-400 tabular-nums shrink-0">${paper.totalMarks}m</span>
+              </div>
+              <div class="text-xs font-bold text-white leading-snug line-clamp-2">${escapeHtml(paper.title)}</div>
+              <div class="text-[11px] text-slate-400 leading-snug line-clamp-2">${escapeHtml(paper.scenario)}</div>
+            </div>
+            <div class="space-y-2 pt-2 border-t border-slate-700/70">
+              <div class="text-[11px] font-medium ${summary ? 'text-emerald-300' : 'text-slate-400'} tabular-nums truncate">${escapeHtml(statusText)}</div>
+              <div class="flex items-center gap-1.5">
+                <button type="button" onclick="openOfficialPapersWorkspace('${escapeHtml(paper.id)}', 'practice')" class="flex-1 py-1.5 px-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-semibold rounded-lg transition-colors whitespace-nowrap">
+                  Sit Paper
+                </button>
+                ${paper.pdfUrl ? `
+                  <button type="button" onclick="openPdfPreviewModal('${escapeHtml(paper.pdfUrl)}', '${escapeHtml(paper.title)}')" class="py-1.5 px-2 bg-slate-700 hover:bg-slate-600 text-slate-200 text-[11px] font-semibold rounded-lg transition-colors whitespace-nowrap" title="View original PDF">
+                    PDF
+                  </button>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderPapersHubOfficialGrid() {
+      const grid = document.getElementById('papers-hub-official-grid');
+      if (!grid) return;
+      const entries = getAllOfficialCatalogEntries();
+      grid.innerHTML = entries.map(paper => {
+        const attempt = officialState.attempts[paper.id];
+        const summary = attempt && attempt.summary ? attempt.summary : null;
+        const answeredCount = attempt ? countAnsweredInOfficialAttempt(attempt) : 0;
+
+        const progressLine = summary
+          ? `<div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100"><span class="font-semibold text-emerald-700">${escapeHtml(summary.grade)}</span><span class="font-bold text-slate-900 tabular-nums">${summary.totalAwarded} / ${summary.totalMax} (${summary.percentage}%)</span></div>`
+          : answeredCount > 0
+          ? `<div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100"><span class="font-medium text-indigo-700">In Progress</span><span class="font-semibold text-slate-700 tabular-nums">${answeredCount} answers saved</span></div>`
+          : '';
+
+        return `
+          <article class="bg-white rounded-2xl border border-slate-200 hover:border-indigo-300 transition-colors p-5 flex flex-col justify-between gap-5">
+            <div class="space-y-2.5">
+              <div class="flex items-center justify-between gap-2 text-xs">
+                <span class="font-semibold text-indigo-700">${escapeHtml(paper.series)}</span>
+                <span class="text-slate-500 tabular-nums">${paper.questionCount ? `${paper.questionCount} Qs · ` : ''}${paper.totalMarks} Marks</span>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-slate-900">${escapeHtml(paper.title)}</h3>
+                <p class="text-xs text-slate-600 mt-1 leading-relaxed">${escapeHtml(paper.scenario)}</p>
+              </div>
+              ${progressLine}
+            </div>
+            <div class="space-y-2">
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="openOfficialPapersWorkspace('${escapeHtml(paper.id)}', 'practice')" class="py-2.5 px-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap">
+                  <i class="fa-solid fa-wand-magic-sparkles text-[11px]"></i>
+                  <span>Practice + AI</span>
+                </button>
+                <button type="button" onclick="openOfficialPapersWorkspace('${escapeHtml(paper.id)}', 'mock')" class="py-2.5 px-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap">
+                  <i class="fa-solid fa-stopwatch text-amber-400 text-[11px]"></i>
+                  <span>Timed Mock</span>
+                </button>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="openUploadPaperModal('attach', '${escapeHtml(paper.id)}')" class="flex-1 py-2 px-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap">
+                  <i class="fa-solid fa-paperclip text-indigo-600 text-[11px]"></i>
+                  <span>${paper.hasOfficialMarkScheme ? 'Update Mark Scheme' : 'Attach Mark Scheme'}</span>
+                </button>
+                ${paper.pdfUrl ? `
+                  <button type="button" onclick="openPdfPreviewModal('${escapeHtml(paper.pdfUrl)}', '${escapeHtml(paper.title)}')" class="py-2 px-3 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-file-pdf text-rose-600 text-[11px]"></i>
+                    <span>PDF</span>
+                  </button>
+                ` : ''}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
     }
 
     async function openOfficialPapersWorkspace(initialPaperId = null, mode = 'practice') {
@@ -8039,9 +8370,11 @@
       document.getElementById('official-papers-view').classList.remove('hidden');
       document.getElementById('nav-official-controls').classList.remove('hidden');
 
-      if (officialState.catalog.length === 0) {
-        await fetchOfficialPapersCatalog();
-      }
+      fetchOfficialPapersCatalog().then(() => {
+        if (!officialState.activePaperId) {
+          renderOfficialCatalog();
+        }
+      });
 
       if (initialPaperId) {
         await openOfficialPaperRunner(initialPaperId, mode);

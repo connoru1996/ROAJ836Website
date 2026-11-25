@@ -13,6 +13,7 @@ const PORT = Number(process.env.PORT) || 3000;
 const IS_PROD = process.env.NODE_ENV === 'production';
 const PUBLIC_DIR = path.resolve(__dirname, 'public');
 const PDF_ASSETS_DIR = path.resolve(PUBLIC_DIR, 'assets', 'aistudio');
+const PREBUILT_PAPERS_DIR = path.resolve(__dirname, 'data', 'official-papers');
 const CACHE_DIR = path.resolve(__dirname, '.paper-cache');
 const MAX_PDF_BYTES = 16 * 1024 * 1024; // 16 MB
 const MAX_DIAGRAM_BYTES = 4 * 1024 * 1024; // 4 MB
@@ -173,8 +174,8 @@ const OFFICIAL_OCR_PAPERS: OfficialPaperMeta[] = [
     scenario: 'Progress Performance & Westwood Catering (with figures)',
     filename: 'R05001_IT_in_the_Digital_World_Level_12_January_2022_mapped_questions_b3115deb.pdf',
     pages: 15,
-    defaultMarks: 60,
-    defaultDurationMinutes: 75,
+    defaultMarks: 55,
+    defaultDurationMinutes: 70,
   },
   {
     id: 'ocr_jun2022',
@@ -185,8 +186,8 @@ const OFFICIAL_OCR_PAPERS: OfficialPaperMeta[] = [
     scenario: 'Progress Talent Show & Ski Trip spreadsheet scenario',
     filename: 'R05001_IT_in_the_Digital_World_Level_12_June_2022_mapped_questions_25007a7e.pdf',
     pages: 6,
-    defaultMarks: 35,
-    defaultDurationMinutes: 45,
+    defaultMarks: 29,
+    defaultDurationMinutes: 40,
   },
 ];
 
@@ -197,7 +198,9 @@ const OFFICIAL_PAPER_MAP = new Map<string, OfficialPaperMeta>(
 function getGeminiClient(): GoogleGenAI {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey || !apiKey.trim()) {
-    throw new Error('GEMINI_API_KEY is not configured on the server.');
+    throw new Error(
+      'Gemini API key is not configured yet. Please select or attach your Gemini API key in Settings > Secrets to enable AI Examiner marking and PDF mark scheme parsing.'
+    );
   }
   return new GoogleGenAI({
     apiKey: apiKey.trim(),
@@ -216,6 +219,18 @@ function getSafePdfPath(meta: OfficialPaperMeta): string {
   return resolved;
 }
 
+function getSafePrebuiltPaperPath(paperId: string): string {
+  if (!/^[a-z0-9_-]{3,40}$/i.test(paperId)) {
+    throw new Error('Invalid paper identifier.');
+  }
+  const resolved = path.resolve(PREBUILT_PAPERS_DIR, `${paperId}.json`);
+  const boundary = PREBUILT_PAPERS_DIR.endsWith(path.sep) ? PREBUILT_PAPERS_DIR : `${PREBUILT_PAPERS_DIR}${path.sep}`;
+  if (!resolved.startsWith(boundary)) {
+    throw new Error('Invalid prebuilt paper path.');
+  }
+  return resolved;
+}
+
 function getSafeCachePath(paperId: string, suffix: string): string {
   if (!/^[a-z0-9_-]{3,40}$/i.test(paperId)) {
     throw new Error('Invalid paper identifier.');
@@ -226,6 +241,18 @@ function getSafeCachePath(paperId: string, suffix: string): string {
     throw new Error('Invalid cache path.');
   }
   return resolved;
+}
+
+async function loadBundledPaperData(paperId: string): Promise<ParsedPaperPayload | null> {
+  const cached = await readJsonFile<ParsedPaperPayload>(getSafeCachePath(paperId, '.parsed.json'));
+  if (cached && Array.isArray(cached.questions) && cached.questions.length > 0) {
+    return cached;
+  }
+  const prebuilt = await readJsonFile<ParsedPaperPayload>(getSafePrebuiltPaperPath(paperId));
+  if (prebuilt && Array.isArray(prebuilt.questions) && prebuilt.questions.length > 0) {
+    return prebuilt;
+  }
+  return null;
 }
 
 function validateBase64Pdf(rawBase64: unknown): { ok: true; cleanBase64: string } | { ok: false; error: string } {
@@ -730,12 +757,12 @@ async function createApp() {
   // Serve public assets directly (ensures PDFs in /public/assets/aistudio are always accessible)
   app.use('/assets', express.static(path.resolve(PUBLIC_DIR, 'assets')));
 
-  // 1. List the 10 bundled official OCR R050/01 papers + cache/markscheme status
+  // 1. List the 10 bundled official OCR R050/01 papers + prebuilt/cache/markscheme status
   app.get('/api/official-papers', async (_req: Request, res: Response) => {
     try {
       const papers = await Promise.all(
         OFFICIAL_OCR_PAPERS.map(async (meta) => {
-          const parsedCache = await readJsonFile<ParsedPaperPayload>(getSafeCachePath(meta.id, '.parsed.json'));
+          const parsedData = await loadBundledPaperData(meta.id);
           const msCache = await readJsonFile<{ summary: string; criteriaByQuestionId: Record<string, string> }>(
             getSafeCachePath(meta.id, '.markscheme.json')
           );
@@ -749,10 +776,10 @@ async function createApp() {
             scenario: meta.scenario,
             pages: meta.pages,
             pdfUrl: `/assets/aistudio/${meta.filename}`,
-            isParsed: Boolean(parsedCache && parsedCache.questions?.length),
-            totalMarks: parsedCache?.totalMarks || meta.defaultMarks,
-            questionCount: parsedCache?.questions?.length || 0,
-            durationMinutes: parsedCache?.durationMinutes || meta.defaultDurationMinutes,
+            isParsed: Boolean(parsedData && parsedData.questions?.length),
+            totalMarks: parsedData?.totalMarks || meta.defaultMarks,
+            questionCount: parsedData?.questions?.length || 0,
+            durationMinutes: parsedData?.durationMinutes || meta.defaultDurationMinutes,
             hasOfficialMarkScheme: Boolean(msCache && Object.keys(msCache.criteriaByQuestionId || {}).length > 0),
             markSchemeSummary: msCache?.summary || '',
           };
@@ -765,8 +792,8 @@ async function createApp() {
     }
   });
 
-  // 2. Parse or retrieve cached structured questions for a bundled official OCR PDF
-  app.post('/api/official-papers/:paperId/parse', async (req: Request, res: Response) => {
+  // Helper to resolve a bundled official OCR paper (prebuilt JSON -> cache -> optional Gemini fallback)
+  async function handleGetOrParseOfficialPaper(req: Request, res: Response) {
     try {
       const paperId = String(req.params.paperId || '').trim();
       const meta = OFFICIAL_PAPER_MAP.get(paperId);
@@ -779,7 +806,7 @@ async function createApp() {
       const parsedCachePath = getSafeCachePath(meta.id, '.parsed.json');
       const msCachePath = getSafeCachePath(meta.id, '.markscheme.json');
 
-      let paper = !forceReparse ? await readJsonFile<ParsedPaperPayload>(parsedCachePath) : null;
+      let paper = !forceReparse ? await loadBundledPaperData(meta.id) : null;
 
       if (!paper) {
         const pdfPath = getSafePdfPath(meta);
@@ -798,23 +825,37 @@ async function createApp() {
         await writeJsonFile(parsedCachePath, paper);
       }
 
+      // Clone questions array before overlaying any attached official mark scheme
+      const payload: ParsedPaperPayload = {
+        ...paper,
+        paperId: meta.id,
+        title: paper.title || meta.title,
+        series: paper.series || meta.series,
+        pdfUrl: `/assets/aistudio/${meta.filename}`,
+        questions: paper.questions.map((q) => ({ ...q })),
+      };
+
       const msCache = await readJsonFile<{ summary: string; criteriaByQuestionId: Record<string, string> }>(msCachePath);
       if (msCache && msCache.criteriaByQuestionId) {
-        paper.hasOfficialMarkScheme = Object.keys(msCache.criteriaByQuestionId).length > 0;
-        paper.markSchemeSummary = msCache.summary;
-        paper.questions = paper.questions.map((q) => ({
+        payload.hasOfficialMarkScheme = Object.keys(msCache.criteriaByQuestionId).length > 0;
+        payload.markSchemeSummary = msCache.summary;
+        payload.questions = payload.questions.map((q) => ({
           ...q,
           officialMarkScheme: msCache.criteriaByQuestionId[q.id] || q.officialMarkScheme || '',
         }));
       }
 
-      res.json({ paper });
+      res.json({ paper: payload });
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Failed to parse exam paper PDF.';
-      console.error('Error parsing official paper:', err);
+      const message = err instanceof Error ? err.message : 'Failed to load exam paper.';
+      console.error('Error loading official paper:', err);
       res.status(500).json({ error: message });
     }
-  });
+  }
+
+  // 2. Retrieve or parse structured questions for a bundled official OCR PDF
+  app.get('/api/official-papers/:paperId', handleGetOrParseOfficialPaper);
+  app.post('/api/official-papers/:paperId/parse', handleGetOrParseOfficialPaper);
 
   // 3. Upload a custom Question Paper PDF + optional Mark Scheme PDF
   app.post('/api/official-papers/import', async (req: Request, res: Response) => {
@@ -892,9 +933,9 @@ async function createApp() {
           prompt: String(q.prompt || '').slice(0, 500),
         }));
       } else if (OFFICIAL_PAPER_MAP.has(paperId)) {
-        const cached = await readJsonFile<ParsedPaperPayload>(getSafeCachePath(paperId, '.parsed.json'));
-        if (cached?.questions?.length) {
-          questionsInput = cached.questions.map((q) => ({
+        const loaded = await loadBundledPaperData(paperId);
+        if (loaded?.questions?.length) {
+          questionsInput = loaded.questions.map((q) => ({
             id: q.id,
             qNum: q.qNum,
             marks: q.marks,
