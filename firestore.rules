@@ -1,0 +1,217 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global safety net: deny everything by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Phase 3: Reusable Hardened Primitives
+    // -------------------------------------------------------------------------
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedAccount() {
+      return isSignedIn() && (
+        request.auth.token.email_verified == true ||
+        request.auth.token.firebase.sign_in_provider == 'password'
+      );
+    }
+
+    function isOwner(userId) {
+      return isVerifiedAccount() && request.auth.uid == userId;
+    }
+
+    // -------------------------------------------------------------------------
+    // Validation Blueprints (Anti-Update-Gap)
+    // -------------------------------------------------------------------------
+    function isValidUserProfile(data, userId) {
+      return data.keys().hasAll([
+          'uid',
+          'username',
+          'displayName',
+          'studentClass',
+          'authProvider',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'uid',
+          'username',
+          'displayName',
+          'studentClass',
+          'authProvider',
+          'createdAt',
+          'updatedAt'
+        ])
+        && isValidId(data.uid)
+        && data.uid == request.auth.uid
+        && data.uid == userId
+        && data.username is string
+        && data.username.size() >= 3
+        && data.username.size() <= 32
+        && data.username.matches('^[a-z0-9._-]+$')
+        && data.displayName is string
+        && data.displayName.size() >= 1
+        && data.displayName.size() <= 80
+        && data.studentClass is string
+        && data.studentClass.size() <= 60
+        && data.authProvider is string
+        && data.authProvider.size() >= 1
+        && data.authProvider.size() <= 20
+        && data.authProvider in ['password', 'google']
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidProgressModules(modules) {
+      return modules is map
+        && modules.keys().size() <= 12
+        && modules.keys().hasOnly([
+          'examState',
+          'flashcards',
+          'coachDrafts',
+          'papersArchive',
+          'officialAttempts',
+          'customPapers',
+          'ta1Trainer',
+          'ta3Simulator',
+          'ta4SecurityLab',
+          'ta56SystemBuilder',
+          'commandDrills',
+          'dailyWarmup'
+        ])
+        && (!('examState' in modules) || modules.examState is map)
+        && (!('flashcards' in modules) || modules.flashcards is map)
+        && (!('coachDrafts' in modules) || modules.coachDrafts is map)
+        && (!('papersArchive' in modules) || modules.papersArchive is map)
+        && (!('officialAttempts' in modules) || modules.officialAttempts is map)
+        && (!('customPapers' in modules) || (modules.customPapers is list && modules.customPapers.size() <= 20 && (modules.customPapers.size() == 0 || modules.customPapers[0] is map)))
+        && (!('ta1Trainer' in modules) || modules.ta1Trainer is map)
+        && (!('ta3Simulator' in modules) || modules.ta3Simulator is map)
+        && (!('ta4SecurityLab' in modules) || modules.ta4SecurityLab is map)
+        && (!('ta56SystemBuilder' in modules) || modules.ta56SystemBuilder is map)
+        && (!('commandDrills' in modules) || modules.commandDrills is map)
+        && (!('dailyWarmup' in modules) || modules.dailyWarmup is map);
+    }
+
+    function isValidProgressSnapshot(data, userId) {
+      return data.keys().hasAll([
+          'ownerId',
+          'schemaVersion',
+          'modules',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'ownerId',
+          'schemaVersion',
+          'modules',
+          'createdAt',
+          'updatedAt'
+        ])
+        && isValidId(data.ownerId)
+        && data.ownerId == request.auth.uid
+        && data.ownerId == userId
+        && data.schemaVersion is int
+        && data.schemaVersion == 1
+        && isValidProgressModules(data.modules)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function hasValidParentProfile(userId) {
+      return exists(/databases/$(database)/documents/users/$(userId))
+        && get(/databases/$(database)/documents/users/$(userId)).data.uid == request.auth.uid;
+    }
+
+    // -------------------------------------------------------------------------
+    // Collection 1: Private Student Account Profiles (/users/{userId})
+    // -------------------------------------------------------------------------
+    match /users/{userId} {
+      allow get: if isValidId(userId) && isOwner(userId);
+      allow list: if false;
+
+      allow create: if isValidId(userId)
+        && isOwner(userId)
+        && isValidUserProfile(incoming(), userId)
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      allow update: if isValidId(userId)
+        && isOwner(userId)
+        && isValidUserProfile(incoming(), userId)
+        && incoming().uid == existing().uid
+        && incoming().authProvider == existing().authProvider
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          // Action: Update Profile Details
+          incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'studentClass', 'updatedAt'])
+          ||
+          // Action: Update Username & Profile Details
+          incoming().diff(existing()).affectedKeys().hasOnly(['username', 'displayName', 'studentClass', 'updatedAt'])
+        );
+
+      allow delete: if isValidId(userId) && isOwner(userId);
+
+      // -----------------------------------------------------------------------
+      // Collection 2: Synced Student Progress Snapshot (/users/{userId}/progress/{progressId})
+      // -----------------------------------------------------------------------
+      match /progress/{progressId} {
+        allow get: if isValidId(userId)
+          && isValidId(progressId)
+          && progressId == 'snapshot'
+          && isOwner(userId)
+          && hasValidParentProfile(userId);
+
+        allow list: if false;
+
+        allow create: if isValidId(userId)
+          && isValidId(progressId)
+          && progressId == 'snapshot'
+          && isOwner(userId)
+          && isValidProgressSnapshot(incoming(), userId)
+          && incoming().createdAt == request.time
+          && incoming().updatedAt == request.time
+          && hasValidParentProfile(userId);
+
+        allow update: if isValidId(userId)
+          && isValidId(progressId)
+          && progressId == 'snapshot'
+          && isOwner(userId)
+          && isValidProgressSnapshot(incoming(), userId)
+          && incoming().ownerId == existing().ownerId
+          && incoming().createdAt == existing().createdAt
+          && incoming().updatedAt == request.time
+          && (
+            // Action: Sync Progress Snapshot
+            incoming().diff(existing()).affectedKeys().hasOnly(['modules', 'updatedAt'])
+          )
+          && hasValidParentProfile(userId);
+
+        allow delete: if isValidId(userId)
+          && isValidId(progressId)
+          && progressId == 'snapshot'
+          && isOwner(userId)
+          && hasValidParentProfile(userId);
+      }
+    }
+  }
+}

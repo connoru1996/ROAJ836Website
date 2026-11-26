@@ -78,69 +78,42 @@
 <body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
 
   <!-- TOP HEADER / NAV BAR -->
-  <header class="bg-slate-900 text-white sticky top-0 z-40 shadow-sm border-b border-slate-800 no-print">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
-      <button type="button" onclick="returnToHomeScreen()" class="flex items-center space-x-2.5 sm:space-x-3 text-left group shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded-lg pr-1">
-        <div class="bg-indigo-600 group-hover:bg-indigo-500 transition-colors p-2 rounded-lg text-white font-bold text-base flex items-center justify-center h-9 w-9 shrink-0">
+  <header class="bg-slate-900 text-white sticky top-0 z-40 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-6 lg:gap-8">
+      <!-- Zone 1: Single-line Brand Wordmark -->
+      <button type="button" onclick="returnToHomeScreen()" class="flex items-center gap-2 sm:gap-2.5 text-left group whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded-lg pr-1">
+        <span class="bg-indigo-600 group-hover:bg-indigo-500 transition-colors rounded-lg text-white font-bold text-sm flex items-center justify-center h-8 w-8 shrink-0">
           IT
-        </div>
-        <div class="shrink-0">
-          <div class="text-sm font-bold tracking-tight text-white whitespace-nowrap">OCR Unit R050</div>
-          <p class="hidden sm:block text-xs text-slate-400 font-medium whitespace-nowrap">IT in the Digital World · J836</p>
-        </div>
+        </span>
+        <span class="text-xs sm:text-base font-bold tracking-tight text-white whitespace-nowrap">OCR Unit R050</span>
       </button>
 
-      <!-- Home Screen Header Action -->
-      <div id="nav-home-actions" class="flex items-center gap-1.5 shrink-0">
-        <button type="button" onclick="openOfficialPapersWorkspace()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs px-2.5 sm:px-3 py-2 rounded-lg transition-colors flex items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Official Past Papers">
-          <i class="fa-solid fa-file-pdf text-indigo-100"></i>
-          <span class="hidden sm:inline">Past Papers</span>
-          <span class="sm:hidden">Papers</span>
-        </button>
-        <button type="button" onclick="openDailyWarmupWorkspace('warmup')" class="hidden md:flex bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="5-Minute Daily Warm-Up and Spec Checklist">
-          <i class="fa-solid fa-stopwatch text-emerald-400"></i>
-          <span>Warm-Up</span>
-        </button>
-        <button type="button" onclick="openPapersHub('catalog')" class="hidden md:flex bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Practice and Shuffler">
-          <i class="fa-solid fa-shuffle text-sky-400"></i>
-          <span class="hidden lg:inline">Practice</span>
-        </button>
-        <button type="button" onclick="openNineMarkCoach()" class="hidden sm:flex bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="9-Mark Coach">
-          <i class="fa-solid fa-pen-nib text-amber-400"></i>
-          <span class="hidden lg:inline">9-Mark</span>
-        </button>
-        <button type="button" onclick="openCommandWordDrills('fix')" class="hidden lg:flex bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="OCR Command Word and Fix the Answer Drills">
-          <i class="fa-solid fa-wrench text-rose-400"></i>
-          <span>Drills</span>
-        </button>
-        <button type="button" onclick="openFlashcardsWorkspace('ALL', 'flashcards')" class="hidden sm:flex bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Flashcards and Quiz">
-          <i class="fa-solid fa-layer-group text-emerald-400"></i>
-          <span class="hidden xl:inline">Flashcards</span>
-        </button>
-        <button type="button" onclick="openTa1DiagramTrainer('flowchart')" class="hidden xl:flex bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="TA1 Diagram and Flowchart Trainer">
-          <i class="fa-solid fa-diagram-project text-cyan-400"></i>
-          <span>TA1</span>
-        </button>
-        <button type="button" onclick="openTa3ValidationSimulator('sandbox')" class="hidden xl:flex bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="TA3 Validation and Test Data Simulator">
-          <i class="fa-solid fa-shield-halved text-teal-400"></i>
-          <span>TA3</span>
-        </button>
-        <button type="button" onclick="openTa4SecurityLab('inspector')" class="hidden xl:flex bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="TA4 Cyber-Security and UK Legislation Lab">
-          <i class="fa-solid fa-user-shield text-sky-400"></i>
-          <span>TA4</span>
-        </button>
-        <button type="button" onclick="openTa56SystemBuilder('connectivity')" class="hidden xl:flex bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="TA5 and TA6 Connectivity and IoE System Builder">
-          <i class="fa-solid fa-tower-broadcast text-amber-400"></i>
-          <span>TA5/6</span>
-        </button>
-        <button type="button" onclick="openProgressDashboard()" class="hidden sm:flex bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Progress and Weakness Dashboard">
-          <i class="fa-solid fa-chart-line text-violet-400"></i>
-          <span class="hidden xl:inline">Progress</span>
-        </button>
-        <button type="button" onclick="openQuickReference('TA1', true)" class="bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Quick Reference">
-          <i class="fa-solid fa-book-open text-indigo-400"></i>
-          <span class="hidden xl:inline">Reference</span>
-        </button>
+      <!-- Zone 2 & 3: Clean Text Navigation + Single Primary Action -->
+      <div id="nav-home-actions" class="flex-1 flex items-center justify-end md:justify-between gap-8 min-w-0">
+        <nav aria-label="Main navigation" class="hidden md:flex items-center gap-6 mx-auto">
+          <button type="button" onclick="openHomeTabFromNav('start')" data-nav-tab="start" class="text-sm font-medium text-white hover:text-indigo-200 underline-offset-8 hover:underline transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded">
+            Home
+          </button>
+          <button type="button" onclick="openOfficialPapersWorkspace()" class="text-sm font-medium text-slate-300 hover:text-white underline-offset-8 hover:underline transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded">
+            Past Papers
+          </button>
+          <button type="button" onclick="openHomeTabFromNav('labs')" data-nav-tab="labs" class="text-sm font-medium text-slate-300 hover:text-white underline-offset-8 hover:underline transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded">
+            Practice Labs
+          </button>
+          <button type="button" onclick="openProgressDashboard()" class="text-sm font-medium text-slate-300 hover:text-white underline-offset-8 hover:underline transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded">
+            My Progress
+          </button>
+          <button type="button" onclick="openQuickReference('TA1', true)" class="text-sm font-medium text-slate-300 hover:text-white underline-offset-8 hover:underline transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded">
+            Cheat Sheets
+          </button>
+        </nav>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <button type="button" id="nav-auth-btn" onclick="openAuthAccountModal('signin')" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs px-3.5 py-2 rounded-lg transition-colors flex items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Sign in or create a student account">
+            <i id="nav-auth-icon" class="fa-solid fa-right-to-bracket text-indigo-100"></i>
+            <span id="nav-auth-label">Sign In</span>
+          </button>
+        </div>
       </div>
 
       <!-- Flashcards & Quiz Workspace Header Controls -->
@@ -189,24 +162,28 @@
       </div>
 
       <!-- Official OCR Past Papers Header Controls -->
-      <div id="nav-official-controls" class="hidden flex items-center space-x-2.5 sm:space-x-3 shrink-0">
-        <button type="button" onclick="returnToHomeScreen()" class="text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-xs px-3 py-2 rounded-lg transition-colors flex items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+      <div id="nav-official-controls" class="hidden flex items-center gap-1.5 sm:gap-3 shrink-0">
+        <button id="nav-official-home-btn" type="button" onclick="returnToHomeScreen()" class="text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-xs px-2.5 sm:px-3 py-2 rounded-lg transition-colors flex items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
           <i class="fa-solid fa-house text-xs"></i>
           <span>Home</span>
         </button>
-        <button type="button" id="nav-official-back-btn" onclick="backToOfficialCatalog()" class="hidden text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-xs px-3 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-1.5 whitespace-nowrap shrink-0">
+        <button type="button" id="nav-official-back-btn" onclick="backToOfficialCatalog()" class="hidden text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-xs px-2.5 sm:px-3 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-1.5 whitespace-nowrap shrink-0">
           <i class="fa-solid fa-table-cells-large text-xs"></i>
-          <span>All 10 Papers</span>
+          <span class="hidden sm:inline">All 10 Papers</span>
         </button>
-        <div id="nav-official-timer-box" class="hidden flex items-center space-x-2 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 shrink-0">
+        <div id="nav-official-timer-box" class="hidden flex items-center space-x-1.5 sm:space-x-2 bg-slate-800 px-2.5 sm:px-3 py-1.5 rounded-lg border border-slate-700 shrink-0">
           <i class="fa-solid fa-clock text-amber-400 text-xs"></i>
           <span id="nav-official-timer" class="font-mono tabular-nums text-xs sm:text-sm font-bold text-amber-300">90:00</span>
         </div>
-        <button type="button" id="nav-official-quickref-btn" onclick="openOfficialQuickRef()" class="bg-slate-800 hover:bg-slate-700 text-indigo-200 hover:text-white font-semibold text-xs px-3 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-2 whitespace-nowrap shrink-0">
+        <button type="button" id="nav-official-quickref-btn" onclick="openOfficialQuickRef()" class="bg-slate-800 hover:bg-slate-700 text-indigo-200 hover:text-white font-semibold text-xs px-2.5 sm:px-3 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-2 whitespace-nowrap shrink-0">
           <i id="nav-official-quickref-icon" class="fa-solid fa-book-open text-indigo-400"></i>
           <span class="hidden sm:inline">Quick Reference</span>
         </button>
-        <button type="button" id="nav-official-submit-btn" onclick="confirmFinishOfficialPaper()" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs px-3.5 py-2 rounded-lg transition-colors flex items-center space-x-2 whitespace-nowrap shrink-0">
+        <button type="button" id="nav-official-focus-btn" onclick="toggleOfficialFocusMode()" aria-pressed="false" aria-label="Enable Focus Mode to concentrate on one question at a time" title="Focus Mode (Alt+F)" class="hidden bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold text-xs px-2.5 sm:px-3 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          <i id="nav-official-focus-icon" class="fa-solid fa-expand text-indigo-300" aria-hidden="true"></i>
+          <span id="nav-official-focus-label">Focus Mode</span>
+        </button>
+        <button type="button" id="nav-official-submit-btn" onclick="confirmFinishOfficialPaper()" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs px-2.5 sm:px-3.5 py-2 rounded-lg transition-colors flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap shrink-0">
           <i class="fa-solid fa-clipboard-check text-xs"></i>
           <span>Finish &amp; Mark</span>
         </button>
@@ -323,33 +300,39 @@
       </div>
 
       <!-- Live Quiz Status Controls -->
-      <div id="nav-controls" class="hidden flex items-center space-x-2.5 sm:space-x-4 shrink-0">
+      <div id="nav-controls" class="hidden flex items-center gap-1.5 sm:gap-3 shrink-0">
         <!-- Return Home Button -->
-        <button type="button" onclick="returnToHomeScreen()" class="text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-xs px-3 py-2 rounded-lg transition-colors flex items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+        <button id="nav-exam-home-btn" type="button" onclick="returnToHomeScreen()" class="text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-xs px-2.5 sm:px-3 py-2 rounded-lg transition-colors flex items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
           <i class="fa-solid fa-house text-xs"></i>
-          <span>Home</span>
+          <span class="hidden sm:inline">Home</span>
         </button>
 
         <!-- Student & Mode Info -->
-        <div class="hidden lg:flex flex-col text-right border-l border-slate-800 pl-4">
+        <div id="nav-exam-student-meta" class="hidden lg:flex flex-col text-right border-l border-slate-800 pl-4">
           <span id="nav-student-name" class="text-xs font-semibold text-slate-100 leading-tight">Student Name</span>
           <span id="nav-mode-badge" class="text-[11px] text-indigo-300 font-medium leading-tight">Practice Mode</span>
         </div>
 
         <!-- Timer -->
-        <div id="nav-timer-container" class="hidden flex items-center space-x-2 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 shrink-0">
+        <div id="nav-timer-container" class="hidden flex items-center space-x-1.5 sm:space-x-2 bg-slate-800 px-2.5 sm:px-3 py-1.5 rounded-lg border border-slate-700 shrink-0">
           <i class="fa-solid fa-clock text-amber-400 text-xs"></i>
           <span id="nav-timer" class="font-mono tabular-nums text-xs sm:text-sm font-bold text-amber-300">90:00</span>
         </div>
 
         <!-- Quick Reference Button -->
-        <button id="nav-quick-ref-btn" type="button" onclick="openQuickReference()" class="bg-slate-800 hover:bg-slate-700 text-indigo-200 hover:text-white font-semibold text-xs px-3.5 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+        <button id="nav-quick-ref-btn" type="button" onclick="openQuickReference()" class="bg-slate-800 hover:bg-slate-700 text-indigo-200 hover:text-white font-semibold text-xs px-2.5 sm:px-3.5 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
           <i id="nav-quick-ref-icon" class="fa-solid fa-book-open text-indigo-400"></i>
           <span class="hidden sm:inline">Quick Reference</span>
         </button>
 
+        <!-- Focus Mode Toggle Button -->
+        <button id="nav-focus-mode-btn" type="button" onclick="toggleExamFocusMode()" aria-pressed="false" aria-label="Enable Focus Mode to concentrate on one question at a time" title="Focus Mode (Alt+F)" class="bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold text-xs px-2.5 sm:px-3 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          <i id="nav-focus-mode-icon" class="fa-solid fa-expand text-indigo-300" aria-hidden="true"></i>
+          <span id="nav-focus-mode-label">Focus Mode</span>
+        </button>
+
         <!-- Submit Paper Button -->
-        <button id="nav-submit-btn" type="button" onclick="confirmSubmitPaper()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs px-4 py-2 rounded-lg transition-colors flex items-center space-x-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+        <button id="nav-submit-btn" type="button" onclick="confirmSubmitPaper()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs px-2.5 sm:px-4 py-2 rounded-lg transition-colors flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
           <i class="fa-solid fa-paper-plane"></i>
           <span id="nav-submit-label">Finish & Score</span>
         </button>
@@ -357,443 +340,426 @@
     </div>
   </header>
 
-  <!-- HOME SCREEN HUB -->
-  <section id="home-screen" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 flex-1 w-full space-y-10 no-print">
+  <!-- HOME SCREEN HUB (Simplified Student-First Layout) -->
+  <section id="home-screen" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 flex-1 w-full space-y-8 no-print">
 
-    <!-- Top Hero & Candidate Profile Split -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-      <div class="lg:col-span-7 space-y-3 pt-1">
-        <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500">
-          <span class="font-semibold text-indigo-600">OCR Cambridge National in IT (J836)</span>
-          <span aria-hidden="true">·</span>
-          <span>Unit R050: IT in the Digital World</span>
-          <span aria-hidden="true">·</span>
-          <span class="tabular-nums">80 Marks</span>
+    <!-- Calm Hero & Profile Split -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+      <div class="lg:col-span-7 flex flex-col justify-between gap-6 py-1">
+        <div class="space-y-3">
+          <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500">
+            <span class="font-semibold text-indigo-600">OCR IT · Unit R050</span>
+            <span aria-hidden="true">·</span>
+            <span>J836 Revision Hub</span>
+          </div>
+          <h1 id="home-hero-greeting" class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 max-w-xl" style="text-wrap: balance;">
+            Simple revision for OCR Unit R050
+          </h1>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl">
+            Take a quick 5-minute warm-up, practise real past papers, or revise one topic at a time. Everything saves automatically.
+          </p>
         </div>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 max-w-2xl" style="text-wrap: balance;">
-          Choose how you want to study today
-        </h1>
-        <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
-          Work through the full 80-mark practice paper with instant feedback, sit a timed 90-minute mock exam, drill a single Topic Area, or revise with Quick Reference cheat sheets.
-        </p>
+
+        <div class="space-y-2.5">
+          <div id="home-next-step-kicker" class="text-xs font-semibold text-slate-500">
+            Best place to start today
+          </div>
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <button type="button" id="home-hero-primary-btn" onclick="runRecommendedNextStep()" class="px-5 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm rounded-xl transition-colors flex items-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              <span id="home-hero-primary-label">Start 5-Min Warm-Up</span>
+              <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+            </button>
+            <button type="button" id="home-hero-secondary-btn" onclick="openOfficialPapersWorkspace()" class="text-sm font-semibold text-slate-700 hover:text-indigo-700 underline-offset-4 hover:underline transition-colors py-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded">
+              Browse 10 Past Papers
+            </button>
+          </div>
+          <p id="home-next-step-hint" class="text-xs text-slate-500">
+            5 quick questions to wake up your memory
+          </p>
+        </div>
       </div>
 
-      <!-- Candidate Details Card -->
-      <div id="candidate-details-card" class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 space-y-4">
-        <div class="flex items-baseline justify-between gap-2">
-          <h2 class="text-sm font-bold text-slate-900">Candidate Details</h2>
-          <span class="text-xs text-slate-500">Saved automatically for results slips</span>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-          <div>
-            <label for="input-student-name" class="block text-xs font-semibold text-slate-700 mb-1.5">Full Student Name</label>
-            <input type="text" id="input-student-name" oninput="handleCandidateInput()" placeholder="e.g., Alex Turner"
-              class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm text-slate-900 font-medium">
+      <!-- Simple Student Details Card -->
+      <div id="candidate-details-card" class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 flex flex-col justify-between gap-4">
+        <div class="space-y-4">
+          <div class="flex items-baseline justify-between gap-2">
+            <h2 class="text-sm font-bold text-slate-900">Your Details</h2>
+            <span class="text-xs text-slate-500">Optional · shown on results</span>
           </div>
-          <div>
-            <label for="input-student-class" class="block text-xs font-semibold text-slate-700 mb-1.5">Class / Group</label>
-            <input type="text" id="input-student-class" oninput="handleCandidateInput()" placeholder="e.g., 11A/IT1"
-              class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm text-slate-900 font-medium">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div>
+              <label for="input-student-name" class="block text-xs font-semibold text-slate-700 mb-1.5">Your Name</label>
+              <input type="text" id="input-student-name" oninput="handleCandidateInput()" placeholder="e.g., Alex"
+                class="w-full h-11 px-3.5 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm text-slate-900 font-medium">
+            </div>
+            <div>
+              <label for="input-student-class" class="block text-xs font-semibold text-slate-700 mb-1.5">Your Class</label>
+              <input type="text" id="input-student-class" oninput="handleCandidateInput()" placeholder="e.g., 11A"
+                class="w-full h-11 px-3.5 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm text-slate-900 font-medium">
+            </div>
           </div>
+          <p id="candidate-validation-msg" class="hidden text-xs font-medium text-amber-700">
+            Pop your name and class in above before starting a timed mock exam.
+          </p>
         </div>
-        <p id="candidate-validation-msg" class="hidden text-xs font-medium text-amber-700">
-          Enter your name and class above before starting a graded Timed Mock Exam.
-        </p>
+        <div id="home-auth-strip"></div>
       </div>
     </div>
 
     <!-- Resume Saved Session Banner (Hidden when fresh) -->
-    <div id="home-resume-banner" class="hidden bg-white rounded-2xl border border-indigo-200 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-      <div class="space-y-1">
+    <div id="home-resume-banner" class="hidden bg-white rounded-2xl border border-indigo-200 px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div class="space-y-0.5">
         <div class="flex flex-wrap items-center gap-2 text-xs text-slate-500 font-medium">
-          <span class="font-bold text-indigo-600">Saved Progress Found</span>
+          <span class="font-bold text-indigo-600">Saved Paper Found</span>
           <span aria-hidden="true">·</span>
           <span id="home-resume-meta" class="tabular-nums">0 of 32 answered</span>
         </div>
         <p id="home-resume-title" class="text-sm font-bold text-slate-900">Continue where you left off</p>
       </div>
       <div class="flex flex-wrap items-center gap-2.5 shrink-0">
-        <button type="button" onclick="resumeSavedSession()" class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg transition-colors flex items-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-          <span id="home-resume-btn-label">Resume Session</span>
-          <i class="fa-solid fa-arrow-right text-[11px]"></i>
+        <button type="button" onclick="resumeSavedSession()" class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors flex items-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+          <span id="home-resume-btn-label">Continue Paper</span>
+          <i class="fa-solid fa-arrow-right text-[11px]" aria-hidden="true"></i>
         </button>
-        <button type="button" id="home-view-results-btn" onclick="openSavedResultsFromHome()" class="hidden px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">
-          View Results Slip
+        <button type="button" id="home-view-results-btn" onclick="openSavedResultsFromHome()" class="hidden px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">
+          View Results
         </button>
-        <button type="button" onclick="resetExamProgress()" class="px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400">
-          Reset Progress
+        <button type="button" onclick="resetExamProgress()" class="px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400">
+          Start Fresh
         </button>
       </div>
     </div>
 
-    <!-- Daily Routine & Readiness Summary Row (Balanced 2-column strip) -->
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-5 items-stretch">
-      <!-- 5-Minute Daily Warm-Up & Spec Checklist Strip -->
-      <div id="home-daily-warmup-strip" class="bg-white rounded-2xl border border-slate-200 hover:border-emerald-300 transition-colors px-5 py-4 sm:px-6 flex flex-col justify-between gap-4">
-        <div class="space-y-1 min-w-0">
-          <div id="home-warmup-kicker" class="flex flex-wrap items-center gap-2 text-xs text-slate-500 font-medium tabular-nums">
-            <span class="font-bold text-emerald-700">5-Minute Daily Warm-Up &amp; Spec Checklist</span>
-            <span aria-hidden="true">·</span>
-            <span id="home-warmup-streak-meta">0-day streak</span>
-            <span aria-hidden="true">·</span>
-            <span id="home-warmup-spec-meta">0 / 30 Exam Ready</span>
-          </div>
-          <p id="home-warmup-headline" class="text-sm font-bold text-slate-900">
-            Build daily recall with a 5-question timed sprint and rate all 30 OCR R050 specification checkpoints (Red / Amber / Green).
-          </p>
-        </div>
-        <div class="flex flex-wrap items-center gap-2.5 shrink-0">
-          <button type="button" onclick="openDailyWarmupWorkspace('warmup')" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl transition-colors flex items-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">
-            <i class="fa-solid fa-stopwatch text-xs"></i>
-            <span id="home-warmup-cta-label">Start 5-Min Warm-Up</span>
+    <!-- Simple 4-Tab Study Switcher -->
+    <div class="space-y-6 pt-2 border-t border-slate-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div role="tablist" aria-label="Choose what to revise" class="grid grid-cols-4 sm:inline-flex items-center gap-1 p-1 bg-slate-200/80 rounded-xl w-full sm:w-auto">
+          <button type="button" role="tab" id="home-tab-start" aria-selected="true" aria-controls="home-panel-start" onclick="setStudentHomeTab('start')" class="px-2 sm:px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap shrink-0 bg-white text-slate-900 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+            <span class="sm:hidden">Start</span>
+            <span class="hidden sm:inline">Start Here</span>
           </button>
-          <button type="button" onclick="openDailyWarmupWorkspace('checklist')" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200 text-xs font-semibold rounded-xl transition-colors flex items-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-            <i class="fa-solid fa-list-check text-emerald-700 text-xs"></i>
-            <span>Spec Checklist</span>
+          <button type="button" role="tab" id="home-tab-papers" aria-selected="false" aria-controls="home-panel-papers" onclick="setStudentHomeTab('papers')" class="px-2 sm:px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap shrink-0 text-slate-600 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+            <span class="sm:hidden">Papers</span>
+            <span class="hidden sm:inline">Exam Papers</span>
+          </button>
+          <button type="button" role="tab" id="home-tab-labs" aria-selected="false" aria-controls="home-panel-labs" onclick="setStudentHomeTab('labs')" class="px-2 sm:px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap shrink-0 text-slate-600 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+            <span class="sm:hidden">Labs</span>
+            <span class="hidden sm:inline">Practice Labs</span>
+          </button>
+          <button type="button" role="tab" id="home-tab-topics" aria-selected="false" aria-controls="home-panel-topics" onclick="setStudentHomeTab('topics')" class="px-2 sm:px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap shrink-0 text-slate-600 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+            <span class="sm:hidden">Topics</span>
+            <span class="hidden sm:inline">By Topic</span>
           </button>
         </div>
+        <p id="home-tab-subtitle" class="text-xs text-slate-500">
+          Pick one simple activity below to get started.
+        </p>
       </div>
 
-      <!-- Progress & Weakness Readiness Summary Bar -->
-      <div id="home-progress-strip" class="bg-white rounded-2xl border border-slate-200 hover:border-indigo-300 transition-colors px-5 py-4 sm:px-6 flex flex-col justify-between gap-4">
-        <div class="space-y-1 min-w-0">
-          <div id="home-progress-kicker" class="flex flex-wrap items-center gap-2 text-xs text-slate-500 font-medium tabular-nums">
-            <span class="font-bold text-indigo-600">Progress &amp; Weakness Dashboard</span>
-            <span aria-hidden="true">·</span>
-            <span>Live TA1–TA6 Analytics</span>
-          </div>
-          <p id="home-progress-headline" class="text-sm font-bold text-slate-900">
-            Track your estimated OCR grade, score trend, and weakest Topic Areas across every paper and flashcard deck.
-          </p>
-        </div>
-        <div class="flex flex-wrap items-center gap-2.5 shrink-0">
-          <button type="button" id="home-progress-drill-btn" onclick="launchWeaknessDrill()" class="hidden px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl transition-colors flex items-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-            <i class="fa-solid fa-bolt text-amber-400 text-[11px]"></i>
-            <span id="home-progress-drill-label">Drill Weakest Topic</span>
-          </button>
-          <button type="button" onclick="openProgressDashboard()" class="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-800 border border-indigo-200 text-xs font-semibold rounded-xl transition-colors flex items-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-            <i class="fa-solid fa-chart-line text-indigo-600 text-xs"></i>
-            <span>Open Progress Dashboard</span>
-            <i class="fa-solid fa-arrow-right text-[10px]"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Official OCR Past Papers Featured Deck -->
-    <div class="bg-slate-900 text-white rounded-2xl border border-slate-800 p-6 sm:p-7 space-y-6">
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
-        <div class="space-y-2 max-w-3xl">
-          <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-indigo-300">
-            <span class="font-bold text-white">Official OCR R050/01 Past Papers</span>
-            <span aria-hidden="true" class="text-slate-500">·</span>
-            <span id="home-official-count-meta" class="tabular-nums">10 Official Exam Papers Ready</span>
-            <span aria-hidden="true" class="text-slate-500">·</span>
-            <span>Mark Schemes &amp; Diagram Canvas</span>
-          </div>
-          <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white">
-            Sit real OCR exam papers and self-mark against the mark scheme
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Pick any of the 10 official OCR exam papers below to answer every question interactively, sketch wireframe/flowchart/mind map diagrams, view original PDF figures side by side, and check your answers with built-in OCR mark scheme guidance.
-          </p>
-        </div>
-        <div class="flex flex-wrap items-center gap-2.5 shrink-0">
-          <button type="button" onclick="openOfficialPapersWorkspace()" class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl transition-colors flex items-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
-            <i class="fa-solid fa-folder-open text-xs"></i>
-            <span>Browse All 10 Papers</span>
-            <i class="fa-solid fa-arrow-right text-[11px]"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Direct Quick-Launch Grid for All 10 Uploaded Official OCR Papers -->
-      <div id="home-official-papers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-5 border-t border-slate-800">
-        <!-- Populated immediately via renderHomeOfficialPapersPreview() -->
-      </div>
-    </div>
-
-    <!-- Primary Study Modes -->
-    <div class="space-y-4">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-        <div>
-          <h2 class="text-lg font-bold text-slate-900">Study & Assessment Modes</h2>
-          <p class="text-xs text-slate-500 mt-0.5">Select a full examination mode or open the revision reference hub.</p>
-        </div>
-        <div class="text-xs text-slate-500 tabular-nums">
-          Section A: 20 Marks · Section B: 60 Marks (GreenLeaf &amp; SwiftFit)
-        </div>
-      </div>
-
-      <!-- Row 1: Exam Papers & Question Bank Shuffler (3-column balanced grid) -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <!-- Card 1: Full Practice Paper -->
-        <div class="bg-white rounded-2xl border border-slate-200 hover:border-indigo-300 transition-colors p-6 flex flex-col justify-between gap-6">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between gap-2">
-              <span class="text-xs font-semibold text-indigo-600">Recommended</span>
-              <span class="text-xs text-slate-500 tabular-nums">Paper 1 · Untimed</span>
+      <!-- TAB 1: START HERE (Just 3 big friendly cards + 1 calm progress row) -->
+      <div id="home-panel-start" role="tabpanel" aria-labelledby="home-tab-start" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Card 1: 5-Minute Daily Warm-Up -->
+          <div id="home-daily-warmup-strip" class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-6">
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2 text-xs text-slate-500 font-medium tabular-nums">
+                <span class="font-semibold text-emerald-700">Quick Daily Habit</span>
+                <span aria-hidden="true">·</span>
+                <span id="home-warmup-streak-meta">0-day streak</span>
+              </div>
+              <h2 class="text-lg font-bold text-slate-900">5-Minute Warm-Up</h2>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Answer 5 quick questions each day and tick off the 30 topics you feel confident on.
+              </p>
+              <div id="home-warmup-spec-meta" class="text-xs text-slate-500 tabular-nums pt-0.5">
+                0 / 30 topics ready
+              </div>
             </div>
-            <h3 class="text-lg font-bold text-slate-900">Practice Exam Paper</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Answer all 32 questions across Section A and Section B at your own pace with instant checking, writing scaffolds, and cheat sheets.
+            <div class="space-y-2">
+              <button type="button" onclick="openDailyWarmupWorkspace('warmup')" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm rounded-xl transition-colors flex items-center justify-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                <span id="home-warmup-cta-label">Start 5-Min Warm-Up</span>
+                <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+              </button>
+              <button type="button" onclick="openDailyWarmupWorkspace('checklist')" class="w-full py-2 px-3 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                Open Topic Checklist
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Exam Papers -->
+          <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-6">
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2 text-xs text-slate-500 font-medium tabular-nums">
+                <span class="font-semibold text-indigo-600">Exam Practice</span>
+                <span aria-hidden="true">·</span>
+                <span id="home-official-count-meta">10 Past Papers Ready</span>
+              </div>
+              <h2 class="text-lg font-bold text-slate-900">Practise an Exam Paper</h2>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Try real OCR past papers with mark schemes, or sit an untimed practice paper with instant marking.
+              </p>
+              <div class="text-xs text-slate-500 tabular-nums pt-0.5">
+                Real OCR papers · Untimed or 90-min mock
+              </div>
+            </div>
+            <div class="space-y-2">
+              <button type="button" onclick="openOfficialPapersWorkspace()" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm rounded-xl transition-colors flex items-center justify-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                <span>Browse Past Papers</span>
+                <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+              </button>
+              <button type="button" onclick="startActivity('practice')" class="w-full py-2 px-3 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                Start Untimed Practice Paper
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: Flashcards & Cheat Sheets -->
+          <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-6">
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2 text-xs text-slate-500 font-medium tabular-nums">
+                <span class="font-semibold text-sky-700">Learn Key Terms</span>
+                <span aria-hidden="true">·</span>
+                <span id="home-fc-mastery-meta">36 Key Terms</span>
+              </div>
+              <h2 class="text-lg font-bold text-slate-900">Flashcards &amp; Cheat Sheets</h2>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Flip flashcards to test your memory, or read short, plain-English notes for every topic.
+              </p>
+              <div class="text-xs text-slate-500 tabular-nums pt-0.5">
+                Flashcards · Quick Quiz · A–Z Glossary
+              </div>
+            </div>
+            <div class="space-y-2">
+              <button type="button" onclick="openFlashcardsWorkspace('ALL', 'flashcards')" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm rounded-xl transition-colors flex items-center justify-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                <span>Open Flashcards</span>
+                <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+              </button>
+              <button type="button" onclick="openQuickReference('TA1', true)" class="w-full py-2 px-3 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                Open Cheat Sheets &amp; Glossary
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calm Single-Row Progress Summary -->
+        <div id="home-progress-strip" class="bg-white rounded-2xl border border-slate-200 px-5 py-4 sm:px-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="space-y-1 min-w-0">
+            <div id="home-progress-kicker" class="flex flex-wrap items-center gap-2 text-xs text-slate-500 font-medium tabular-nums">
+              <span class="font-bold text-indigo-600">My Progress</span>
+              <span aria-hidden="true">·</span>
+              <span>0/36 flashcards learned</span>
+            </div>
+            <p id="home-progress-headline" class="text-sm font-semibold text-slate-900">
+              See your estimated grade and which topics to practise next.
             </p>
-            <div class="pt-1 text-xs text-slate-500 tabular-nums">
-              80 Marks · Instant Feedback · Scaffolds
-            </div>
           </div>
-          <button type="button" onclick="startActivity('practice')" class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs sm:text-sm rounded-xl transition-colors flex items-center justify-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-            <span>Start Practice Paper</span>
-            <i class="fa-solid fa-arrow-right text-xs"></i>
-          </button>
-        </div>
-
-        <!-- Card 2: Timed Mock Exam -->
-        <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-6">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between gap-2">
-              <span class="text-xs font-semibold text-amber-700">Exam Conditions</span>
-              <span class="text-xs text-slate-500 font-mono tabular-nums">90:00 Timer</span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900">Timed Mock Exam</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Simulate official OCR Unit R050 conditions. Cheat sheets stay locked until submission for Level 1/2 grade boundaries and CSV export.
-            </p>
-            <div class="pt-1 text-xs text-slate-500 tabular-nums">
-              80 Marks · 90 Minutes · Full Results Slip
-            </div>
-          </div>
-          <button type="button" onclick="startActivity('mock')" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm rounded-xl transition-colors flex items-center justify-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500">
-            <i class="fa-solid fa-stopwatch text-amber-400 text-xs"></i>
-            <span>Start Timed Mock</span>
-          </button>
-        </div>
-
-        <!-- Card 3: Extra Practice Papers & Question Bank Shuffler -->
-        <div class="bg-white rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors p-6 flex flex-col justify-between gap-6">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between gap-2">
-              <span class="text-xs font-semibold text-sky-700">Fresh Papers &amp; Shuffler</span>
-              <span id="home-papers-meta" class="text-xs text-slate-500 tabular-nums">3 Papers · 80-Q Bank</span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900">Extra Papers &amp; Shuffler</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Sit brand-new Paper 2 and Mini-Mock Paper 3, or shuffle custom practice papers by Topic Area, length, and MCQ order from an 80-question bank.
-            </p>
-            <div class="pt-1 text-xs text-slate-500 tabular-nums">
-              Paper 1, 2 &amp; 3 · Custom Shuffled Sets
-            </div>
-          </div>
-          <div class="flex items-center gap-2">
-            <button type="button" onclick="openPapersHub('catalog')" class="flex-1 py-2.5 px-3 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500">
-              <i class="fa-solid fa-file-lines text-[11px]"></i>
-              <span>Browse Papers</span>
+          <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+            <button type="button" id="home-progress-drill-btn" onclick="launchWeaknessDrill()" class="hidden px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              <span id="home-progress-drill-label">Practise Weakest Topic</span>
             </button>
-            <button type="button" onclick="openPapersHub('shuffler')" class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs rounded-xl border border-slate-200 transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500">
-              <i class="fa-solid fa-shuffle text-sky-600 text-[11px]"></i>
-              <span>Shuffler</span>
+            <button type="button" onclick="openProgressDashboard()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              <span>View My Progress</span>
+              <i class="fa-solid fa-arrow-right text-[10px]" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quiet Helper Row to Discover Labs & Topics -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1 text-xs text-slate-500">
+          <span>Looking for interactive labs (flowcharts, cyber security, validation) or single-topic practice?</span>
+          <div class="flex items-center gap-4 shrink-0">
+            <button type="button" onclick="setStudentHomeTab('labs')" class="font-semibold text-indigo-600 hover:text-indigo-800 hover:underline underline-offset-4 whitespace-nowrap">
+              Explore 6 Practice Labs →
+            </button>
+            <button type="button" onclick="setStudentHomeTab('topics')" class="font-semibold text-slate-700 hover:text-slate-900 hover:underline underline-offset-4 whitespace-nowrap">
+              Browse TA1–TA6 →
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Row 2: Writing Coach & Active Revision Tools (3-column balanced grid) -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <!-- Card 4: 9-Mark Extended Response Coach -->
-        <div class="bg-white rounded-2xl border border-slate-200 hover:border-amber-300 transition-colors p-6 flex flex-col justify-between gap-5">
-          <div class="space-y-2.5">
-            <div class="flex items-center justify-between gap-2 text-xs">
-              <span class="font-semibold text-amber-700">Extended Writing</span>
-              <span id="home-coach-meta" class="text-slate-500 tabular-nums">4 Scenarios · 9 Marks</span>
+      <!-- TAB 2: EXAM PAPERS -->
+      <div id="home-panel-papers" role="tabpanel" aria-labelledby="home-tab-papers" class="hidden space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Practice Exam Paper -->
+          <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-5">
+            <div class="space-y-2">
+              <div class="text-xs font-semibold text-indigo-600">Untimed · Best for Learning</div>
+              <h3 class="text-base sm:text-lg font-bold text-slate-900">Practice Exam Paper</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Work through all 32 questions at your own pace with instant checking, hints, and cheat sheets open.
+              </p>
             </div>
-            <h3 class="text-base sm:text-lg font-bold text-slate-900">9-Mark Response Coach</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Draft high-band evaluation answers with a live AO1/AO2/AO3 checklist, word count meter, sentence starters, and Level 1–3 models.
-            </p>
+            <button type="button" onclick="startActivity('practice')" class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              Start Practice Paper
+            </button>
           </div>
-          <button type="button" onclick="openNineMarkCoach()" class="w-full py-2.5 px-4 bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center space-x-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500">
-            <i class="fa-solid fa-pen-nib text-xs"></i>
-            <span>Open 9-Mark Coach</span>
-          </button>
+
+          <!-- Timed Mock Exam -->
+          <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-5">
+            <div class="space-y-2">
+              <div class="text-xs font-semibold text-amber-700 tabular-nums">90 Minutes · Exam Conditions</div>
+              <h3 class="text-base sm:text-lg font-bold text-slate-900">Timed Mock Exam</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Test yourself against the 90-minute clock with cheat sheets locked and a full grade slip at the end.
+              </p>
+            </div>
+            <button type="button" onclick="startActivity('mock')" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500">
+              Start Timed Mock
+            </button>
+          </div>
+
+          <!-- Extra Papers & Shuffler -->
+          <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-5">
+            <div class="space-y-2">
+              <div id="home-papers-meta" class="text-xs font-semibold text-sky-700 tabular-nums">3 Papers · 80-Q Bank</div>
+              <h3 class="text-base sm:text-lg font-bold text-slate-900">Extra Papers &amp; Shuffler</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Try Paper 2 or Mini-Mock Paper 3, or mix a custom quiz from the 80-question bank.
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="openPapersHub('catalog')" class="flex-1 py-2.5 px-3 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs sm:text-sm rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500">
+                Extra Papers
+              </button>
+              <button type="button" onclick="openPapersHub('shuffler')" class="py-2.5 px-3.5 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs sm:text-sm rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500">
+                Shuffler
+              </button>
+            </div>
+          </div>
         </div>
 
-        <!-- Card 5: Interactive Flashcards & Key-Term Quizzes -->
-        <div class="bg-white rounded-2xl border border-slate-200 hover:border-emerald-300 transition-colors p-6 flex flex-col justify-between gap-5">
-          <div class="space-y-2.5">
-            <div class="flex items-center justify-between gap-2 text-xs">
-              <span class="font-semibold text-emerald-700">Active Recall</span>
-              <span id="home-fc-mastery-meta" class="text-slate-500 tabular-nums">36 Key Terms</span>
+        <!-- Official OCR Past Papers Deck -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="space-y-1">
+              <h3 class="text-lg font-bold text-slate-900">Official OCR Past Papers</h3>
+              <p class="text-sm text-slate-600">
+                Pick any real OCR exam paper to answer online, sketch diagrams, view the original PDF, and check the mark scheme.
+              </p>
             </div>
-            <h3 class="text-base sm:text-lg font-bold text-slate-900">Flashcards &amp; Key-Term Quiz</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Flip TA1–TA6 study cards with spaced review for missed terms, or run multiple-choice and typed-recall warm-up quizzes.
-            </p>
+            <button type="button" onclick="openOfficialPapersWorkspace()" class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs sm:text-sm rounded-xl transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              Open Full Paper Library →
+            </button>
           </div>
-          <div class="flex items-center gap-2">
-            <button type="button" onclick="openFlashcardsWorkspace('ALL', 'flashcards')" class="flex-1 py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">
-              <i class="fa-solid fa-layer-group text-[11px]"></i>
-              <span>Flashcards</span>
-            </button>
-            <button type="button" onclick="openFlashcardsWorkspace('ALL', 'quiz')" class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs rounded-xl border border-slate-200 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-              Quick Quiz
-            </button>
+          <div id="home-official-papers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-4 border-t border-slate-100">
+            <!-- Populated via renderHomeOfficialPapersPreview() -->
           </div>
         </div>
+      </div>
 
-        <!-- Card 6: Quick Reference Cheat Sheets & Glossary -->
-        <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-5">
-          <div class="space-y-2.5">
-            <div class="flex items-center justify-between gap-2 text-xs">
-              <span class="font-semibold text-slate-700">Revision Library</span>
-              <span class="text-slate-500 tabular-nums">6 Guides · A–Z Glossary</span>
+      <!-- TAB 3: PRACTICE LABS (All 6 interactive studios in plain English) -->
+      <div id="home-panel-labs" role="tabpanel" aria-labelledby="home-tab-labs" class="hidden space-y-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Lab 1: Diagrams & Flowcharts (TA1) -->
+          <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-5">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between gap-2 text-xs text-slate-500 tabular-nums">
+                <span class="font-semibold text-cyan-700">Topic 1</span>
+                <span id="home-ta1-trainer-meta">20 Challenges</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900">Diagrams &amp; Flowcharts</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Build flowcharts step by step, learn symbol shapes, and practise mind maps and wireframes.
+              </p>
             </div>
-            <h3 class="text-base sm:text-lg font-bold text-slate-900">Quick Reference &amp; Glossary</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Browse concise TA1–TA6 cheat sheets and search the interactive A–Z key-term glossary with definitions and direct Topic Area links.
-            </p>
-          </div>
-          <div class="flex items-center gap-2">
-            <button type="button" onclick="openQuickReference('TA1', true)" class="flex-1 py-2.5 px-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-              <i class="fa-solid fa-book-open text-indigo-400 text-[11px]"></i>
-              <span>Cheat Sheets</span>
+            <button type="button" onclick="openTa1DiagramTrainer('flowchart')" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              Open Diagram Lab
             </button>
-            <button type="button" onclick="openQuickReference('GLOSSARY', true)" class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs rounded-xl border border-slate-200 transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-              <i class="fa-solid fa-spell-check text-indigo-600 text-[11px]"></i>
-              <span>A–Z Glossary</span>
+          </div>
+
+          <!-- Lab 2: Validation & Testing (TA3) -->
+          <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-5">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between gap-2 text-xs text-slate-500 tabular-nums">
+                <span class="font-semibold text-teal-700">Topic 3</span>
+                <span id="home-ta3-simulator-meta">26 Challenges</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900">Validation &amp; Testing</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Test live inputs against validation rules and practise Normal, Boundary, and Erroneous test data.
+              </p>
+            </div>
+            <button type="button" onclick="openTa3ValidationSimulator('sandbox')" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              Open Validation Lab
+            </button>
+          </div>
+
+          <!-- Lab 3: Cyber Security & UK Law (TA4) -->
+          <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-5">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between gap-2 text-xs text-slate-500 tabular-nums">
+                <span class="font-semibold text-sky-700">Topic 4</span>
+                <span id="home-ta4-lab-meta">24 Challenges</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900">Cyber Security &amp; UK Law</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Spot phishing emails, pick the right defences against attacks, and judge real UK IT law cases.
+              </p>
+            </div>
+            <button type="button" onclick="openTa4SecurityLab('inspector')" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              Open Security Lab
+            </button>
+          </div>
+
+          <!-- Lab 4: Networks & Smart Tech (TA5 & TA6) -->
+          <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-5">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between gap-2 text-xs text-slate-500 tabular-nums">
+                <span class="font-semibold text-amber-700">Topics 5 &amp; 6</span>
+                <span id="home-ta56-builder-meta">24 Challenges</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900">Networks &amp; Smart Tech</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Compare Wi-Fi, 5G, Bluetooth, and NFC, and wire up smart IoE systems step by step.
+              </p>
+            </div>
+            <button type="button" onclick="openTa56SystemBuilder('connectivity')" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              Open Networks &amp; IoE
+            </button>
+          </div>
+
+          <!-- Lab 5: Fix the Answer & Command Words -->
+          <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-5">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between gap-2 text-xs text-slate-500 tabular-nums">
+                <span class="font-semibold text-rose-700">Exam Technique</span>
+                <span id="home-command-drills-meta">24 Drills</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900">Fix the Answer Drills</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Learn what OCR command words mean, improve weak answers to full marks, and play the examiner.
+              </p>
+            </div>
+            <button type="button" onclick="openCommandWordDrills('fix')" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              Open Answer Drills
+            </button>
+          </div>
+
+          <!-- Lab 6: 9-Mark Essay Coach -->
+          <div class="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-6 flex flex-col justify-between gap-5">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between gap-2 text-xs text-slate-500 tabular-nums">
+                <span class="font-semibold text-indigo-700">Long Answers</span>
+                <span id="home-coach-meta">4 Scenarios · 9 Marks</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900">9-Mark Essay Coach</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Write top-band 9-mark answers using sentence starters, a live checklist, and example models.
+              </p>
+            </div>
+            <button type="button" onclick="openNineMarkCoach()" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              Open 9-Mark Coach
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Row 3: Interactive Topic Studios (2x2 balanced grid) + Exam Technique Studio bar -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <!-- Studio 1: Interactive TA1 Diagram & Flowchart Trainer -->
-        <div class="bg-white rounded-2xl border border-slate-200 hover:border-cyan-300 transition-colors p-6 flex flex-col justify-between gap-5">
-          <div class="space-y-2.5">
-            <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 font-medium tabular-nums">
-              <span class="font-bold text-cyan-700">TA1 Studio</span>
-              <span id="home-ta1-trainer-meta">20 Diagram &amp; Flowchart Challenges</span>
-            </div>
-            <h3 class="text-base sm:text-lg font-bold text-slate-900">Interactive TA1 Diagram &amp; Flowchart Trainer</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Build exam-style ISO 5807 flowcharts with live Yes/No execution tracing, spot convention errors, and assemble Mind Maps, Wireframes, and Visualisation Diagrams.
-            </p>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <button type="button" onclick="openTa1DiagramTrainer('flowchart')" class="flex-1 py-2.5 px-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-              <i class="fa-solid fa-diagram-project text-cyan-400 text-[11px]"></i>
-              <span>Open TA1 Diagram Trainer</span>
-            </button>
-            <button type="button" onclick="openTa1DiagramTrainer('drill')" class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs rounded-xl border border-slate-200 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-              Symbols
-            </button>
-          </div>
+      <!-- TAB 4: BY TOPIC (TA1-TA6) -->
+      <div id="home-panel-topics" role="tabpanel" aria-labelledby="home-tab-topics" class="hidden space-y-5">
+        <div id="home-ta-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Populated dynamically via JS -->
         </div>
-
-        <!-- Studio 2: TA3 Validation & Test Data Simulator -->
-        <div class="bg-white rounded-2xl border border-slate-200 hover:border-teal-300 transition-colors p-6 flex flex-col justify-between gap-5">
-          <div class="space-y-2.5">
-            <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 font-medium tabular-nums">
-              <span class="font-bold text-teal-700">TA3 Simulator</span>
-              <span id="home-ta3-simulator-meta">26 Validation &amp; Testing Challenges</span>
-            </div>
-            <h3 class="text-base sm:text-lg font-bold text-slate-900">TA3 Validation &amp; Test Data Simulator</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Test live inputs against Presence, Type, Length, Range, Format, and Lookup rules, plot Normal/Boundary/Erroneous test plans on a visual scale, and prove Validation vs Verification.
-            </p>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <button type="button" onclick="openTa3ValidationSimulator('sandbox')" class="flex-1 py-2.5 px-3 bg-teal-700 hover:bg-teal-800 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500">
-              <i class="fa-solid fa-shield-halved text-teal-200 text-[11px]"></i>
-              <span>Open TA3 Simulator</span>
-            </button>
-            <button type="button" onclick="openTa3ValidationSimulator('testplan')" class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs rounded-xl border border-slate-200 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-              Test Plan
-            </button>
-          </div>
-        </div>
-
-        <!-- Studio 3: TA4 Cyber-Security & UK Legislation Lab -->
-        <div class="bg-white rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors p-6 flex flex-col justify-between gap-5">
-          <div class="space-y-2.5">
-            <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 font-medium tabular-nums">
-              <span class="font-bold text-sky-700">TA4 Security Lab</span>
-              <span id="home-ta4-lab-meta">24 Security &amp; Law Challenges</span>
-            </div>
-            <h3 class="text-base sm:text-lg font-bold text-slate-900">TA4 Cyber-Security &amp; UK Legislation Lab</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Inspect phishing emails and social-engineering scripts for red flags, build 3-layer defences against live attacks, judge UK law cases (DPA 2018, CMA 1990, CDPA 1988, Equality Act), and sequence incident recovery.
-            </p>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <button type="button" onclick="openTa4SecurityLab('inspector')" class="flex-1 py-2.5 px-3 bg-sky-700 hover:bg-sky-800 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500">
-              <i class="fa-solid fa-user-shield text-sky-200 text-[11px]"></i>
-              <span>Open TA4 Security Lab</span>
-            </button>
-            <button type="button" onclick="openTa4SecurityLab('legislation')" class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs rounded-xl border border-slate-200 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-              UK Laws
-            </button>
-          </div>
-        </div>
-
-        <!-- Studio 4: TA5 & TA6 Connectivity & IoE System Builder -->
-        <div class="bg-white rounded-2xl border border-slate-200 hover:border-amber-300 transition-colors p-6 flex flex-col justify-between gap-5">
-          <div class="space-y-2.5">
-            <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 font-medium tabular-nums">
-              <span class="font-bold text-amber-700">TA5 &amp; TA6 System Builder</span>
-              <span id="home-ta56-builder-meta">24 Connectivity &amp; IoE Challenges</span>
-            </div>
-            <h3 class="text-base sm:text-lg font-bold text-slate-900">TA5 &amp; TA6 Connectivity &amp; IoE System Builder</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Compare NFC, Bluetooth, Wi-Fi, 4G/5G, Wired &amp; Satellite specs, wire live 4-pillar IoE pipelines (Things, Data, Process, People), choose digital comms channels, and audit SPOF, privacy &amp; interoperability trade-offs.
-            </p>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <button type="button" onclick="openTa56SystemBuilder('connectivity')" class="flex-1 py-2.5 px-3 bg-amber-700 hover:bg-amber-800 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500">
-              <i class="fa-solid fa-tower-broadcast text-amber-200 text-[11px]"></i>
-              <span>Open TA5 &amp; TA6 Builder</span>
-            </button>
-            <button type="button" onclick="openTa56SystemBuilder('ioe')" class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs rounded-xl border border-slate-200 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-              IoE Builder
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Full-Width Exam Technique Studio Bar -->
-      <div class="bg-white rounded-2xl border border-slate-200 hover:border-rose-300 transition-colors p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
-        <div class="space-y-1.5 max-w-3xl">
-          <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 font-medium tabular-nums">
-            <span class="font-bold text-rose-700">Exam Technique Studio</span>
-            <span aria-hidden="true">·</span>
-            <span id="home-command-drills-meta">24 Command &amp; Script Drills</span>
-          </div>
-          <h3 class="text-base sm:text-lg font-bold text-slate-900">OCR Command Word &amp; &ldquo;Fix the Answer&rdquo; Drills</h3>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Diagnose why weak answers lose marks, patch vague scripts up to full marks, decode OCR command-word formulas, and mark scripts as the examiner.
-          </p>
-        </div>
-        <div class="flex flex-wrap items-center gap-2 shrink-0">
-          <button type="button" onclick="openCommandWordDrills('fix')" class="py-2.5 px-4 bg-rose-600 hover:bg-rose-700 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500">
-            <i class="fa-solid fa-wrench text-rose-100 text-[11px]"></i>
-            <span>Open Command Drills</span>
-          </button>
-          <button type="button" onclick="openCommandWordDrills('examiner')" class="py-2.5 px-3.5 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs rounded-xl border border-slate-200 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-            Examiner
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Focused Topic Area Practice & Revision Grid -->
-    <div class="space-y-4 pt-2 border-t border-slate-200">
-      <div>
-        <h2 class="text-lg font-bold text-slate-900">Focus by Topic Area</h2>
-        <p class="text-xs text-slate-500 mt-0.5">Drill exam questions, flip flashcards, or open the revision sheet for any single Topic Area.</p>
-      </div>
-
-      <div id="home-ta-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Populated dynamically via JS -->
       </div>
     </div>
 
@@ -1550,7 +1516,7 @@
       <div id="official-exam-shell" class="hidden space-y-5">
 
         <!-- Paper Summary & Toolbar -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div id="official-summary-toolbar" class="bg-white rounded-2xl border border-slate-200 p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div class="space-y-1.5 min-w-0">
             <div class="flex flex-wrap items-center gap-2 text-xs text-slate-500 font-medium">
               <span id="official-active-series" class="font-semibold text-indigo-700">Jan 2026 · R050/01</span>
@@ -1567,6 +1533,10 @@
           </div>
 
           <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <button type="button" id="official-focus-mode-btn" onclick="toggleOfficialFocusMode()" aria-pressed="false" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-xl border border-slate-200 transition-colors flex items-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              <i class="fa-solid fa-expand text-indigo-600 text-xs" aria-hidden="true"></i>
+              <span>Focus Mode</span>
+            </button>
             <button type="button" id="official-toggle-pdf-btn" onclick="toggleOfficialPdfSplit()" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-xl border border-slate-200 transition-colors flex items-center space-x-1.5 whitespace-nowrap">
               <i class="fa-solid fa-file-pdf text-rose-600 text-xs"></i>
               <span id="official-toggle-pdf-label">Show Original PDF</span>
@@ -1579,7 +1549,7 @@
         </div>
 
         <!-- Compact Question Navigator Strip -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-4 space-y-2.5">
+        <div id="official-jump-strip-card" class="bg-white rounded-2xl border border-slate-200 p-4 space-y-2.5">
           <div class="flex items-center justify-between gap-2 text-xs">
             <span class="font-bold text-slate-800">Question Jump Strip</span>
             <span id="official-score-pill-text" class="font-semibold text-slate-600 tabular-nums">Not yet marked</span>
@@ -1593,12 +1563,49 @@
         <div id="official-split-grid" class="grid grid-cols-1 gap-6 items-start">
           <!-- Questions Column -->
           <div id="official-questions-col" class="space-y-5 min-w-0">
+            <!-- Official Focus Mode Top Bar (Hidden unless Focus Mode is ON) -->
+            <div id="official-focus-bar" class="hidden bg-white rounded-xl border border-slate-200 px-4 py-3 space-y-2.5 no-print">
+              <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+                <div class="flex flex-wrap items-center gap-2 text-slate-600">
+                  <span class="font-bold text-indigo-700">Focus Mode</span>
+                  <span aria-hidden="true" class="text-slate-300">·</span>
+                  <span id="official-focus-counter" class="font-semibold text-slate-900 tabular-nums">Question 1 of 1</span>
+                  <span aria-hidden="true" class="text-slate-300">·</span>
+                  <span id="official-focus-answered" class="tabular-nums">0 answered</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <button type="button" id="official-focus-unanswered-btn" onclick="jumpToNextUnansweredOfficialFocus()" class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 hover:underline underline-offset-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded">
+                    Next unanswered →
+                  </button>
+                  <button type="button" onclick="toggleOfficialFocusMode(false)" class="text-xs font-semibold text-slate-500 hover:text-slate-900 hover:underline underline-offset-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded">
+                    Exit Focus
+                  </button>
+                </div>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-slate-100 overflow-hidden" role="progressbar" id="official-focus-progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Focused question progress">
+                <div id="official-focus-progress-fill" class="h-full rounded-full bg-indigo-600 transition-all duration-200" style="width: 0%"></div>
+              </div>
+            </div>
+
             <div id="official-questions-list" class="space-y-5">
               <!-- Populated dynamically -->
             </div>
 
+            <!-- Official Focus Mode Stepper Footer (Hidden unless Focus Mode is ON) -->
+            <div id="official-focus-footer" class="hidden flex items-center justify-between gap-3 pt-2 no-print">
+              <button type="button" id="official-focus-prev-btn" onclick="stepOfficialFocusQuestion(-1)" class="px-4 py-2.5 bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed text-slate-800 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 transition-colors flex items-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                <i class="fa-solid fa-arrow-left text-xs" aria-hidden="true"></i>
+                <span>Previous</span>
+              </button>
+              <span class="hidden sm:inline text-xs text-slate-400 font-medium">Use ← → to switch · Esc to exit</span>
+              <button type="button" id="official-focus-next-btn" onclick="handleOfficialFocusNextClick()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-semibold rounded-xl transition-colors flex items-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                <span id="official-focus-next-label">Next Question</span>
+                <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+              </button>
+            </div>
+
             <!-- Bottom Action Card -->
-            <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div id="official-bottom-action-card" class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <h3 class="text-sm font-bold text-slate-900">Finished answering this OCR R050 paper?</h3>
                 <p class="text-xs text-slate-600 mt-0.5">Reveals every mark scheme so you can self-mark your answers, calculates your OCR Level 1/2 grade, and shows your TA1–TA6 breakdown.</p>
@@ -1765,6 +1772,9 @@
         </div>
       </div>
 
+      <!-- Achievements & Badges Section -->
+      <div id="progress-achievements-root" class="scroll-mt-20"></div>
+
       <!-- Main 2-Column Analytics Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
@@ -1844,7 +1854,7 @@
   <div id="app-container" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full flex flex-col lg:flex-row gap-6">
 
     <!-- QUESTION NAVIGATOR SIDEBAR -->
-    <aside class="w-full lg:w-72 shrink-0 no-print">
+    <aside id="exam-sidebar" class="w-full lg:w-72 shrink-0 no-print">
       <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 sticky top-20 space-y-4">
         
         <div class="flex items-center justify-between border-b border-slate-200 pb-3">
@@ -1919,7 +1929,33 @@
     </aside>
 
     <!-- QUESTION STREAM -->
-    <main class="flex-1 space-y-8 min-w-0">
+    <main id="exam-main-column" class="flex-1 space-y-8 min-w-0">
+
+      <!-- EXAM FOCUS MODE TOP BAR (Hidden unless Focus Mode is ON) -->
+      <div id="exam-focus-bar" class="hidden bg-white rounded-xl border border-slate-200 px-4 sm:px-5 py-3.5 space-y-2.5 no-print">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div class="flex flex-wrap items-center gap-2 text-slate-600">
+            <span class="font-bold text-indigo-700">Focus Mode</span>
+            <span aria-hidden="true" class="text-slate-300">·</span>
+            <span id="exam-focus-counter" class="font-semibold text-slate-900 tabular-nums">Question 1 of 32</span>
+            <span aria-hidden="true" class="text-slate-300">·</span>
+            <span id="exam-focus-section" class="font-medium text-slate-700">Section A</span>
+            <span aria-hidden="true" class="text-slate-300">·</span>
+            <span id="exam-focus-answered" class="tabular-nums">0 answered</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <button type="button" id="exam-focus-unanswered-btn" onclick="jumpToNextUnansweredFocusQuestion()" class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 hover:underline underline-offset-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded">
+              Next unanswered →
+            </button>
+            <button type="button" onclick="toggleExamFocusMode(false)" class="text-xs font-semibold text-slate-500 hover:text-slate-900 hover:underline underline-offset-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded">
+              Exit Focus
+            </button>
+          </div>
+        </div>
+        <div id="exam-focus-progressbar" class="w-full h-1.5 rounded-full bg-slate-100 overflow-hidden" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Focused exam question progress">
+          <div id="exam-focus-progress-fill" class="h-full rounded-full bg-indigo-600 transition-all duration-200" style="width: 0%"></div>
+        </div>
+      </div>
 
       <!-- ACTIVE PAPER BANNER (Shown for Paper 2, Paper 3, or Shuffled Sets) -->
       <div id="active-paper-banner" class="hidden bg-white rounded-xl border border-sky-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -1991,8 +2027,21 @@
         <!-- Rendered via JS -->
       </div>
 
+      <!-- EXAM FOCUS MODE STEPPER FOOTER (Hidden unless Focus Mode is ON) -->
+      <div id="exam-focus-footer" class="hidden flex items-center justify-between gap-3 pt-2 no-print">
+        <button type="button" id="exam-focus-prev-btn" onclick="stepExamFocusQuestion(-1)" class="px-4 py-2.5 bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed text-slate-800 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 transition-colors flex items-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+          <i class="fa-solid fa-arrow-left text-xs" aria-hidden="true"></i>
+          <span>Previous</span>
+        </button>
+        <span class="hidden sm:inline text-xs text-slate-400 font-medium">Use ← → to switch · Esc to exit</span>
+        <button type="button" id="exam-focus-next-btn" onclick="handleExamFocusNextClick()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-semibold rounded-xl transition-colors flex items-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+          <span id="exam-focus-next-label">Next Question</span>
+          <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+        </button>
+      </div>
+
       <!-- Bottom Submit Button -->
-      <div class="pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 no-print">
+      <div id="exam-bottom-actions" class="pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 no-print">
         <button type="button" onclick="returnToHomeScreen()" class="px-5 py-3 bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs sm:text-sm rounded-xl border border-slate-200 transition-colors flex items-center space-x-2">
           <i class="fa-solid fa-house text-xs"></i>
           <span>Back to Home Screen</span>
@@ -2886,6 +2935,9 @@
       if (state.studentName && state.studentClass) {
         document.getElementById('candidate-validation-msg').classList.add('hidden');
       }
+      if (typeof updateHomeGreetingAndRecommendation === 'function') {
+        updateHomeGreetingAndRecommendation();
+      }
       saveState();
     }
 
@@ -2938,6 +2990,125 @@
       );
     }
 
+    let activeStudentHomeTab = 'start';
+    let currentHomeRecommendation = { action: 'warmup', targetTA: null };
+
+    const HOME_TAB_SUBTITLES = {
+      start: 'Pick one simple activity below to get started.',
+      papers: 'Choose an untimed practice paper, timed mock, or real OCR past paper.',
+      labs: 'Hands-on activities to practise diagrams, validation, cyber security, and exam technique.',
+      topics: 'Focus on one Unit R050 topic at a time with questions, flashcards, and short notes.',
+    };
+
+    function setStudentHomeTab(rawTab) {
+      const tab = window.R050StudentHome ? window.R050StudentHome.normalizeHomeTab(rawTab) : (rawTab || 'start');
+      activeStudentHomeTab = tab;
+      const tabKeys = ['start', 'papers', 'labs', 'topics'];
+
+      tabKeys.forEach((key) => {
+        const btn = document.getElementById(`home-tab-${key}`);
+        const panel = document.getElementById(`home-panel-${key}`);
+        const isActive = key === tab;
+        if (btn) {
+          btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          btn.className = isActive
+            ? 'px-2 sm:px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap shrink-0 bg-white text-slate-900 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500'
+            : 'px-2 sm:px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap shrink-0 text-slate-600 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500';
+        }
+        if (panel) {
+          panel.classList.toggle('hidden', !isActive);
+        }
+      });
+
+      const subtitleEl = document.getElementById('home-tab-subtitle');
+      if (subtitleEl) {
+        subtitleEl.innerText = HOME_TAB_SUBTITLES[tab] || HOME_TAB_SUBTITLES.start;
+      }
+
+      // Highlight matching top nav link subtly
+      document.querySelectorAll('[data-nav-tab]').forEach((el) => {
+        const matches = el.getAttribute('data-nav-tab') === tab;
+        el.classList.toggle('text-white', matches);
+        el.classList.toggle('text-slate-300', !matches);
+      });
+    }
+
+    function openHomeTabFromNav(tab) {
+      const homeScreen = document.getElementById('home-screen');
+      if (homeScreen && homeScreen.classList.contains('hidden')) {
+        returnToHomeScreen();
+      }
+      setStudentHomeTab(tab);
+    }
+
+    function updateHomeGreetingAndRecommendation() {
+      const greetingEl = document.getElementById('home-hero-greeting');
+      const kickerEl = document.getElementById('home-next-step-kicker');
+      const primaryLabelEl = document.getElementById('home-hero-primary-label');
+      const hintEl = document.getElementById('home-next-step-hint');
+
+      const nameVal = state.studentName || '';
+      if (greetingEl) {
+        greetingEl.innerText = window.R050StudentHome
+          ? window.R050StudentHome.getStudentGreeting(nameVal)
+          : 'Simple revision for OCR Unit R050';
+      }
+
+      const activePaper = getActivePaperData();
+      const activeAllQ = [...activePaper.sectionA, ...activePaper.sectionB.filter(q => !q.isScenarioHeader)];
+      const answeredCount = activeAllQ.filter(q => isQuestionAnswered(q)).length;
+      const warmupSummary = window.R050DailyWarmup ? window.R050DailyWarmup.getSummary() : null;
+      const report = typeof getProgressDashboardReport === 'function'
+        ? getProgressDashboardReport({ sourceFilter: 'all', topicSort: 'weakest' })
+        : null;
+
+      const rec = window.R050StudentHome
+        ? window.R050StudentHome.getRecommendedNextStep({
+            answeredCount,
+            totalQuestions: activeAllQ.length,
+            isSubmitted: Boolean(state.submitted),
+            warmupDoneToday: Boolean(warmupSummary && warmupSummary.streak && warmupSummary.streak.completedToday),
+            hasExamData: Boolean(report && report.hasExamData),
+            weakestTA: report && report.weakness ? report.weakness.primaryTA : null,
+            weakestTitle: report && report.weakness ? report.weakness.primaryTitle : null,
+            weakestPct: report && report.weakness ? report.weakness.primaryPct : null,
+          })
+        : {
+            kicker: 'Best place to start today',
+            ctaLabel: 'Start 5-Min Warm-Up',
+            action: 'warmup',
+            hint: '5 quick questions to wake up your memory',
+          };
+
+      currentHomeRecommendation = rec;
+      if (kickerEl) kickerEl.innerText = rec.kicker;
+      if (primaryLabelEl) primaryLabelEl.innerText = rec.ctaLabel;
+      if (hintEl) hintEl.innerText = rec.hint;
+      const secondaryBtn = document.getElementById('home-hero-secondary-btn');
+      if (secondaryBtn) {
+        if (rec.action === 'official') {
+          secondaryBtn.innerText = 'View My Progress';
+          secondaryBtn.onclick = () => openProgressDashboard();
+        } else {
+          secondaryBtn.innerText = 'Browse 10 Past Papers';
+          secondaryBtn.onclick = () => openOfficialPapersWorkspace();
+        }
+      }
+    }
+
+    function runRecommendedNextStep() {
+      const action = currentHomeRecommendation ? currentHomeRecommendation.action : 'warmup';
+      if (action === 'resume') {
+        resumeSavedSession();
+      } else if (action === 'weakest' && currentHomeRecommendation.targetTA) {
+        startActivity('topic', currentHomeRecommendation.targetTA);
+      } else if (action === 'official') {
+        openOfficialPapersWorkspace();
+      } else {
+        openDailyWarmupWorkspace('warmup');
+      }
+    }
+
     /* Home Screen Rendering & Activity Launching */
     function renderHomeScreen() {
       const activePaper = getActivePaperData();
@@ -2956,16 +3127,16 @@
           const maxMarks = state.maxMarks || activePaper.totalMarks || 80;
           const gradeObj = calculateGrade(score, maxMarks);
           resumeMeta.innerText = `${activePaper.shortTitle} · ${score} / ${maxMarks} Marks · ${gradeObj.grade}`;
-          resumeTitle.innerText = `Completed ${activePaper.title} attempt saved`;
+          resumeTitle.innerText = `Finished ${activePaper.title}`;
           resumeBtnLabel.innerText = "Review Marked Paper";
           viewResultsBtn.classList.remove('hidden');
         } else {
           const modeLabel = state.topicFilter
-            ? `${state.topicFilter} Focus Practice`
-            : (state.mode === 'mock' ? 'Timed Mock Exam' : 'Practice Mode');
-          resumeMeta.innerText = `${activePaper.shortTitle} · ${answeredCount} of ${activeAllQ.length} answered · ${modeLabel}`;
+            ? `${state.topicFilter} Practice`
+            : (state.mode === 'mock' ? 'Timed Mock' : 'Practice Paper');
+          resumeMeta.innerText = `${activePaper.shortTitle} · ${answeredCount} of ${activeAllQ.length} done · ${modeLabel}`;
           resumeTitle.innerText = "Pick up right where you left off";
-          resumeBtnLabel.innerText = "Resume Session";
+          resumeBtnLabel.innerText = "Continue Paper";
           viewResultsBtn.classList.add('hidden');
         }
       } else if (resumeBanner) {
@@ -2981,7 +3152,7 @@
           return paperArchive.papers[pid] && paperArchive.papers[pid].submitted;
         }).length;
         homePapersMeta.innerText = completedCount > 0
-          ? `${completedCount}/3 Completed · ${bank.totalQuestions}-Q Bank`
+          ? `${completedCount}/3 Done · ${bank.totalQuestions}-Q Bank`
           : `3 Papers · ${bank.totalQuestions}-Q Bank`;
       }
 
@@ -2989,10 +3160,10 @@
       const homeFcMeta = document.getElementById('home-fc-mastery-meta');
       if (homeFcMeta) {
         const masteredTotal = FLASHCARD_DECK.filter(c => fcProgress[c.id] === 'mastered').length;
-        homeFcMeta.innerText = masteredTotal > 0 ? `${masteredTotal}/${FLASHCARD_DECK.length} Mastered` : `${FLASHCARD_DECK.length} Key Terms`;
+        homeFcMeta.innerText = masteredTotal > 0 ? `${masteredTotal}/${FLASHCARD_DECK.length} Learned` : `${FLASHCARD_DECK.length} Key Terms`;
       }
 
-      // Render TA1-TA6 Focused Practice Cards (using Paper 1 baseline counts)
+      // Render TA1-TA6 Plain-English Topic Cards
       const paper1AllQ = [...examData.sectionA, ...examData.sectionB.filter(q => !q.isScenarioHeader)];
       const taGrid = document.getElementById('home-ta-grid');
       if (!taGrid) return;
@@ -3000,37 +3171,35 @@
 
       QUICK_REFERENCE_DATA.forEach(topic => {
         const taQuestions = paper1AllQ.filter(q => q.ta === topic.id);
-        const taMarks = taQuestions.reduce((sum, q) => sum + q.marks, 0);
-        const taAnswered = state.paperId === 'paper1' ? taQuestions.filter(q => isQuestionAnswered(q)).length : 0;
         const taCards = FLASHCARD_DECK.filter(c => c.ta === topic.id);
         const taMastered = taCards.filter(c => fcProgress[c.id] === 'mastered').length;
+        const plain = window.R050StudentHome ? window.R050StudentHome.getPlainTopicCopy(topic.id) : null;
+        const displayTitle = plain ? plain.plainTitle : topic.title;
+        const displaySummary = plain ? plain.plainSummary : topic.summary;
+        const shortNum = plain ? plain.shortNumber : topic.code;
 
         const card = document.createElement('div');
         card.className = "bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-colors p-5 flex flex-col justify-between gap-4";
         card.innerHTML = `
           <div class="space-y-2">
             <div class="flex items-center justify-between gap-2 text-xs text-slate-500">
-              <span class="font-bold text-indigo-600">${topic.code}</span>
-              <span class="tabular-nums">${taMarks} Marks · ${taQuestions.length} Qs${taAnswered > 0 ? ` · ${taAnswered}/${taQuestions.length} done` : ''}${taMastered > 0 ? ` · ${taMastered}/${taCards.length} cards` : ''}</span>
+              <span class="font-semibold text-indigo-600">${shortNum} · ${topic.code}</span>
+              <span class="tabular-nums">${taQuestions.length} Qs${taMastered > 0 ? ` · ${taMastered}/${taCards.length} cards` : ''}</span>
             </div>
-            <h3 class="text-sm font-bold text-slate-900">${topic.title}</h3>
-            <p class="text-xs text-slate-600 leading-relaxed">${topic.summary}</p>
+            <h3 class="text-base font-bold text-slate-900">${displayTitle}</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">${displaySummary}</p>
           </div>
-          <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100">
-            <button type="button" onclick="startActivity('topic', '${topic.id}')" class="flex-1 py-2 px-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-              Practice ${topic.code}
+          <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-slate-100">
+            <button type="button" onclick="startActivity('topic', '${topic.id}')" class="flex-1 py-2 px-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              Practise ${topic.code}
             </button>
-            <button type="button" onclick="openFlashcardsWorkspace('${topic.id}', 'flashcards')" class="py-2 px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">
-              Flashcards
+            <button type="button" onclick="openFlashcardsWorkspace('${topic.id}', 'flashcards')" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              Cards
             </button>
-            <button type="button" onclick="openQuickReference('${topic.id}', true)" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-              Cheat Sheet
+            <button type="button" onclick="openQuickReference('${topic.id}', true)" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+              Notes
             </button>
-            ${topic.id === 'TA1' ? `<button type="button" onclick="openTa1DiagramTrainer('flowchart')" class="py-2 px-3 bg-cyan-50 hover:bg-cyan-100 text-cyan-900 border border-cyan-200 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500">Diagram Trainer</button>` : ''}
-            ${topic.id === 'TA3' ? `<button type="button" onclick="openTa3ValidationSimulator('sandbox')" class="py-2 px-3 bg-teal-50 hover:bg-teal-100 text-teal-900 border border-teal-200 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500">Validation Simulator</button>` : ''}
-            ${topic.id === 'TA4' ? `<button type="button" onclick="openTa4SecurityLab('inspector')" class="py-2 px-3 bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500">Security Lab</button>` : ''}
-            ${topic.id === 'TA5' ? `<button type="button" onclick="openTa56SystemBuilder('connectivity')" class="py-2 px-3 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500">Connectivity Lab</button>` : ''}
-            ${topic.id === 'TA6' ? `<button type="button" onclick="openTa56SystemBuilder('ioe')" class="py-2 px-3 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500">IoE Builder</button>` : ''}
+            ${plain && plain.labLabel && plain.labAction ? `<button type="button" onclick="${plain.labAction}" class="w-full py-2 px-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-800 text-xs font-semibold rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">Open ${plain.labLabel} →</button>` : ''}
           </div>
         `;
         taGrid.appendChild(card);
@@ -3060,6 +3229,8 @@
       if (typeof updateHomeDailyWarmupMeta === 'function') {
         updateHomeDailyWarmupMeta();
       }
+      setStudentHomeTab(activeStudentHomeTab);
+      updateHomeGreetingAndRecommendation();
     }
 
     function startActivity(activityType, taId = null) {
@@ -3191,13 +3362,22 @@
       }
 
       updateQuickRefAccessUI();
+      examFocusState.enabled = false;
+      examFocusState.activeIndex = 0;
+      examFocusState.activeQuestionId = null;
+      officialFocusState.enabled = false;
       renderExamQuestions();
       updateUI();
+      applyExamFocusModeUI();
       saveState();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function returnToHomeScreen() {
+      examFocusState.enabled = false;
+      officialFocusState.enabled = false;
+      if (typeof applyExamFocusModeUI === 'function') applyExamFocusModeUI();
+      if (typeof applyOfficialFocusModeUI === 'function') applyOfficialFocusModeUI();
       if (state.timerInterval) {
         clearInterval(state.timerInterval);
         state.timerInterval = null;
@@ -3336,10 +3516,12 @@
         }
       });
 
-      scenarioGroups.forEach(group => {
+      scenarioGroups.forEach((group, groupIdx) => {
         if (group.questions.length === 0) return;
         const header = document.createElement('div');
         header.className = "bg-slate-800 text-white rounded-xl p-6 shadow-sm border border-slate-700 space-y-2 mt-4";
+        header.dataset.examScenario = 'true';
+        header.dataset.scenarioGroup = String(groupIdx);
         header.innerHTML = `
           <span class="text-[11px] font-semibold text-amber-300">OCR Exam Scenario</span>
           <h3 class="text-lg font-bold text-slate-100">${group.header.title}</h3>
@@ -3348,7 +3530,9 @@
         secBContainer.appendChild(header);
 
         group.questions.forEach(({ q, qNum: num }) => {
-          secBContainer.appendChild(createQuestionCard(q, num));
+          const card = createQuestionCard(q, num);
+          card.dataset.scenarioGroup = String(groupIdx);
+          secBContainer.appendChild(card);
         });
       });
 
@@ -3373,6 +3557,10 @@
           populateQuestionFeedback(q);
         }
       });
+
+      if (typeof applyExamFocusModeUI === 'function') {
+        applyExamFocusModeUI();
+      }
     }
 
     function createQuestionCard(q, qNum) {
@@ -3384,14 +3572,14 @@
 
       // Top Bar: Question Badge, Topic Area, Flag Button
       let html = `
-        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-          <div class="flex items-center space-x-2">
-            <span class="bg-slate-900 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Q${qNum}</span>
-            <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100">${q.ta}: ${q.taName}</span>
-            <span class="text-xs font-bold text-slate-500">[${q.marks} Mark${q.marks > 1 ? 's' : ''}]</span>
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="bg-slate-900 text-white text-xs font-bold px-2.5 py-1 rounded-lg whitespace-nowrap">Q${qNum}</span>
+            <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">${q.ta}: ${q.taName}</span>
+            <span class="text-xs font-bold text-slate-500 whitespace-nowrap">[${q.marks} Mark${q.marks > 1 ? 's' : ''}]</span>
           </div>
           
-          <div class="flex items-center space-x-2">
+          <div class="flex items-center gap-2 shrink-0">
             <button type="button" onclick="openQuickReference('${q.ta}')" class="${state.mode === 'practice' || state.submitted ? '' : 'hidden'} text-xs font-semibold px-2.5 py-1 rounded-lg border border-indigo-200 bg-indigo-50/70 text-indigo-700 hover:bg-indigo-100 transition-colors flex items-center space-x-1.5 whitespace-nowrap">
               <i class="fa-solid fa-book-open text-[11px]"></i>
               <span>${q.ta} Sheet</span>
@@ -3778,6 +3966,7 @@
     function createNavBtn(q, qNum) {
       const btn = document.createElement('button');
       btn.onclick = () => {
+        examFocusState.activeQuestionId = q.id;
         const card = document.getElementById(`card-${q.id}`);
         if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
       };
@@ -3834,7 +4023,507 @@
       if (progressBar) progressBar.style.width = `${pct}%`;
 
       renderNavGrid();
+      if (examFocusState.enabled && typeof applyExamFocusModeUI === 'function') {
+        applyExamFocusModeUI();
+      }
     }
+
+    /* ==========================================================================
+       6B. EXAM WORKSPACE FOCUS MODE CONTROLLER
+       ========================================================================== */
+
+    const examFocusState = {
+      enabled: false,
+      activeIndex: 0,
+      activeQuestionId: null,
+    };
+
+    const officialFocusState = {
+      enabled: false,
+      activeIndex: 0,
+      activeQuestionId: null,
+    };
+
+    function getFocusEngine() {
+      return window.R050ExamFocus || {
+        clampQuestionIndex: (i, t) => Math.max(0, Math.min(Math.max(0, t - 1), Math.trunc(i || 0))),
+        stepQuestionIndex: (i, d, t) => Math.max(0, Math.min(Math.max(0, t - 1), Math.trunc(i || 0) + d)),
+        resolveActiveQuestionIndex: (ids, pref, fb = 0) => {
+          if (!ids.length) return 0;
+          const idx = pref ? ids.indexOf(pref) : -1;
+          return idx >= 0 ? idx : Math.max(0, Math.min(ids.length - 1, fb));
+        },
+        findNextUnansweredIndex: (items, cur) => {
+          for (let off = 1; off <= items.length; off++) {
+            const idx = (cur + off) % items.length;
+            if (!items[idx].answered) return idx;
+          }
+          return null;
+        },
+        computeFocusProgress: (idx, total, answeredCount) => ({
+          currentIndex: idx,
+          currentPosition: total > 0 ? idx + 1 : 0,
+          total,
+          answeredCount,
+          completionPct: total > 0 ? Math.round(((idx + 1) / total) * 100) : 0,
+          canGoPrev: idx > 0,
+          canGoNext: idx < total - 1,
+          isLast: total > 0 && idx === total - 1,
+        }),
+        shouldHandleFocusShortcut: () => null,
+        getFocusModeToggleCopy: (enabled) => ({
+          label: enabled ? 'Exit Focus' : 'Focus Mode',
+          ariaLabel: enabled ? 'Exit Focus Mode and show full exam layout' : 'Enable Focus Mode to concentrate on one question at a time',
+          iconClass: enabled ? 'fa-compress' : 'fa-expand',
+          isPressed: enabled,
+        }),
+      };
+    }
+
+    function toggleExamFocusMode(forceState = null) {
+      const nextEnabled = typeof forceState === 'boolean' ? forceState : !examFocusState.enabled;
+      const visibleEntries = getVisibleQuestions();
+      if (nextEnabled && visibleEntries.length === 0) return;
+
+      const engine = getFocusEngine();
+      if (nextEnabled && !examFocusState.activeQuestionId) {
+        // Default to first unanswered question if any, otherwise Q1
+        const firstUnansweredIdx = visibleEntries.findIndex(({ q }) => !isQuestionAnswered(q));
+        examFocusState.activeIndex = firstUnansweredIdx >= 0 ? firstUnansweredIdx : 0;
+        examFocusState.activeQuestionId = visibleEntries[examFocusState.activeIndex].q.id;
+      } else if (nextEnabled) {
+        const ids = visibleEntries.map(({ q }) => q.id);
+        examFocusState.activeIndex = engine.resolveActiveQuestionIndex(ids, examFocusState.activeQuestionId, examFocusState.activeIndex);
+        examFocusState.activeQuestionId = ids[examFocusState.activeIndex] || null;
+      }
+
+      examFocusState.enabled = nextEnabled;
+      applyExamFocusModeUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function stepExamFocusQuestion(delta) {
+      if (!examFocusState.enabled) return;
+      const visibleEntries = getVisibleQuestions();
+      if (!visibleEntries.length) return;
+      const engine = getFocusEngine();
+      examFocusState.activeIndex = engine.stepQuestionIndex(examFocusState.activeIndex, delta, visibleEntries.length);
+      examFocusState.activeQuestionId = visibleEntries[examFocusState.activeIndex].q.id;
+      applyExamFocusModeUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleExamFocusNextClick() {
+      const visibleEntries = getVisibleQuestions();
+      const engine = getFocusEngine();
+      const progress = engine.computeFocusProgress(examFocusState.activeIndex, visibleEntries.length, 0);
+      if (progress.isLast) {
+        confirmSubmitPaper();
+      } else {
+        stepExamFocusQuestion(1);
+      }
+    }
+
+    function jumpToNextUnansweredFocusQuestion() {
+      if (!examFocusState.enabled) return;
+      const visibleEntries = getVisibleQuestions();
+      const engine = getFocusEngine();
+      const statuses = visibleEntries.map(({ q }) => ({ id: q.id, answered: isQuestionAnswered(q) }));
+      const nextIdx = engine.findNextUnansweredIndex(statuses, examFocusState.activeIndex);
+      if (nextIdx === null) {
+        showToast('Every question in this paper has an answer!', 'success');
+        return;
+      }
+      examFocusState.activeIndex = nextIdx;
+      examFocusState.activeQuestionId = visibleEntries[nextIdx].q.id;
+      applyExamFocusModeUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function applyExamFocusModeUI() {
+      const engine = getFocusEngine();
+      const enabled = examFocusState.enabled;
+      const copy = engine.getFocusModeToggleCopy(enabled);
+
+      // Update top navbar button state
+      const btn = document.getElementById('nav-focus-mode-btn');
+      const icon = document.getElementById('nav-focus-mode-icon');
+      const label = document.getElementById('nav-focus-mode-label');
+      if (btn) {
+        btn.setAttribute('aria-pressed', copy.isPressed ? 'true' : 'false');
+        btn.setAttribute('aria-label', copy.ariaLabel);
+        btn.classList.toggle('bg-indigo-600', enabled);
+        btn.classList.toggle('hover:bg-indigo-500', enabled);
+        btn.classList.toggle('border-indigo-500', enabled);
+        btn.classList.toggle('text-white', enabled);
+        btn.classList.toggle('bg-slate-800', !enabled);
+        btn.classList.toggle('hover:bg-slate-700', !enabled);
+        btn.classList.toggle('border-slate-700', !enabled);
+        btn.classList.toggle('text-slate-200', !enabled);
+      }
+      if (icon) {
+        icon.className = `fa-solid ${copy.iconClass} ${enabled ? 'text-white' : 'text-indigo-300'}`;
+      }
+      if (label) {
+        label.innerText = copy.label;
+      }
+
+      // Minimize non-essential top-bar controls while preserving timer, Exit Focus & Submit
+      const homeBtn = document.getElementById('nav-exam-home-btn');
+      const studentMeta = document.getElementById('nav-exam-student-meta');
+      const quickRefBtn = document.getElementById('nav-quick-ref-btn');
+      if (homeBtn) homeBtn.classList.toggle('hidden', enabled);
+      if (studentMeta) {
+        studentMeta.classList.toggle('lg:flex', !enabled);
+        studentMeta.classList.toggle('hidden', true);
+      }
+      if (quickRefBtn) quickRefBtn.classList.toggle('hidden', enabled);
+
+      // Workspace containers
+      const appContainer = document.getElementById('app-container');
+      const sidebar = document.getElementById('exam-sidebar');
+      const mainCol = document.getElementById('exam-main-column');
+      const focusBar = document.getElementById('exam-focus-bar');
+      const focusFooter = document.getElementById('exam-focus-footer');
+      const bottomActions = document.getElementById('exam-bottom-actions');
+      const activePaperBanner = document.getElementById('active-paper-banner');
+      const topicFocusBanner = document.getElementById('topic-focus-banner');
+      const secAHeader = document.getElementById('section-a-header');
+      const secBHeader = document.getElementById('section-b-header');
+      const secAContainer = document.getElementById('section-a-questions');
+      const secBContainer = document.getElementById('section-b-questions');
+
+      if (appContainer) {
+        appContainer.dataset.focusMode = enabled ? 'true' : 'false';
+      }
+      if (sidebar) sidebar.classList.toggle('hidden', enabled);
+      if (mainCol) {
+        mainCol.classList.toggle('max-w-3xl', enabled);
+        mainCol.classList.toggle('mx-auto', enabled);
+        mainCol.classList.toggle('w-full', enabled);
+        mainCol.classList.toggle('space-y-5', enabled);
+        mainCol.classList.toggle('space-y-8', !enabled);
+      }
+      if (focusBar) focusBar.classList.toggle('hidden', !enabled);
+      if (focusFooter) focusFooter.classList.toggle('hidden', !enabled);
+      if (bottomActions) bottomActions.classList.toggle('hidden', enabled);
+
+      const visibleEntries = getVisibleQuestions();
+      const secACount = visibleEntries.filter((e) => e.section === 'A').length;
+      const secBCount = visibleEntries.filter((e) => e.section === 'B').length;
+
+      if (!enabled) {
+        // Restore normal banners & all question cards / scenario boxes
+        if (activePaperBanner) {
+          activePaperBanner.classList.toggle('hidden', !(state.paperId !== 'paper1' && !state.topicFilter));
+        }
+        if (topicFocusBanner) {
+          topicFocusBanner.classList.toggle('hidden', !state.topicFilter);
+        }
+        if (secAHeader) secAHeader.classList.toggle('hidden', secACount === 0);
+        if (secBHeader) secBHeader.classList.toggle('hidden', secBCount === 0);
+        if (secAContainer) secAContainer.classList.remove('hidden');
+        if (secBContainer) secBContainer.classList.remove('hidden');
+        document.querySelectorAll('#section-a-questions > div, #section-b-questions > div').forEach((el) => {
+          el.classList.remove('hidden');
+        });
+        return;
+      }
+
+      // Focus Mode ON: hide banners & section headers
+      if (activePaperBanner) activePaperBanner.classList.add('hidden');
+      if (topicFocusBanner) topicFocusBanner.classList.add('hidden');
+      if (secAHeader) secAHeader.classList.add('hidden');
+      if (secBHeader) secBHeader.classList.add('hidden');
+
+      if (visibleEntries.length === 0) return;
+
+      const ids = visibleEntries.map(({ q }) => q.id);
+      const activeIdx = engine.resolveActiveQuestionIndex(ids, examFocusState.activeQuestionId, examFocusState.activeIndex);
+      examFocusState.activeIndex = activeIdx;
+      const activeEntry = visibleEntries[activeIdx];
+      examFocusState.activeQuestionId = activeEntry.q.id;
+
+      // Show only the container holding the active question
+      if (secAContainer) secAContainer.classList.toggle('hidden', activeEntry.section !== 'A');
+      if (secBContainer) secBContainer.classList.toggle('hidden', activeEntry.section !== 'B');
+
+      // Show only active question card (and its matching Section B scenario box if applicable)
+      const activeCard = document.getElementById(`card-${activeEntry.q.id}`);
+      const activeScenarioGroup = activeCard ? activeCard.dataset.scenarioGroup : undefined;
+
+      document.querySelectorAll('#section-a-questions > div').forEach((el) => {
+        el.classList.toggle('hidden', el.id !== `card-${activeEntry.q.id}`);
+      });
+      document.querySelectorAll('#section-b-questions > div').forEach((el) => {
+        if (el.dataset.examScenario === 'true') {
+          el.classList.toggle('hidden', !activeScenarioGroup || el.dataset.scenarioGroup !== activeScenarioGroup);
+        } else {
+          el.classList.toggle('hidden', el.id !== `card-${activeEntry.q.id}`);
+        }
+      });
+
+      // Update Focus Mode header strip & stepper
+      const answeredCount = visibleEntries.filter(({ q }) => isQuestionAnswered(q)).length;
+      const progress = engine.computeFocusProgress(activeIdx, visibleEntries.length, answeredCount);
+      const statuses = visibleEntries.map(({ q }) => ({ id: q.id, answered: isQuestionAnswered(q) }));
+      const nextUnanswered = engine.findNextUnansweredIndex(statuses, activeIdx);
+
+      const counterEl = document.getElementById('exam-focus-counter');
+      const sectionEl = document.getElementById('exam-focus-section');
+      const answeredEl = document.getElementById('exam-focus-answered');
+      const unansweredBtn = document.getElementById('exam-focus-unanswered-btn');
+      const barEl = document.getElementById('exam-focus-progressbar');
+      const fillEl = document.getElementById('exam-focus-progress-fill');
+      const prevBtn = document.getElementById('exam-focus-prev-btn');
+      const nextBtn = document.getElementById('exam-focus-next-btn');
+      const nextLabel = document.getElementById('exam-focus-next-label');
+
+      if (counterEl) counterEl.innerText = `Question ${progress.currentPosition} of ${progress.total}`;
+      if (sectionEl) sectionEl.innerText = activeEntry.section === 'A' ? 'Section A' : 'Section B';
+      if (answeredEl) answeredEl.innerText = `${progress.answeredCount} answered`;
+      if (unansweredBtn) {
+        unansweredBtn.classList.toggle('hidden', nextUnanswered === null || nextUnanswered === activeIdx);
+      }
+      if (barEl) barEl.setAttribute('aria-valuenow', String(progress.completionPct));
+      if (fillEl) fillEl.style.width = `${progress.completionPct}%`;
+      if (prevBtn) prevBtn.disabled = !progress.canGoPrev;
+      if (nextBtn) {
+        nextBtn.classList.toggle('bg-emerald-600', progress.isLast);
+        nextBtn.classList.toggle('hover:bg-emerald-700', progress.isLast);
+        nextBtn.classList.toggle('bg-indigo-600', !progress.isLast);
+        nextBtn.classList.toggle('hover:bg-indigo-700', !progress.isLast);
+      }
+      if (nextLabel) {
+        nextLabel.innerText = progress.isLast ? 'Finish & Score' : 'Next Question';
+      }
+    }
+
+    function toggleOfficialFocusMode(forceState = null) {
+      const paper = officialState.activePaper;
+      const nextEnabled = typeof forceState === 'boolean' ? forceState : !officialFocusState.enabled;
+      if (nextEnabled && (!paper || !paper.questions || paper.questions.length === 0)) return;
+
+      const engine = getFocusEngine();
+      if (nextEnabled && paper) {
+        const attempt = getOfficialAttempt(paper.paperId);
+        if (!officialFocusState.activeQuestionId) {
+          const firstUnanswered = paper.questions.findIndex((q) => {
+            const hasAns = hasMeaningfulOfficialAnswer(attempt.answers[q.id]) || Boolean(attempt.diagrams[q.id] && attempt.diagrams[q.id].hasDrawing);
+            return !hasAns;
+          });
+          officialFocusState.activeIndex = firstUnanswered >= 0 ? firstUnanswered : 0;
+          officialFocusState.activeQuestionId = paper.questions[officialFocusState.activeIndex].id;
+        } else {
+          const ids = paper.questions.map((q) => q.id);
+          officialFocusState.activeIndex = engine.resolveActiveQuestionIndex(ids, officialFocusState.activeQuestionId, officialFocusState.activeIndex);
+          officialFocusState.activeQuestionId = ids[officialFocusState.activeIndex] || null;
+        }
+        // Close split PDF pane when entering Focus Mode to keep screen calm
+        if (officialState.pdfSplitOpen && typeof toggleOfficialPdfSplit === 'function') {
+          toggleOfficialPdfSplit(false);
+        }
+      }
+
+      officialFocusState.enabled = nextEnabled;
+      applyOfficialFocusModeUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function stepOfficialFocusQuestion(delta) {
+      const paper = officialState.activePaper;
+      if (!officialFocusState.enabled || !paper || !paper.questions.length) return;
+      const engine = getFocusEngine();
+      officialFocusState.activeIndex = engine.stepQuestionIndex(officialFocusState.activeIndex, delta, paper.questions.length);
+      officialFocusState.activeQuestionId = paper.questions[officialFocusState.activeIndex].id;
+      applyOfficialFocusModeUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleOfficialFocusNextClick() {
+      const paper = officialState.activePaper;
+      if (!paper || !paper.questions.length) return;
+      const engine = getFocusEngine();
+      const progress = engine.computeFocusProgress(officialFocusState.activeIndex, paper.questions.length, 0);
+      if (progress.isLast) {
+        confirmFinishOfficialPaper();
+      } else {
+        stepOfficialFocusQuestion(1);
+      }
+    }
+
+    function jumpToNextUnansweredOfficialFocus() {
+      const paper = officialState.activePaper;
+      if (!officialFocusState.enabled || !paper || !paper.questions.length) return;
+      const attempt = getOfficialAttempt(paper.paperId);
+      const engine = getFocusEngine();
+      const statuses = paper.questions.map((q) => ({
+        id: q.id,
+        answered: hasMeaningfulOfficialAnswer(attempt.answers[q.id]) || Boolean(attempt.diagrams[q.id] && attempt.diagrams[q.id].hasDrawing),
+      }));
+      const nextIdx = engine.findNextUnansweredIndex(statuses, officialFocusState.activeIndex);
+      if (nextIdx === null) {
+        showToast('Every question in this OCR paper has an answer!', 'success');
+        return;
+      }
+      officialFocusState.activeIndex = nextIdx;
+      officialFocusState.activeQuestionId = paper.questions[nextIdx].id;
+      applyOfficialFocusModeUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function applyOfficialFocusModeUI() {
+      const engine = getFocusEngine();
+      const enabled = officialFocusState.enabled;
+      const copy = engine.getFocusModeToggleCopy(enabled);
+
+      const navBtn = document.getElementById('nav-official-focus-btn');
+      const navIcon = document.getElementById('nav-official-focus-icon');
+      const navLabel = document.getElementById('nav-official-focus-label');
+      const toolbarBtn = document.getElementById('official-focus-mode-btn');
+      if (navBtn) {
+        navBtn.setAttribute('aria-pressed', copy.isPressed ? 'true' : 'false');
+        navBtn.setAttribute('aria-label', copy.ariaLabel);
+        navBtn.classList.toggle('bg-indigo-600', enabled);
+        navBtn.classList.toggle('hover:bg-indigo-500', enabled);
+        navBtn.classList.toggle('border-indigo-500', enabled);
+        navBtn.classList.toggle('text-white', enabled);
+        navBtn.classList.toggle('bg-slate-800', !enabled);
+        navBtn.classList.toggle('hover:bg-slate-700', !enabled);
+        navBtn.classList.toggle('border-slate-700', !enabled);
+        navBtn.classList.toggle('text-slate-200', !enabled);
+      }
+      if (navIcon) {
+        navIcon.className = `fa-solid ${copy.iconClass} ${enabled ? 'text-white' : 'text-indigo-300'}`;
+      }
+      if (navLabel) navLabel.innerText = copy.label;
+      if (toolbarBtn) toolbarBtn.setAttribute('aria-pressed', copy.isPressed ? 'true' : 'false');
+
+      const homeBtn = document.getElementById('nav-official-home-btn');
+      const backBtn = document.getElementById('nav-official-back-btn');
+      const quickRefBtn = document.getElementById('nav-official-quickref-btn');
+      if (homeBtn) homeBtn.classList.toggle('hidden', enabled);
+      if (backBtn && officialState.activePaper) backBtn.classList.toggle('hidden', enabled);
+      if (quickRefBtn) quickRefBtn.classList.toggle('hidden', enabled);
+
+      const summaryToolbar = document.getElementById('official-summary-toolbar');
+      const jumpStripCard = document.getElementById('official-jump-strip-card');
+      const bottomCard = document.getElementById('official-bottom-action-card');
+      const focusBar = document.getElementById('official-focus-bar');
+      const focusFooter = document.getElementById('official-focus-footer');
+      const questionsCol = document.getElementById('official-questions-col');
+      const shell = document.getElementById('official-exam-shell');
+
+      if (shell) shell.dataset.focusMode = enabled ? 'true' : 'false';
+      if (summaryToolbar) summaryToolbar.classList.toggle('hidden', enabled);
+      if (jumpStripCard) jumpStripCard.classList.toggle('hidden', enabled);
+      if (bottomCard) bottomCard.classList.toggle('hidden', enabled);
+      if (focusBar) focusBar.classList.toggle('hidden', !enabled);
+      if (focusFooter) focusFooter.classList.toggle('hidden', !enabled);
+      if (questionsCol) {
+        questionsCol.classList.toggle('max-w-3xl', enabled);
+        questionsCol.classList.toggle('mx-auto', enabled);
+        questionsCol.classList.toggle('w-full', enabled);
+      }
+
+      const paper = officialState.activePaper;
+      if (!enabled || !paper || !paper.questions.length) {
+        document.querySelectorAll('#official-questions-list > article').forEach((el) => {
+          el.classList.remove('hidden');
+        });
+        return;
+      }
+
+      const ids = paper.questions.map((q) => q.id);
+      const activeIdx = engine.resolveActiveQuestionIndex(ids, officialFocusState.activeQuestionId, officialFocusState.activeIndex);
+      officialFocusState.activeIndex = activeIdx;
+      const activeQ = paper.questions[activeIdx];
+      officialFocusState.activeQuestionId = activeQ.id;
+
+      document.querySelectorAll('#official-questions-list > article').forEach((el) => {
+        el.classList.toggle('hidden', el.id !== `official-q-card-${activeQ.id}`);
+      });
+
+      const attempt = getOfficialAttempt(paper.paperId);
+      const statuses = paper.questions.map((q) => ({
+        id: q.id,
+        answered: hasMeaningfulOfficialAnswer(attempt.answers[q.id]) || Boolean(attempt.diagrams[q.id] && attempt.diagrams[q.id].hasDrawing),
+      }));
+      const answeredCount = statuses.filter((s) => s.answered).length;
+      const progress = engine.computeFocusProgress(activeIdx, paper.questions.length, answeredCount);
+      const nextUnanswered = engine.findNextUnansweredIndex(statuses, activeIdx);
+
+      const counterEl = document.getElementById('official-focus-counter');
+      const answeredEl = document.getElementById('official-focus-answered');
+      const unansweredBtn = document.getElementById('official-focus-unanswered-btn');
+      const barEl = document.getElementById('official-focus-progressbar');
+      const fillEl = document.getElementById('official-focus-progress-fill');
+      const prevBtn = document.getElementById('official-focus-prev-btn');
+      const nextBtn = document.getElementById('official-focus-next-btn');
+      const nextLabel = document.getElementById('official-focus-next-label');
+
+      if (counterEl) counterEl.innerText = `Question ${progress.currentPosition} of ${progress.total}`;
+      if (answeredEl) answeredEl.innerText = `${progress.answeredCount} answered`;
+      if (unansweredBtn) {
+        unansweredBtn.classList.toggle('hidden', nextUnanswered === null || nextUnanswered === activeIdx);
+      }
+      if (barEl) barEl.setAttribute('aria-valuenow', String(progress.completionPct));
+      if (fillEl) fillEl.style.width = `${progress.completionPct}%`;
+      if (prevBtn) prevBtn.disabled = !progress.canGoPrev;
+      if (nextBtn) {
+        nextBtn.classList.toggle('bg-emerald-600', progress.isLast);
+        nextBtn.classList.toggle('hover:bg-emerald-700', progress.isLast);
+        nextBtn.classList.toggle('bg-indigo-600', !progress.isLast);
+        nextBtn.classList.toggle('hover:bg-indigo-700', !progress.isLast);
+      }
+      if (nextLabel) {
+        nextLabel.innerText = progress.isLast ? 'Finish & Mark Paper' : 'Next Question';
+      }
+    }
+
+    document.addEventListener('keydown', (event) => {
+      const appContainer = document.getElementById('app-container');
+      const officialShell = document.getElementById('official-exam-shell');
+      const officialView = document.getElementById('official-papers-view');
+      const inMainExam = Boolean(appContainer && !appContainer.classList.contains('hidden'));
+      const inOfficialExam = Boolean(
+        officialView && !officialView.classList.contains('hidden') &&
+        officialShell && !officialShell.classList.contains('hidden')
+      );
+      if (!inMainExam && !inOfficialExam) return;
+
+      const target = event.target;
+      const tagName = target && target.tagName ? target.tagName.toUpperCase() : '';
+      const isTypingTarget =
+        tagName === 'INPUT' ||
+        tagName === 'TEXTAREA' ||
+        tagName === 'SELECT' ||
+        Boolean(target && target.isContentEditable);
+
+      const engine = getFocusEngine();
+      const action = engine.shouldHandleFocusShortcut({
+        key: event.key,
+        altKey: event.altKey,
+        ctrlKey: event.ctrlKey,
+        metaKey: event.metaKey,
+        isTypingTarget,
+        focusEnabled: inMainExam ? examFocusState.enabled : officialFocusState.enabled,
+      });
+      if (!action) return;
+
+      event.preventDefault();
+      if (inMainExam) {
+        if (action === 'toggle') toggleExamFocusMode();
+        else if (action === 'exit') toggleExamFocusMode(false);
+        else if (action === 'prev') stepExamFocusQuestion(-1);
+        else if (action === 'next') stepExamFocusQuestion(1);
+      } else if (inOfficialExam) {
+        if (action === 'toggle') toggleOfficialFocusMode();
+        else if (action === 'exit') toggleOfficialFocusMode(false);
+        else if (action === 'prev') stepOfficialFocusQuestion(-1);
+        else if (action === 'next') stepOfficialFocusQuestion(1);
+      }
+    });
 
     /* ==========================================================================
        7. SUBMISSION & RESULTS GENERATION
@@ -9283,7 +9972,7 @@
       const entries = getAllOfficialCatalogEntries();
       const countMeta = document.getElementById('home-official-count-meta');
       if (countMeta) {
-        countMeta.innerText = `${entries.length} Official Exam Papers Ready`;
+        countMeta.innerText = `${entries.length} Past Papers Ready`;
       }
 
       grid.innerHTML = entries.map(paper => {
@@ -9300,23 +9989,23 @@
           : `${paper.questionCount || 27} Qs · ${paper.totalMarks} Marks`;
 
         return `
-          <div class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-400/60 rounded-xl p-3.5 flex flex-col justify-between gap-3 transition-colors">
+          <div class="bg-slate-50 hover:bg-white border border-slate-200 hover:border-indigo-300 rounded-xl p-3.5 flex flex-col justify-between gap-3 transition-colors">
             <div class="space-y-1">
               <div class="flex items-center justify-between gap-1.5 text-[11px]">
-                <span class="font-semibold text-indigo-300 truncate">${escapeHtml(paper.series.replace(' · R050/01', ''))}</span>
-                <span class="text-slate-400 tabular-nums shrink-0">${paper.totalMarks}m</span>
+                <span class="font-semibold text-indigo-600 truncate">${escapeHtml(paper.series.replace(' · R050/01', ''))}</span>
+                <span class="text-slate-500 tabular-nums shrink-0">${paper.totalMarks}m</span>
               </div>
-              <div class="text-xs font-bold text-white leading-snug line-clamp-2">${escapeHtml(paper.title)}</div>
-              <div class="text-[11px] text-slate-400 leading-snug line-clamp-2">${escapeHtml(paper.scenario)}</div>
+              <div class="text-xs font-bold text-slate-900 leading-snug line-clamp-2">${escapeHtml(paper.title)}</div>
+              <div class="text-[11px] text-slate-600 leading-snug line-clamp-2">${escapeHtml(paper.scenario)}</div>
             </div>
-            <div class="space-y-2 pt-2 border-t border-slate-700/70">
-              <div class="text-[11px] font-medium ${summary ? 'text-emerald-300' : 'text-slate-400'} tabular-nums truncate">${escapeHtml(statusText)}</div>
+            <div class="space-y-2 pt-2 border-t border-slate-200/70">
+              <div class="text-[11px] font-medium ${summary ? 'text-emerald-700' : 'text-slate-500'} tabular-nums truncate">${escapeHtml(statusText)}</div>
               <div class="flex items-center gap-1.5">
-                <button type="button" onclick="openOfficialPapersWorkspace('${escapeHtml(paper.id)}', 'practice')" class="flex-1 py-1.5 px-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-semibold rounded-lg transition-colors whitespace-nowrap">
+                <button type="button" onclick="openOfficialPapersWorkspace('${escapeHtml(paper.id)}', 'practice')" class="flex-1 py-1.5 px-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] font-semibold rounded-lg transition-colors whitespace-nowrap">
                   Sit Paper
                 </button>
                 ${paper.pdfUrl ? `
-                  <button type="button" onclick="openPdfPreviewModal('${escapeHtml(paper.pdfUrl)}', '${escapeHtml(paper.title)}')" class="py-1.5 px-2 bg-slate-700 hover:bg-slate-600 text-slate-200 text-[11px] font-semibold rounded-lg transition-colors whitespace-nowrap" title="View original PDF">
+                  <button type="button" onclick="openPdfPreviewModal('${escapeHtml(paper.pdfUrl)}', '${escapeHtml(paper.title)}')" class="py-1.5 px-2 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-[11px] font-semibold rounded-lg transition-colors whitespace-nowrap" title="View original PDF">
                     PDF
                   </button>
                 ` : ''}
@@ -9438,6 +10127,9 @@
 
     function backToOfficialCatalog() {
       stopOfficialTimer();
+      officialFocusState.enabled = false;
+      officialFocusState.activeIndex = 0;
+      officialFocusState.activeQuestionId = null;
       officialState.activePaperId = null;
       officialState.activePaper = null;
       officialState.pdfSplitOpen = false;
@@ -9447,7 +10139,9 @@
       document.getElementById('official-catalog-pane').classList.remove('hidden');
       document.getElementById('nav-official-back-btn').classList.add('hidden');
       document.getElementById('nav-official-timer-box').classList.add('hidden');
+      document.getElementById('nav-official-focus-btn').classList.add('hidden');
       document.getElementById('nav-official-submit-btn').classList.add('hidden');
+      applyOfficialFocusModeUI();
       updateOfficialQuickRefIcon();
       renderOfficialCatalog();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -9677,7 +10371,11 @@
       document.getElementById('official-loading-state').classList.add('hidden');
       document.getElementById('official-error-state').classList.add('hidden');
       document.getElementById('official-exam-shell').classList.remove('hidden');
+      document.getElementById('nav-official-focus-btn').classList.remove('hidden');
       document.getElementById('nav-official-submit-btn').classList.remove('hidden');
+      officialFocusState.enabled = false;
+      officialFocusState.activeIndex = 0;
+      officialFocusState.activeQuestionId = null;
 
       document.getElementById('official-active-series').innerText = `${paper.series || 'OCR R050/01'} · ${paper.totalMarks} Marks`;
       document.getElementById('official-active-title').innerText = paper.title;
@@ -9723,6 +10421,7 @@
       });
 
       refreshOfficialProgressAndStrip();
+      applyOfficialFocusModeUI();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -10118,9 +10817,13 @@
           `;
         }).join('');
       }
+      if (officialFocusState.enabled && typeof applyOfficialFocusModeUI === 'function') {
+        applyOfficialFocusModeUI();
+      }
     }
 
     function scrollToOfficialQuestion(qId) {
+      officialFocusState.activeQuestionId = qId;
       const el = document.getElementById(`official-q-card-${qId}`);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -10727,9 +11430,67 @@
       });
     }
 
+    function getStudentAchievementsSummary(silent = true) {
+      if (!window.R050Achievements) return null;
+      const report = getProgressDashboardReport({ sourceFilter: 'all', topicSort: 'spec' });
+      if (!report) return null;
+
+      const warmupSummary = window.R050DailyWarmup ? window.R050DailyWarmup.getSummary() : null;
+      const ta1Summary = window.R050Ta1Trainer ? window.R050Ta1Trainer.getSummary() : null;
+      const ta3Summary = window.R050Ta3Simulator ? window.R050Ta3Simulator.getSummary() : null;
+      const ta4Summary = window.R050Ta4Lab ? window.R050Ta4Lab.getSummary() : null;
+      const ta56Summary = window.R050Ta56Builder ? window.R050Ta56Builder.getSummary() : null;
+
+      const labPctByTa = {
+        TA1: ta1Summary ? ta1Summary.masteryPct : null,
+        TA2: null,
+        TA3: ta3Summary ? ta3Summary.masteryPct : null,
+        TA4: ta4Summary ? ta4Summary.masteryPct : null,
+        TA5: ta56Summary ? ta56Summary.masteryPct : null,
+        TA6: ta56Summary ? ta56Summary.masteryPct : null,
+      };
+
+      const topicsMap = {};
+      (report.topicStats || []).forEach((t) => {
+        topicsMap[t.id] = {
+          id: t.id,
+          examPct: t.examPct,
+          flashcardsMastered: t.flashcardsMastered,
+          flashcardsTotal: t.flashcardsTotal,
+          labPct: labPctByTa[t.id] ?? null,
+        };
+      });
+
+      return window.R050Achievements.evaluate(
+        {
+          currentStreak: warmupSummary && warmupSummary.streak ? warmupSummary.streak.currentStreak : 0,
+          bestStreak: warmupSummary && warmupSummary.streak ? warmupSummary.streak.bestStreak : 0,
+          totalWarmupSessions: warmupSummary && warmupSummary.streak ? warmupSummary.streak.totalCompletedSessions : 0,
+          specGreenCount: warmupSummary && warmupSummary.checklist ? warmupSummary.checklist.greenCount : 0,
+          specTotalCount: warmupSummary && warmupSummary.checklist ? warmupSummary.checklist.totalItems : 30,
+          papersMarkedCount: report.papersMarkedCount,
+          hasExamData: report.hasExamData,
+          overallPct: report.overallPct,
+          flashcardsMastered: report.flashcardsMastered,
+          flashcardsTotal: report.flashcardsTotal,
+          coachDraftedCount: report.coachDraftedCount,
+          topics: topicsMap,
+        },
+        (msg, type) => {
+          if (typeof showToast === 'function') showToast(msg, type);
+        },
+        silent
+      );
+    }
+
     function renderHomeProgressSummaryStrip() {
       const report = getProgressDashboardReport({ sourceFilter: 'all', topicSort: 'weakest' });
       if (!report) return;
+
+      const badgeSummary = getStudentAchievementsSummary(false);
+      const badgeSnippet = badgeSummary
+        ? `<span aria-hidden="true">·</span><span class="font-semibold text-emerald-700">${badgeSummary.unlockedCount}/${badgeSummary.totalCount} badges</span>`
+        : '';
 
       const kickerEl = document.getElementById('home-progress-kicker');
       const headlineEl = document.getElementById('home-progress-headline');
@@ -10740,29 +11501,29 @@
 
       if (report.hasExamData && report.overallGrade) {
         kickerEl.innerHTML = `
-          <span class="font-bold text-indigo-600">Progress &amp; Weakness Dashboard</span>
+          <span class="font-bold text-indigo-600">My Progress</span>
           <span aria-hidden="true">·</span>
           <span class="font-semibold text-slate-800">${escapeHtml(report.overallGrade.grade)} (${report.overallPct}%)</span>
+          ${badgeSnippet}
           <span aria-hidden="true">·</span>
-          <span>${report.papersMarkedCount} ${report.papersMarkedCount === 1 ? 'paper' : 'papers'} marked</span>
-          <span aria-hidden="true">·</span>
-          <span>${report.flashcardsMastered}/${report.flashcardsTotal} flashcards mastered</span>
+          <span>${report.flashcardsMastered}/${report.flashcardsTotal} flashcards learned</span>
         `;
-        headlineEl.innerText = `Priority focus: ${report.weakness.primaryTA} (${report.weakness.primaryTitle}) at ${report.weakness.primaryPct}%`;
+        headlineEl.innerText = `Next best topic to practise: ${report.weakness.primaryTA} (${report.weakness.primaryTitle}) at ${report.weakness.primaryPct}%`;
         if (drillBtn && drillLabel) {
-          drillLabel.innerText = `Drill ${report.weakness.primaryTA} Now`;
+          drillLabel.innerText = `Practise ${report.weakness.primaryTA}`;
           drillBtn.onclick = () => launchWeaknessDrill([report.weakness.primaryTA]);
           drillBtn.classList.remove('hidden');
         }
       } else {
         kickerEl.innerHTML = `
-          <span class="font-bold text-indigo-600">Progress &amp; Weakness Dashboard</span>
+          <span class="font-bold text-indigo-600">My Progress</span>
+          ${badgeSnippet}
           <span aria-hidden="true">·</span>
-          <span>${report.flashcardsMastered}/${report.flashcardsTotal} flashcards mastered</span>
+          <span>${report.flashcardsMastered}/${report.flashcardsTotal} flashcards learned</span>
           <span aria-hidden="true">·</span>
           <span>${report.coachDraftedCount}/${report.coachTotalPrompts} 9-mark drafts</span>
         `;
-        headlineEl.innerText = 'Track your estimated OCR grade, score trend, and weakest Topic Areas across every paper and flashcard deck.';
+        headlineEl.innerText = 'See your badges, estimated grade, and which topics to practise next.';
         if (drillBtn) drillBtn.classList.add('hidden');
       }
     }
@@ -11067,6 +11828,15 @@
             </button>
           `;
         }
+      }
+
+      // Achievements & Badges Section
+      const achievementsSummary = getStudentAchievementsSummary(false);
+      if (achievementsSummary && window.R050Achievements) {
+        window.R050Achievements.render(
+          document.getElementById('progress-achievements-root'),
+          achievementsSummary
+        );
       }
 
       // Topic Area Mastery Matrix (TA1-TA6)
@@ -11575,6 +12345,12 @@
       window.scrollTo(0, 0);
     }
 
+    function openAuthAccountModal(mode = 'signin') {
+      if (window.R050Auth && typeof window.R050Auth.open === 'function') {
+        window.R050Auth.open(mode);
+      }
+    }
+
     // Close Official Papers modals on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -11583,6 +12359,7 @@
       }
     });
   </script>
+  <div id="auth-modal-root" class="no-print"></div>
   <script type="module">
     import {
       computeProgressDashboardData,
@@ -11621,6 +12398,58 @@
       setTa56BuilderTab,
       getTa56MasterySummary,
     } from '/src/ta56BuilderUI.ts';
+    import {
+      initAuthAccountSystem,
+      openAuthModal,
+      closeAuthModal,
+      syncLocalProgressNow,
+      scheduleCloudSync,
+      getAuthSnapshot,
+    } from '/src/authAccountUI.ts';
+    import {
+      normalizeHomeTab,
+      getStudentGreeting,
+      getRecommendedNextStep,
+      getPlainTopicCopy,
+    } from '/src/studentHomeHub.ts';
+    import {
+      evaluateAndNotifyAchievements,
+      renderAchievementsSection,
+      setAchievementsFilter,
+    } from '/src/achievementsUI.ts';
+    import {
+      clampQuestionIndex,
+      stepQuestionIndex,
+      resolveActiveQuestionIndex,
+      findNextUnansweredIndex,
+      computeFocusProgress,
+      shouldHandleFocusShortcut,
+      getFocusModeToggleCopy,
+    } from '/src/examFocusEngine.ts';
+
+    window.R050StudentHome = {
+      normalizeHomeTab,
+      getStudentGreeting,
+      getRecommendedNextStep,
+      getPlainTopicCopy,
+    };
+
+    window.R050Achievements = {
+      evaluate: evaluateAndNotifyAchievements,
+      render: renderAchievementsSection,
+      setFilter: setAchievementsFilter,
+    };
+    window.setAchievementsFilter = setAchievementsFilter;
+
+    window.R050ExamFocus = {
+      clampQuestionIndex,
+      stepQuestionIndex,
+      resolveActiveQuestionIndex,
+      findNextUnansweredIndex,
+      computeFocusProgress,
+      shouldHandleFocusShortcut,
+      getFocusModeToggleCopy,
+    };
 
     window.R050DashboardAnalytics = {
       computeProgressDashboardData,
@@ -11827,6 +12656,53 @@
     const ta56El = document.getElementById('ta56-builder-view');
     if (ta56El && !ta56El.classList.contains('hidden')) {
       window.R050Ta56Builder.mount(document.getElementById('ta56-builder-root'), 'connectivity');
+    }
+
+    window.R050Auth = {
+      open: openAuthModal,
+      close: closeAuthModal,
+      syncNow: syncLocalProgressNow,
+      scheduleSync: scheduleCloudSync,
+      getSnapshot: getAuthSnapshot,
+    };
+
+    initAuthAccountSystem(document.getElementById('auth-modal-root'), {
+      onShowToast: (msg, type) => {
+        if (typeof showToast === 'function') {
+          showToast(msg, type);
+        }
+      },
+      onProfileApplied: (profile) => {
+        if (!profile) return;
+        const nameInput = document.getElementById('input-student-name');
+        const classInput = document.getElementById('input-student-class');
+        if (profile.displayName) {
+          state.studentName = profile.displayName;
+          if (nameInput) nameInput.value = profile.displayName;
+        }
+        if (profile.studentClass !== undefined) {
+          state.studentClass = profile.studentClass;
+          if (classInput) classInput.value = profile.studentClass;
+        }
+        if (typeof saveState === 'function') {
+          saveState();
+        }
+        if (typeof updateHomeGreetingAndRecommendation === 'function') {
+          updateHomeGreetingAndRecommendation();
+        }
+      },
+      onCloudProgressRestored: () => {
+        if (typeof loadState === 'function') loadState();
+        if (typeof loadFlashcardProgress === 'function') loadFlashcardProgress();
+        if (typeof loadCoachDrafts === 'function') loadCoachDrafts();
+        if (typeof loadPaperArchive === 'function') loadPaperArchive();
+        if (typeof loadOfficialStorage === 'function') loadOfficialStorage();
+        if (typeof renderHomeScreen === 'function') renderHomeScreen();
+      },
+    });
+
+    if (typeof renderHomeScreen === 'function') {
+      renderHomeScreen();
     }
   </script>
 </body>

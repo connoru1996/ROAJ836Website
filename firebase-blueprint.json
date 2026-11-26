@@ -1,0 +1,96 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "Student Account Profile",
+      "description": "Private student account metadata for OCR Unit R050 Exam Simulation. Strictly isolated to the owning authenticated user.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Immutable Firebase Auth UID matching the document ID."
+        },
+        "username": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 32,
+          "pattern": "^[a-z0-9._-]+$",
+          "description": "Lowercase student login username."
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Student display name shown on exam headers and results."
+        },
+        "studentClass": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 60,
+          "description": "Optional school class or tutor group label."
+        },
+        "authProvider": {
+          "type": "string",
+          "enum": ["password", "google"],
+          "description": "Immutable sign-in method used when creating the profile."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Immutable server timestamp of account creation."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of the latest profile update."
+        }
+      },
+      "required": ["uid", "username", "displayName", "studentClass", "authProvider", "createdAt", "updatedAt"]
+    },
+    "ProgressSnapshot": {
+      "title": "Student Cloud Progress Snapshot",
+      "description": "Native Firestore Map storing all OCR Unit R050 revision, exam, flashcard, and studio progress modules for a single student.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Immutable Firebase Auth UID of the owning student."
+        },
+        "schemaVersion": {
+          "type": "integer",
+          "description": "Schema version number (must equal 1)."
+        },
+        "modules": {
+          "type": "object",
+          "description": "Native Map of OCR R050 revision modules (examState, flashcards, coachDrafts, papersArchive, officialAttempts, customPapers, ta1Trainer, ta3Simulator, ta4SecurityLab, ta56SystemBuilder, commandDrills, dailyWarmup)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Immutable server timestamp of initial sync."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of the latest cloud sync."
+        }
+      },
+      "required": ["ownerId", "schemaVersion", "modules", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Owner-only private student account profile document keyed by Firebase Auth UID."
+    },
+    "/users/{userId}/progress/{progressId}": {
+      "schema": { "$ref": "#/entities/ProgressSnapshot" },
+      "description": "Owner-only subcollection containing the single 'snapshot' document with all synced OCR R050 progress modules."
+    }
+  }
+}
