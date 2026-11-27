@@ -175,6 +175,10 @@
           <i class="fa-solid fa-clock text-amber-400 text-xs"></i>
           <span id="nav-official-timer" class="font-mono tabular-nums text-xs sm:text-sm font-bold text-amber-300">90:00</span>
         </div>
+        <button type="button" id="nav-official-sync-btn" onclick="handleNavbarSyncClick()" data-sync-state="local-only" title="Progress is saved on this browser. Sign in to sync across devices." aria-label="Sync status: Saved locally" class="bg-slate-800/90 hover:bg-slate-700 text-amber-200 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 flex items-center gap-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          <i id="nav-official-sync-icon" class="fa-solid fa-hard-drive text-amber-300 text-[11px]" aria-hidden="true"></i>
+          <span id="nav-official-sync-label" class="hidden md:inline">Saved locally</span>
+        </button>
         <button type="button" id="nav-official-quickref-btn" onclick="openOfficialQuickRef()" class="bg-slate-800 hover:bg-slate-700 text-indigo-200 hover:text-white font-semibold text-xs px-2.5 sm:px-3 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-2 whitespace-nowrap shrink-0">
           <i id="nav-official-quickref-icon" class="fa-solid fa-book-open text-indigo-400"></i>
           <span class="hidden sm:inline">Quick Reference</span>
@@ -299,6 +303,21 @@
         </button>
       </div>
 
+      <!-- Mistake Bank ("Retry My Wrong Answers") Header Controls -->
+      <div id="nav-mistake-bank-controls" class="hidden flex items-center space-x-2.5 sm:space-x-4 shrink-0">
+        <button type="button" onclick="returnToHomeScreen()" class="text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-xs px-3 py-2 rounded-lg transition-colors flex items-center space-x-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          <i class="fa-solid fa-house text-xs"></i>
+          <span>Home</span>
+        </button>
+        <span id="nav-mistake-bank-meta" class="hidden sm:inline text-xs font-semibold text-rose-300 tabular-nums border-l border-slate-800 pl-4 whitespace-nowrap">
+          No mistakes yet
+        </span>
+        <button type="button" onclick="openQuickReference('TA1', true)" class="bg-slate-800 hover:bg-slate-700 text-indigo-200 hover:text-white font-semibold text-xs px-3.5 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          <i class="fa-solid fa-book-open text-indigo-400"></i>
+          <span class="hidden sm:inline">Quick Reference</span>
+        </button>
+      </div>
+
       <!-- Live Quiz Status Controls -->
       <div id="nav-controls" class="hidden flex items-center gap-1.5 sm:gap-3 shrink-0">
         <!-- Return Home Button -->
@@ -318,6 +337,12 @@
           <i class="fa-solid fa-clock text-amber-400 text-xs"></i>
           <span id="nav-timer" class="font-mono tabular-nums text-xs sm:text-sm font-bold text-amber-300">90:00</span>
         </div>
+
+        <!-- Sync Status Indicator -->
+        <button id="nav-exam-sync-btn" type="button" onclick="handleNavbarSyncClick()" data-sync-state="local-only" title="Progress is saved on this browser. Sign in to sync across devices." aria-label="Sync status: Saved locally" class="bg-slate-800/90 hover:bg-slate-700 text-amber-200 font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border border-slate-700 flex items-center gap-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          <i id="nav-exam-sync-icon" class="fa-solid fa-hard-drive text-amber-300 text-[11px]" aria-hidden="true"></i>
+          <span id="nav-exam-sync-label" class="hidden md:inline">Saved locally</span>
+        </button>
 
         <!-- Quick Reference Button -->
         <button id="nav-quick-ref-btn" type="button" onclick="openQuickReference()" class="bg-slate-800 hover:bg-slate-700 text-indigo-200 hover:text-white font-semibold text-xs px-2.5 sm:px-3.5 py-2 rounded-lg transition-colors border border-slate-700 flex items-center space-x-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
@@ -554,6 +579,10 @@
             </p>
           </div>
           <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+            <button type="button" id="home-mistake-bank-btn" onclick="openMistakeBankWorkspace()" class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500">
+              <i class="fa-solid fa-rotate-left text-[11px]" aria-hidden="true"></i>
+              <span id="home-mistake-bank-label">Mistake Bank</span>
+            </button>
             <button type="button" id="home-progress-drill-btn" onclick="launchWeaknessDrill()" class="hidden px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
               <span id="home-progress-drill-label">Practise Weakest Topic</span>
             </button>
@@ -1440,6 +1469,12 @@
             Official OCR R050 Exam Papers
           </h1>
         </div>
+        <div class="flex flex-wrap items-center gap-2 shrink-0">
+          <button type="button" onclick="openPapersHub('catalog')" class="px-3.5 py-2 bg-white hover:bg-slate-50 text-slate-800 text-xs font-semibold rounded-xl border border-slate-200 transition-colors inline-flex items-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+            <i class="fa-solid fa-shuffle text-indigo-600 text-[11px]" aria-hidden="true"></i>
+            <span>Practice Papers &amp; Shuffler</span>
+          </button>
+        </div>
       </div>
 
       <!-- Mark Scheme Guidance Strip -->
@@ -1550,8 +1585,15 @@
 
         <!-- Compact Question Navigator Strip -->
         <div id="official-jump-strip-card" class="bg-white rounded-2xl border border-slate-200 p-4 space-y-2.5">
-          <div class="flex items-center justify-between gap-2 text-xs">
-            <span class="font-bold text-slate-800">Question Jump Strip</span>
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="font-bold text-slate-800">Question Jump Strip</span>
+              <span class="hidden sm:inline-flex items-center gap-3 text-[11px] text-slate-500 font-medium">
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded border border-slate-300 bg-slate-50"></span>Unanswered</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded border border-dashed border-indigo-400 bg-indigo-50"></span>Saved locally</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded border border-emerald-600 bg-emerald-600"></span>Submitted</span>
+              </span>
+            </div>
             <span id="official-score-pill-text" class="font-semibold text-slate-600 tabular-nums">Not yet marked</span>
           </div>
           <div id="official-question-jump-strip" class="flex flex-wrap gap-1.5">
@@ -1630,11 +1672,17 @@
                 <div id="official-pdf-page-label" class="text-[11px] text-slate-300 tabular-nums">Page 1</div>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
-                <button type="button" onclick="stepOfficialPdfPage(-1)" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700" aria-label="Previous PDF page">
+                <button type="button" onclick="stepOfficialPdfPage(-1)" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700" aria-label="Previous PDF page" title="Previous page">
                   <i class="fa-solid fa-chevron-left text-[10px]"></i>
                 </button>
-                <button type="button" onclick="stepOfficialPdfPage(1)" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700" aria-label="Next PDF page">
+                <button type="button" onclick="stepOfficialPdfPage(1)" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700" aria-label="Next PDF page" title="Next page">
                   <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </button>
+                <button type="button" onclick="zoomOfficialPdf(-0.2)" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700" aria-label="Zoom out PDF" title="Zoom out">
+                  <i class="fa-solid fa-magnifying-glass-minus text-[10px]"></i>
+                </button>
+                <button type="button" onclick="zoomOfficialPdf(0.2)" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700" aria-label="Zoom in PDF" title="Zoom in">
+                  <i class="fa-solid fa-magnifying-glass-plus text-[10px]"></i>
                 </button>
                 <a id="official-pdf-download-link" href="#" download class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg border border-slate-700 flex items-center gap-1" title="Download PDF">
                   <i class="fa-solid fa-download text-[10px]"></i>
@@ -1645,7 +1693,7 @@
                 </button>
               </div>
             </div>
-            <iframe id="official-pdf-iframe" title="Original OCR Exam Paper PDF" class="w-full flex-1 bg-slate-100 border-0"></iframe>
+            <div id="official-pdf-canvas-host" aria-label="Original OCR Exam Paper PDF pages" class="w-full flex-1 overflow-auto bg-slate-100"></div>
           </aside>
         </div>
       </div>
@@ -1683,6 +1731,11 @@
     <div id="ta56-builder-root"></div>
   </section>
 
+  <!-- MISTAKE BANK ("RETRY MY WRONG ANSWERS") WORKSPACE -->
+  <section id="mistake-bank-view" class="hidden max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full no-print">
+    <div id="mistake-bank-root"></div>
+  </section>
+
   <!-- PROGRESS & WEAKNESS DASHBOARD WORKSPACE -->
   <section id="progress-view" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
     <div class="space-y-6">
@@ -1717,6 +1770,10 @@
               Practice &amp; Shuffled
             </button>
           </div>
+          <button type="button" id="progress-mistake-bank-btn" onclick="openMistakeBankWorkspace()" class="px-3.5 py-2 bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 text-xs font-semibold rounded-xl transition-colors flex items-center space-x-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500">
+            <i class="fa-solid fa-rotate-left text-rose-600 text-xs" aria-hidden="true"></i>
+            <span id="progress-mistake-bank-label">Mistake Bank</span>
+          </button>
           <button type="button" onclick="window.print()" class="px-3.5 py-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-semibold rounded-xl transition-colors flex items-center space-x-1.5 whitespace-nowrap">
             <i class="fa-solid fa-print text-slate-500 text-xs"></i>
             <span>Print Report</span>
@@ -1891,20 +1948,26 @@
         <!-- Legend -->
         <div class="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2 text-[11px] text-slate-600">
           <div class="flex items-center space-x-1.5">
-            <span class="w-3 h-3 rounded bg-slate-100 border border-slate-300"></span>
+            <span class="w-3.5 h-3.5 rounded bg-slate-100 border border-slate-300 shrink-0"></span>
             <span>Unanswered</span>
           </div>
           <div class="flex items-center space-x-1.5">
-            <span class="w-3 h-3 rounded bg-indigo-600 text-white"></span>
-            <span>Answered</span>
+            <span class="w-3.5 h-3.5 rounded bg-indigo-50 border border-dashed border-indigo-500 flex items-center justify-center shrink-0">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
+            </span>
+            <span>Saved locally</span>
           </div>
           <div class="flex items-center space-x-1.5">
-            <span class="w-3 h-3 rounded bg-amber-400"></span>
+            <span class="w-3.5 h-3.5 rounded bg-emerald-600 border border-emerald-700 text-white flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-check text-[7px]" aria-hidden="true"></i>
+            </span>
+            <span>Submitted</span>
+          </div>
+          <div class="flex items-center space-x-1.5">
+            <span class="w-3.5 h-3.5 rounded bg-amber-300 border border-amber-500 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-flag text-[7px] text-slate-900" aria-hidden="true"></i>
+            </span>
             <span>Flagged</span>
-          </div>
-          <div class="flex items-center space-x-1.5">
-            <span class="w-3 h-3 rounded bg-emerald-600"></span>
-            <span>Correct</span>
           </div>
         </div>
 
@@ -2243,24 +2306,36 @@
   </div>
 
   <!-- IN-APP PDF PREVIEW MODAL -->
-  <div id="pdf-preview-modal" role="dialog" aria-modal="true" aria-labelledby="pdf-preview-title" onclick="if (event.target === event.currentTarget) closePdfPreviewModal()" class="hidden fixed inset-0 z-[64] bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 no-print">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-5xl w-full h-[88vh] border border-slate-200 overflow-hidden flex flex-col">
-      <div class="px-5 py-3.5 bg-slate-900 text-white flex items-center justify-between gap-3 shrink-0">
+  <div id="pdf-preview-modal" role="dialog" aria-modal="true" aria-labelledby="pdf-preview-title" onclick="if (event.target === event.currentTarget) closePdfPreviewModal()" class="hidden fixed inset-0 z-[64] bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 no-print">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-5xl w-full h-[90vh] sm:h-[88vh] border border-slate-200 overflow-hidden flex flex-col">
+      <div class="px-4 sm:px-5 py-3 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-2 sm:gap-3 shrink-0">
         <div class="min-w-0">
           <h3 id="pdf-preview-title" class="text-sm font-bold truncate">Original OCR Question Paper</h3>
-          <p class="text-[11px] text-slate-300">Official OCR Cambridge National in IT (J836) Unit R050/01 PDF</p>
+          <p id="pdf-preview-page-label" class="text-[11px] text-slate-300 tabular-nums">Loading pages…</p>
         </div>
-        <div class="flex items-center gap-2 shrink-0">
+        <div class="flex flex-wrap items-center gap-1.5 shrink-0">
+          <button type="button" onclick="stepPdfPreviewPage(-1)" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700" aria-label="Previous PDF page" title="Previous page">
+            <i class="fa-solid fa-chevron-left text-[10px]"></i>
+          </button>
+          <button type="button" onclick="stepPdfPreviewPage(1)" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700" aria-label="Next PDF page" title="Next page">
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
+          <button type="button" onclick="zoomPdfPreview(-0.2)" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700" aria-label="Zoom out PDF" title="Zoom out">
+            <i class="fa-solid fa-magnifying-glass-minus text-[10px]"></i>
+          </button>
+          <button type="button" onclick="zoomPdfPreview(0.2)" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700" aria-label="Zoom in PDF" title="Zoom in">
+            <i class="fa-solid fa-magnifying-glass-plus text-[10px]"></i>
+          </button>
           <a id="pdf-preview-download-link" href="#" download class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg flex items-center gap-1.5">
             <i class="fa-solid fa-download text-[11px]"></i>
-            <span>Download PDF</span>
+            <span class="hidden sm:inline">Download PDF</span>
           </a>
           <button type="button" onclick="closePdfPreviewModal()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg border border-slate-700">
             Close
           </button>
         </div>
       </div>
-      <iframe id="pdf-preview-iframe" title="OCR Question Paper Preview" class="w-full flex-1 bg-slate-100 border-0"></iframe>
+      <div id="pdf-preview-canvas-host" aria-label="OCR Question Paper Preview Pages" class="w-full flex-1 overflow-auto bg-slate-100"></div>
     </div>
   </div>
 
@@ -3293,6 +3368,7 @@
       document.getElementById('daily-warmup-view').classList.add('hidden');
       document.getElementById('ta4-lab-view').classList.add('hidden');
       document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       if (window.R050Ta1Trainer && typeof window.R050Ta1Trainer.stopTimers === 'function') window.R050Ta1Trainer.stopTimers();
       if (window.R050DailyWarmup && typeof window.R050DailyWarmup.stopTimers === 'function') window.R050DailyWarmup.stopTimers();
       document.getElementById('results-modal').classList.add('hidden');
@@ -3309,6 +3385,7 @@
       document.getElementById('nav-warmup-controls').classList.add('hidden');
       document.getElementById('nav-ta4-controls').classList.add('hidden');
       document.getElementById('nav-ta56-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
       document.getElementById('app-container').classList.remove('hidden');
       document.getElementById('nav-controls').classList.remove('hidden');
 
@@ -3396,6 +3473,7 @@
       document.getElementById('daily-warmup-view').classList.add('hidden');
       document.getElementById('ta4-lab-view').classList.add('hidden');
       document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       if (window.R050Ta1Trainer && typeof window.R050Ta1Trainer.stopTimers === 'function') window.R050Ta1Trainer.stopTimers();
       if (window.R050DailyWarmup && typeof window.R050DailyWarmup.stopTimers === 'function') window.R050DailyWarmup.stopTimers();
       document.getElementById('nav-controls').classList.add('hidden');
@@ -3410,6 +3488,7 @@
       document.getElementById('nav-warmup-controls').classList.add('hidden');
       document.getElementById('nav-ta4-controls').classList.add('hidden');
       document.getElementById('nav-ta56-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
       document.getElementById('results-modal').classList.add('hidden');
       document.getElementById('official-results-modal').classList.add('hidden');
       closePdfPreviewModal();
@@ -3738,9 +3817,11 @@
 
     function toggleFlag(qId) {
       state.flags[qId] = !state.flags[qId];
+      state.updatedAt = Date.now();
       saveState();
       renderExamQuestions();
       renderNavGrid();
+      if (typeof updateMistakeBankBadges === 'function') updateMistakeBankBadges();
     }
 
     function handleMultiSelect(qId, optId, isChecked) {
@@ -3886,7 +3967,9 @@
       const q = findQuestion(qId);
       const res = markSingleQuestion(q);
       state.checked[qId] = true;
+      state.updatedAt = Date.now();
       saveState();
+      if (typeof updateMistakeBankBadges === 'function') updateMistakeBankBadges();
 
       const feedbackBox = document.getElementById(`feedback-${qId}`);
       feedbackBox.classList.remove('hidden');
@@ -3965,6 +4048,7 @@
 
     function createNavBtn(q, qNum) {
       const btn = document.createElement('button');
+      btn.type = 'button';
       btn.onclick = () => {
         examFocusState.activeQuestionId = q.id;
         const card = document.getElementById(`card-${q.id}`);
@@ -3972,21 +4056,56 @@
       };
 
       const hasAns = isQuestionAnswered(q);
-      const isFlagged = state.flags[q.id];
-      const isChecked = state.checked[q.id];
+      const isFlagged = Boolean(state.flags[q.id]);
+      const isChecked = Boolean(state.checked[q.id]);
+      const score = state.scores[q.id] || 0;
 
-      let bgClass = "bg-slate-100 text-slate-700 border-slate-300";
-      if (state.submitted || isChecked) {
-        const sc = state.scores[q.id] || 0;
-        bgClass = sc === q.marks ? "bg-emerald-600 text-white border-emerald-700" : (sc > 0 ? "bg-amber-500 text-white border-amber-600" : "bg-rose-600 text-white border-rose-700");
-      } else if (isFlagged) {
-        bgClass = "bg-amber-400 text-slate-900 border-amber-500 font-bold";
-      } else if (hasAns) {
-        bgClass = "bg-indigo-600 text-white border-indigo-700 font-bold";
+      const meta = window.R050ExamSync && typeof window.R050ExamSync.classifyQuestion === 'function'
+        ? window.R050ExamSync.classifyQuestion({
+            isAnswered: hasAns,
+            isFlagged,
+            isChecked,
+            isPaperSubmitted: Boolean(state.submitted),
+            score,
+            maxMarks: q.marks,
+          })
+        : {
+            status: (state.submitted || isChecked)
+              ? (score >= q.marks && q.marks > 0 ? 'submitted-full' : score > 0 ? 'submitted-partial' : 'submitted-wrong')
+              : isFlagged
+              ? 'flagged'
+              : hasAns
+              ? 'saved-local'
+              : 'unanswered',
+            statusLabel: (state.submitted || isChecked) ? 'Submitted' : isFlagged ? 'Flagged' : hasAns ? 'Saved locally' : 'Unanswered',
+            ariaStatus: (state.submitted || isChecked) ? `Submitted (${score}/${q.marks} marks)` : isFlagged ? 'Flagged for review' : hasAns ? 'Saved locally, not yet submitted' : 'Not answered yet',
+          };
+
+      let bgClass = 'bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200/70';
+      let badgeHtml = '';
+
+      if (meta.status === 'submitted-full') {
+        bgClass = 'bg-emerald-600 text-white border-emerald-700 font-bold';
+        badgeHtml = '<i class="fa-solid fa-check text-[8px] absolute top-0.5 right-1 opacity-90" aria-hidden="true"></i>';
+      } else if (meta.status === 'submitted-partial') {
+        bgClass = 'bg-amber-500 text-white border-amber-600 font-bold';
+        badgeHtml = '<i class="fa-solid fa-check text-[8px] absolute top-0.5 right-1 opacity-90" aria-hidden="true"></i>';
+      } else if (meta.status === 'submitted-wrong') {
+        bgClass = 'bg-rose-600 text-white border-rose-700 font-bold';
+        badgeHtml = '<i class="fa-solid fa-xmark text-[8px] absolute top-0.5 right-1 opacity-90" aria-hidden="true"></i>';
+      } else if (meta.status === 'flagged') {
+        bgClass = 'bg-amber-300 text-slate-900 border-amber-500 font-bold';
+        badgeHtml = '<i class="fa-solid fa-flag text-[7px] absolute top-0.5 right-1 text-amber-900" aria-hidden="true"></i>';
+      } else if (meta.status === 'saved-local') {
+        bgClass = 'bg-indigo-50 text-indigo-800 border-indigo-400 border-dashed font-bold';
+        badgeHtml = '<span class="w-1.5 h-1.5 rounded-full bg-indigo-600 absolute top-1 right-1" aria-hidden="true"></span>';
       }
 
-      btn.className = `h-8 text-xs font-semibold tabular-nums rounded-lg border flex items-center justify-center transition-all ${bgClass}`;
-      btn.innerText = `Q${qNum}`;
+      btn.setAttribute('data-nav-status', meta.status);
+      btn.title = `Q${qNum}: ${meta.ariaStatus}`;
+      btn.setAttribute('aria-label', `Question ${qNum}, ${meta.ariaStatus}`);
+      btn.className = `relative h-8 text-xs font-semibold tabular-nums rounded-lg border flex items-center justify-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${bgClass}`;
+      btn.innerHTML = `<span>Q${qNum}</span>${badgeHtml}`;
       return btn;
     }
 
@@ -4557,8 +4676,10 @@
         populateQuestionFeedback(q);
       });
 
+      state.updatedAt = Date.now();
       saveState();
       updateUI();
+      if (typeof updateMistakeBankBadges === 'function') updateMistakeBankBadges();
       const pct = max > 0 ? Math.round((earned / max) * 100) : 0;
       showToast(`${state.topicFilter} Practice Scored: ${earned} / ${max} Marks (${pct}%)`, "success");
     }
@@ -4617,7 +4738,9 @@
       state.secBMax = secBMax;
       state.taScores = taScores;
 
+      state.updatedAt = Date.now();
       saveState();
+      if (typeof updateMistakeBankBadges === 'function') updateMistakeBankBadges();
       updateQuickRefAccessUI();
       renderExamQuestions(); // Re-render with feedback visible
       showResultsModal();
@@ -6497,6 +6620,7 @@
       document.getElementById('daily-warmup-view').classList.add('hidden');
       document.getElementById('ta4-lab-view').classList.add('hidden');
       document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       if (window.R050Ta1Trainer && typeof window.R050Ta1Trainer.stopTimers === 'function') window.R050Ta1Trainer.stopTimers();
       if (window.R050DailyWarmup && typeof window.R050DailyWarmup.stopTimers === 'function') window.R050DailyWarmup.stopTimers();
       document.getElementById('results-modal').classList.add('hidden');
@@ -6513,6 +6637,7 @@
       document.getElementById('nav-warmup-controls').classList.add('hidden');
       document.getElementById('nav-ta4-controls').classList.add('hidden');
       document.getElementById('nav-ta56-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
 
       document.getElementById('flashcards-view').classList.remove('hidden');
       document.getElementById('nav-flashcards-controls').classList.remove('hidden');
@@ -7527,6 +7652,7 @@
       document.getElementById('daily-warmup-view').classList.add('hidden');
       document.getElementById('ta4-lab-view').classList.add('hidden');
       document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       if (window.R050Ta1Trainer && typeof window.R050Ta1Trainer.stopTimers === 'function') window.R050Ta1Trainer.stopTimers();
       if (window.R050DailyWarmup && typeof window.R050DailyWarmup.stopTimers === 'function') window.R050DailyWarmup.stopTimers();
       document.getElementById('results-modal').classList.add('hidden');
@@ -7543,6 +7669,7 @@
       document.getElementById('nav-warmup-controls').classList.add('hidden');
       document.getElementById('nav-ta4-controls').classList.add('hidden');
       document.getElementById('nav-ta56-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
 
       document.getElementById('coach-view').classList.remove('hidden');
       document.getElementById('nav-coach-controls').classList.remove('hidden');
@@ -8904,7 +9031,8 @@
         taScores: state.taScores || null,
         answeredCount,
         totalQuestions: allQ.length,
-        updatedAt: Date.now()
+        updatedAt: Date.now(),
+        mistakeUpdatedAt: typeof state.updatedAt === 'number' ? state.updatedAt : 0
       };
 
       if (state.paperId === "shuffled" && state.customPaper) {
@@ -8967,6 +9095,7 @@
         state.secBScore = savedSnap.secBScore || 0;
         state.secBMax = savedSnap.secBMax;
         state.taScores = savedSnap.taScores || null;
+        state.updatedAt = typeof savedSnap.mistakeUpdatedAt === 'number' ? savedSnap.mistakeUpdatedAt : 0;
       } else {
         state.answers = {};
         state.flags = {};
@@ -8978,6 +9107,7 @@
         state.maxMarks = targetDef.totalMarks;
         state.secAScore = 0;
         state.secAMax = undefined;
+        state.updatedAt = 0;
         state.secBScore = 0;
         state.secBMax = undefined;
         state.taScores = null;
@@ -9098,6 +9228,7 @@
       document.getElementById('daily-warmup-view').classList.add('hidden');
       document.getElementById('ta4-lab-view').classList.add('hidden');
       document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       if (window.R050Ta1Trainer && typeof window.R050Ta1Trainer.stopTimers === 'function') window.R050Ta1Trainer.stopTimers();
       if (window.R050DailyWarmup && typeof window.R050DailyWarmup.stopTimers === 'function') window.R050DailyWarmup.stopTimers();
       document.getElementById('results-modal').classList.add('hidden');
@@ -9114,6 +9245,7 @@
       document.getElementById('nav-warmup-controls').classList.add('hidden');
       document.getElementById('nav-ta4-controls').classList.add('hidden');
       document.getElementById('nav-ta56-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
 
       document.getElementById('papers-view').classList.remove('hidden');
       document.getElementById('nav-papers-controls').classList.remove('hidden');
@@ -9951,18 +10083,22 @@
     }
 
     async function fetchOfficialPapersCatalog() {
-      try {
-        const res = await fetch('/api/official-papers');
-        if (!res.ok) throw new Error('Unable to fetch official papers list.');
-        const data = await res.json();
-        if (Array.isArray(data.papers) && data.papers.length > 0) {
-          officialState.catalog = data.papers;
+      const endpoints = ['/api/official-papers', '/data/official-papers/catalog.json'];
+      for (const endpoint of endpoints) {
+        try {
+          const res = await fetch(endpoint);
+          if (!res.ok) continue;
+          const data = await res.json();
+          if (Array.isArray(data.papers) && data.papers.length > 0) {
+            officialState.catalog = data.papers;
+            return;
+          }
+        } catch (err) {
+          console.warn(`Official catalog fetch failed for ${endpoint}:`, err);
         }
-      } catch (err) {
-        console.warn('Using bundled official papers catalog fallback:', err);
-        if (!officialState.catalog || officialState.catalog.length === 0) {
-          officialState.catalog = DEFAULT_OFFICIAL_CATALOG.map(p => ({ ...p }));
-        }
+      }
+      if (!officialState.catalog || officialState.catalog.length === 0) {
+        officialState.catalog = DEFAULT_OFFICIAL_CATALOG.map(p => ({ ...p }));
       }
     }
 
@@ -10091,6 +10227,7 @@
       document.getElementById('daily-warmup-view').classList.add('hidden');
       document.getElementById('ta4-lab-view').classList.add('hidden');
       document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       if (window.R050Ta1Trainer && typeof window.R050Ta1Trainer.stopTimers === 'function') window.R050Ta1Trainer.stopTimers();
       if (window.R050DailyWarmup && typeof window.R050DailyWarmup.stopTimers === 'function') window.R050DailyWarmup.stopTimers();
       document.getElementById('results-modal').classList.add('hidden');
@@ -10107,6 +10244,7 @@
       document.getElementById('nav-warmup-controls').classList.add('hidden');
       document.getElementById('nav-ta4-controls').classList.add('hidden');
       document.getElementById('nav-ta56-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
 
       document.getElementById('official-papers-view').classList.remove('hidden');
       document.getElementById('nav-official-controls').classList.remove('hidden');
@@ -10326,17 +10464,41 @@
       }
 
       try {
-        const res = await fetch(`/api/official-papers/${encodeURIComponent(paperId)}/parse`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({}),
-        });
-        const data = await res.json();
-        if (!res.ok || !data.paper) {
-          throw new Error(data.error || 'Failed to parse official OCR exam paper.');
+        let loadedPaper = null;
+        const safeId = encodeURIComponent(paperId);
+
+        // Primary: Express GET endpoint (fast pre-parsed JSON)
+        try {
+          const apiRes = await fetch(`/api/official-papers/${safeId}`);
+          if (apiRes.ok) {
+            const apiData = await apiRes.json();
+            if (apiData && apiData.paper && Array.isArray(apiData.paper.questions)) {
+              loadedPaper = apiData.paper;
+            }
+          }
+        } catch (apiErr) {
+          console.warn('API official paper fetch failed, trying bundled JSON:', apiErr);
         }
 
-        officialState.activePaper = data.paper;
+        // Static fallback: bundled public JSON so papers work even without Express API
+        if (!loadedPaper) {
+          const staticRes = await fetch(`/data/official-papers/${safeId}.json`);
+          if (staticRes.ok) {
+            const staticPaper = await staticRes.json();
+            if (staticPaper && Array.isArray(staticPaper.questions)) {
+              loadedPaper = {
+                ...staticPaper,
+                pdfUrl: staticPaper.pdfUrl || (meta && meta.pdfUrl) || '',
+              };
+            }
+          }
+        }
+
+        if (!loadedPaper) {
+          throw new Error('Failed to load official OCR exam paper questions.');
+        }
+
+        officialState.activePaper = loadedPaper;
         // Refresh catalog metadata in background
         fetchOfficialPapersCatalog();
         renderActiveOfficialPaper();
@@ -10344,7 +10506,7 @@
         document.getElementById('official-loading-state').classList.add('hidden');
         document.getElementById('official-error-state').classList.remove('hidden');
         const msgEl = document.getElementById('official-error-msg');
-        if (msgEl) msgEl.innerText = err instanceof Error ? err.message : 'Unable to parse PDF.';
+        if (msgEl) msgEl.innerText = err instanceof Error ? err.message : 'Unable to load official exam paper.';
         const pdfBtn = document.getElementById('official-error-pdf-btn');
         if (pdfBtn) pdfBtn.classList.toggle('hidden', !(meta && meta.pdfUrl));
       }
@@ -10801,18 +10963,30 @@
           const isAns = hasMeaningfulOfficialAnswer(attempt.answers[q.id]) || Boolean(attempt.diagrams[q.id] && attempt.diagrams[q.id].hasDrawing);
           const g = attempt.grades[q.id];
           let cls = 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100';
+          let navStatus = 'unanswered';
+          let titleText = `Q${q.qNum}: Not answered yet`;
+          let indicatorHtml = '';
+
           if (g) {
+            navStatus = g.status === 'full' ? 'submitted-full' : g.status === 'partial' ? 'submitted-partial' : 'submitted-wrong';
+            titleText = `Q${q.qNum}: Submitted (${g.marksAwarded}/${g.maxMarks} marks)`;
             cls = g.status === 'full'
-              ? 'border-emerald-400 bg-emerald-50 text-emerald-800'
+              ? 'border-emerald-700 bg-emerald-600 text-white'
               : g.status === 'partial'
-              ? 'border-amber-400 bg-amber-50 text-amber-800'
-              : 'border-rose-300 bg-rose-50 text-rose-800';
+              ? 'border-amber-600 bg-amber-500 text-white'
+              : 'border-rose-700 bg-rose-600 text-white';
+            indicatorHtml = g.status === 'wrong'
+              ? '<i class="fa-solid fa-xmark text-[8px] ml-1 opacity-90" aria-hidden="true"></i>'
+              : '<i class="fa-solid fa-check text-[8px] ml-1 opacity-90" aria-hidden="true"></i>';
           } else if (isAns) {
-            cls = 'border-indigo-400 bg-indigo-50 text-indigo-800';
+            navStatus = 'saved-local';
+            titleText = `Q${q.qNum}: Saved locally (not yet self-marked)`;
+            cls = 'border-indigo-400 border-dashed bg-indigo-50 text-indigo-800';
+            indicatorHtml = '<span class="inline-block w-1.5 h-1.5 rounded-full bg-indigo-600 ml-1" aria-hidden="true"></span>';
           }
           return `
-            <button type="button" onclick="scrollToOfficialQuestion('${escapeHtml(q.id)}')" class="px-2.5 py-1.5 rounded-lg border text-xs font-bold tabular-nums transition-colors ${cls}">
-              Q${escapeHtml(q.qNum)}
+            <button type="button" data-nav-status="${navStatus}" title="${escapeHtml(titleText)}" aria-label="${escapeHtml(titleText)}" onclick="scrollToOfficialQuestion('${escapeHtml(q.id)}')" class="px-2.5 py-1.5 rounded-lg border text-xs font-bold tabular-nums transition-colors inline-flex items-center ${cls}">
+              <span>Q${escapeHtml(q.qNum)}</span>${indicatorHtml}
             </button>
           `;
         }).join('');
@@ -10828,13 +11002,12 @@
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    /* --- Side-by-Side Original PDF Viewer --- */
+    /* --- Side-by-Side Original PDF Viewer (Canvas PDF.js Renderer) --- */
     function applyOfficialPdfSplitUI() {
       const splitGrid = document.getElementById('official-split-grid');
       const questionsCol = document.getElementById('official-questions-col');
       const pdfPane = document.getElementById('official-pdf-pane');
       const toggleLabel = document.getElementById('official-toggle-pdf-label');
-      const iframe = document.getElementById('official-pdf-iframe');
       const pageLabel = document.getElementById('official-pdf-page-label');
       const downloadLink = document.getElementById('official-pdf-download-link');
       const paper = officialState.activePaper;
@@ -10853,8 +11026,9 @@
       if (toggleLabel) toggleLabel.innerText = 'Hide Original PDF';
       if (pageLabel) pageLabel.innerText = `Page ${officialState.pdfPage}`;
       if (downloadLink) downloadLink.href = paper.pdfUrl;
-      if (iframe) {
-        iframe.src = `${paper.pdfUrl}?page=${officialState.pdfPage}#page=${officialState.pdfPage}`;
+
+      if (window.R050PdfViewer && window.R050PdfViewer.split) {
+        window.R050PdfViewer.split.open(paper.pdfUrl, officialState.pdfPage);
       }
     }
 
@@ -10870,23 +11044,97 @@
     }
 
     function stepOfficialPdfPage(delta) {
+      if (window.R050PdfViewer && window.R050PdfViewer.split) {
+        window.R050PdfViewer.split.stepPage(delta);
+        return;
+      }
       officialState.pdfPage = Math.max(1, officialState.pdfPage + delta);
       applyOfficialPdfSplitUI();
     }
 
-    function openPdfPreviewModal(pdfUrl, title) {
+    function zoomOfficialPdf(delta) {
+      if (window.R050PdfViewer && window.R050PdfViewer.split) {
+        window.R050PdfViewer.split.setZoom(delta);
+      }
+    }
+
+    function openPdfPreviewModal(pdfUrl, title, initialPage = 1) {
       document.getElementById('pdf-preview-title').innerText = title || 'Original OCR Question Paper';
       const downloadLink = document.getElementById('pdf-preview-download-link');
       if (downloadLink) downloadLink.href = pdfUrl || '#';
-      document.getElementById('pdf-preview-iframe').src = pdfUrl;
+      const pageLabel = document.getElementById('pdf-preview-page-label');
+      if (pageLabel) pageLabel.innerText = 'Loading pages…';
       document.getElementById('pdf-preview-modal').classList.remove('hidden');
+      if (window.R050PdfViewer && window.R050PdfViewer.modal) {
+        window.R050PdfViewer.modal.open(pdfUrl, initialPage);
+      }
+    }
+
+    function stepPdfPreviewPage(delta) {
+      if (window.R050PdfViewer && window.R050PdfViewer.modal) {
+        window.R050PdfViewer.modal.stepPage(delta);
+      }
+    }
+
+    function zoomPdfPreview(delta) {
+      if (window.R050PdfViewer && window.R050PdfViewer.modal) {
+        window.R050PdfViewer.modal.setZoom(delta);
+      }
     }
 
     function closePdfPreviewModal() {
       const modal = document.getElementById('pdf-preview-modal');
       if (modal) modal.classList.add('hidden');
-      const iframe = document.getElementById('pdf-preview-iframe');
-      if (iframe && iframe.src !== 'about:blank') iframe.src = 'about:blank';
+      if (window.R050PdfViewer && window.R050PdfViewer.modal) {
+        window.R050PdfViewer.modal.clear();
+      }
+    }
+
+    function handleNavbarSyncClick() {
+      if (!window.R050Auth) return;
+      const snap = typeof window.R050Auth.getSnapshot === 'function' ? window.R050Auth.getSnapshot() : null;
+      if (snap && snap.isSignedIn) {
+        if (snap.syncState === 'error' && typeof window.R050Auth.syncNow === 'function') {
+          window.R050Auth.syncNow();
+        } else if (typeof window.R050Auth.open === 'function') {
+          window.R050Auth.open('account');
+        }
+      } else if (typeof window.R050Auth.open === 'function') {
+        window.R050Auth.open('signin');
+      }
+    }
+
+    function updateNavbarSyncStatusUI(snapshot) {
+      const view = window.R050ExamSync && typeof window.R050ExamSync.getNavbarSyncView === 'function'
+        ? window.R050ExamSync.getNavbarSyncView(snapshot || { isSignedIn: false, syncState: 'idle', lastSyncedAt: null })
+        : {
+            stateKey: 'local-only',
+            shortLabel: 'Saved locally',
+            titleTooltip: 'Progress is saved on this browser. Sign in to sync across devices.',
+            iconClass: 'fa-solid fa-hard-drive text-amber-300',
+            badgeClasses: 'bg-slate-800/90 hover:bg-slate-700 text-amber-200 border-slate-700',
+          };
+
+      [
+        { btn: 'nav-exam-sync-btn', icon: 'nav-exam-sync-icon', label: 'nav-exam-sync-label' },
+        { btn: 'nav-official-sync-btn', icon: 'nav-official-sync-icon', label: 'nav-official-sync-label' },
+      ].forEach(({ btn, icon, label }) => {
+        const btnEl = document.getElementById(btn);
+        const iconEl = document.getElementById(icon);
+        const labelEl = document.getElementById(label);
+        if (btnEl) {
+          btnEl.setAttribute('data-sync-state', view.stateKey);
+          btnEl.title = view.titleTooltip;
+          btnEl.setAttribute('aria-label', `Sync status: ${view.shortLabel}`);
+          btnEl.className = `${view.badgeClasses} font-semibold text-xs px-2.5 py-2 rounded-lg transition-colors border flex items-center gap-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400`;
+        }
+        if (iconEl) {
+          iconEl.className = `${view.iconClass} text-[11px]`;
+        }
+        if (labelEl) {
+          labelEl.textContent = view.shortLabel;
+        }
+      });
     }
 
     /* --- Interactive Diagram Canvas Sketchpad (Wireframes, Mind Maps, Flowcharts, Visualisation Diagrams) --- */
@@ -11526,6 +11774,10 @@
         headlineEl.innerText = 'See your badges, estimated grade, and which topics to practise next.';
         if (drillBtn) drillBtn.classList.add('hidden');
       }
+
+      if (typeof updateMistakeBankBadges === 'function') {
+        updateMistakeBankBadges();
+      }
     }
 
     function openProgressDashboard() {
@@ -11549,6 +11801,7 @@
       document.getElementById('daily-warmup-view').classList.add('hidden');
       document.getElementById('ta4-lab-view').classList.add('hidden');
       document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       if (window.R050Ta1Trainer && typeof window.R050Ta1Trainer.stopTimers === 'function') window.R050Ta1Trainer.stopTimers();
       if (window.R050DailyWarmup && typeof window.R050DailyWarmup.stopTimers === 'function') window.R050DailyWarmup.stopTimers();
       document.getElementById('results-modal').classList.add('hidden');
@@ -11566,6 +11819,7 @@
       document.getElementById('nav-warmup-controls').classList.add('hidden');
       document.getElementById('nav-ta4-controls').classList.add('hidden');
       document.getElementById('nav-ta56-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
 
       document.getElementById('progress-view').classList.remove('hidden');
       document.getElementById('nav-progress-controls').classList.remove('hidden');
@@ -11733,6 +11987,7 @@
       const report = getProgressDashboardReport();
       if (!report) return;
       progressUiState.lastReport = report;
+      if (typeof updateMistakeBankBadges === 'function') updateMistakeBankBadges();
 
       // Update candidate meta
       const candMeta = document.getElementById('progress-candidate-meta');
@@ -11998,6 +12253,7 @@
       document.getElementById('daily-warmup-view').classList.add('hidden');
       document.getElementById('ta4-lab-view').classList.add('hidden');
       document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       if (window.R050DailyWarmup && typeof window.R050DailyWarmup.stopTimers === 'function') window.R050DailyWarmup.stopTimers();
       document.getElementById('results-modal').classList.add('hidden');
       document.getElementById('official-results-modal').classList.add('hidden');
@@ -12013,6 +12269,7 @@
       document.getElementById('nav-warmup-controls').classList.add('hidden');
       document.getElementById('nav-ta4-controls').classList.add('hidden');
       document.getElementById('nav-ta56-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
 
       document.getElementById('ta1-trainer-view').classList.remove('hidden');
       document.getElementById('nav-ta1-controls').classList.remove('hidden');
@@ -12061,6 +12318,7 @@
       document.getElementById('daily-warmup-view').classList.add('hidden');
       document.getElementById('ta4-lab-view').classList.add('hidden');
       document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       document.getElementById('results-modal').classList.add('hidden');
       document.getElementById('official-results-modal').classList.add('hidden');
       document.getElementById('nav-home-actions').classList.add('hidden');
@@ -12075,6 +12333,7 @@
       document.getElementById('nav-warmup-controls').classList.add('hidden');
       document.getElementById('nav-ta4-controls').classList.add('hidden');
       document.getElementById('nav-ta56-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
 
       document.getElementById('ta3-simulator-view').classList.remove('hidden');
       document.getElementById('nav-ta3-controls').classList.remove('hidden');
@@ -12123,6 +12382,7 @@
       document.getElementById('daily-warmup-view').classList.add('hidden');
       document.getElementById('ta4-lab-view').classList.add('hidden');
       document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       document.getElementById('results-modal').classList.add('hidden');
       document.getElementById('official-results-modal').classList.add('hidden');
 
@@ -12138,6 +12398,7 @@
       document.getElementById('nav-warmup-controls').classList.add('hidden');
       document.getElementById('nav-ta4-controls').classList.add('hidden');
       document.getElementById('nav-ta56-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
 
       document.getElementById('command-drills-view').classList.remove('hidden');
       document.getElementById('nav-command-controls').classList.remove('hidden');
@@ -12194,6 +12455,7 @@
       document.getElementById('command-drills-view').classList.add('hidden');
       document.getElementById('ta4-lab-view').classList.add('hidden');
       document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       document.getElementById('results-modal').classList.add('hidden');
       document.getElementById('official-results-modal').classList.add('hidden');
 
@@ -12209,6 +12471,7 @@
       document.getElementById('nav-command-controls').classList.add('hidden');
       document.getElementById('nav-ta4-controls').classList.add('hidden');
       document.getElementById('nav-ta56-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
 
       document.getElementById('daily-warmup-view').classList.remove('hidden');
       document.getElementById('nav-warmup-controls').classList.remove('hidden');
@@ -12257,6 +12520,7 @@
       document.getElementById('command-drills-view').classList.add('hidden');
       document.getElementById('daily-warmup-view').classList.add('hidden');
       document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       document.getElementById('results-modal').classList.add('hidden');
       document.getElementById('official-results-modal').classList.add('hidden');
 
@@ -12272,6 +12536,7 @@
       document.getElementById('nav-command-controls').classList.add('hidden');
       document.getElementById('nav-warmup-controls').classList.add('hidden');
       document.getElementById('nav-ta56-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
 
       document.getElementById('ta4-lab-view').classList.remove('hidden');
       document.getElementById('nav-ta4-controls').classList.remove('hidden');
@@ -12320,6 +12585,7 @@
       document.getElementById('command-drills-view').classList.add('hidden');
       document.getElementById('daily-warmup-view').classList.add('hidden');
       document.getElementById('ta4-lab-view').classList.add('hidden');
+      document.getElementById('mistake-bank-view').classList.add('hidden');
       document.getElementById('results-modal').classList.add('hidden');
       document.getElementById('official-results-modal').classList.add('hidden');
 
@@ -12335,12 +12601,162 @@
       document.getElementById('nav-command-controls').classList.add('hidden');
       document.getElementById('nav-warmup-controls').classList.add('hidden');
       document.getElementById('nav-ta4-controls').classList.add('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.add('hidden');
 
       document.getElementById('ta56-builder-view').classList.remove('hidden');
       document.getElementById('nav-ta56-controls').classList.remove('hidden');
 
       if (window.R050Ta56Builder) {
         window.R050Ta56Builder.mount(document.getElementById('ta56-builder-root'), initialTab);
+      }
+      window.scrollTo(0, 0);
+    }
+
+    function buildMistakeBankInput() {
+      const papers = [];
+      const seenIds = new Set();
+
+      const activePaper = getActivePaperData();
+      if (activePaper) {
+        const activeId = state.paperId === 'shuffled' && state.customPaper && state.customPaper.runId
+          ? state.customPaper.runId
+          : (state.paperId || 'paper1');
+        seenIds.add(activeId);
+        papers.push({
+          paperId: activeId,
+          paperTitle: activePaper.title || 'Practice Paper',
+          shortTitle: activePaper.shortTitle || activePaper.title || 'Paper 1',
+          sectionA: activePaper.sectionA || [],
+          sectionB: activePaper.sectionB || [],
+          answers: state.answers || {},
+          flags: state.flags || {},
+          checked: state.checked || {},
+          submitted: Boolean(state.submitted),
+          scores: state.scores || {},
+          updatedAt: typeof state.updatedAt === 'number' ? state.updatedAt : 0
+        });
+      }
+
+      const archivedPapers = (paperArchive && paperArchive.papers) ? paperArchive.papers : {};
+      ['paper1', 'paper2', 'paper3'].forEach((pid) => {
+        if (seenIds.has(pid)) return;
+        const snap = archivedPapers[pid];
+        if (!snap) return;
+        const def = getPaperDefinitionById(pid);
+        if (!def) return;
+        seenIds.add(pid);
+        papers.push({
+          paperId: pid,
+          paperTitle: def.title || pid,
+          shortTitle: def.shortTitle || def.title || pid,
+          sectionA: def.sectionA || [],
+          sectionB: def.sectionB || [],
+          answers: snap.answers || {},
+          flags: snap.flags || {},
+          checked: snap.checked || {},
+          submitted: Boolean(snap.submitted),
+          scores: snap.scores || {},
+          updatedAt: typeof snap.mistakeUpdatedAt === 'number' ? snap.mistakeUpdatedAt : 0
+        });
+      });
+
+      const recentShuffled = (paperArchive && Array.isArray(paperArchive.recentShuffled)) ? paperArchive.recentShuffled : [];
+      recentShuffled.forEach((entry) => {
+        if (!entry || !entry.id || seenIds.has(entry.id) || !entry.customPaper || !entry.snapshot) return;
+        seenIds.add(entry.id);
+        papers.push({
+          paperId: entry.id,
+          paperTitle: entry.title || entry.customPaper.title || 'Shuffled Paper',
+          shortTitle: entry.shortTitle || entry.customPaper.shortTitle || 'Shuffled',
+          sectionA: entry.customPaper.sectionA || [],
+          sectionB: entry.customPaper.sectionB || [],
+          answers: entry.snapshot.answers || {},
+          flags: entry.snapshot.flags || {},
+          checked: entry.snapshot.checked || {},
+          submitted: Boolean(entry.snapshot.submitted),
+          scores: entry.snapshot.scores || {},
+          updatedAt: typeof entry.snapshot.mistakeUpdatedAt === 'number' ? entry.snapshot.mistakeUpdatedAt : 0
+        });
+      });
+
+      let warmupStorage = null;
+      try {
+        const rawWarmup = localStorage.getItem('OCR_R050_DAILY_WARMUP_SPEC_V1');
+        if (rawWarmup) warmupStorage = JSON.parse(rawWarmup);
+      } catch (e) {
+        // Ignore storage errors
+      }
+
+      return { papers, warmupStorage };
+    }
+
+    function updateMistakeBankBadges(summaryOverride = null) {
+      const summary = summaryOverride || (window.R050MistakeBank ? window.R050MistakeBank.getSummary() : null);
+      if (!summary) return;
+      const labelText = summary.toFixCount > 0
+        ? `Mistake Bank (${summary.toFixCount})`
+        : 'Mistake Bank';
+
+      const homeLabel = document.getElementById('home-mistake-bank-label');
+      if (homeLabel) homeLabel.innerText = labelText;
+
+      const progressLabel = document.getElementById('progress-mistake-bank-label');
+      if (progressLabel) progressLabel.innerText = labelText;
+
+      const navMeta = document.getElementById('nav-mistake-bank-meta');
+      if (navMeta) {
+        navMeta.innerText = summary.totalCount === 0
+          ? 'No mistakes yet'
+          : `${summary.toFixCount} to fix · ${summary.clearedCount} cleared`;
+      }
+    }
+
+    function openMistakeBankWorkspace() {
+      if (state.timerInterval) {
+        clearInterval(state.timerInterval);
+        state.timerInterval = null;
+      }
+      stopOfficialTimer();
+      saveState();
+      closePdfPreviewModal();
+      if (window.R050Ta1Trainer && typeof window.R050Ta1Trainer.stopTimers === 'function') window.R050Ta1Trainer.stopTimers();
+      if (window.R050DailyWarmup && typeof window.R050DailyWarmup.stopTimers === 'function') window.R050DailyWarmup.stopTimers();
+
+      document.getElementById('home-screen').classList.add('hidden');
+      document.getElementById('app-container').classList.add('hidden');
+      document.getElementById('flashcards-view').classList.add('hidden');
+      document.getElementById('coach-view').classList.add('hidden');
+      document.getElementById('papers-view').classList.add('hidden');
+      document.getElementById('official-papers-view').classList.add('hidden');
+      document.getElementById('progress-view').classList.add('hidden');
+      document.getElementById('ta1-trainer-view').classList.add('hidden');
+      document.getElementById('ta3-simulator-view').classList.add('hidden');
+      document.getElementById('command-drills-view').classList.add('hidden');
+      document.getElementById('daily-warmup-view').classList.add('hidden');
+      document.getElementById('ta4-lab-view').classList.add('hidden');
+      document.getElementById('ta56-builder-view').classList.add('hidden');
+      document.getElementById('results-modal').classList.add('hidden');
+      document.getElementById('official-results-modal').classList.add('hidden');
+
+      document.getElementById('nav-home-actions').classList.add('hidden');
+      document.getElementById('nav-controls').classList.add('hidden');
+      document.getElementById('nav-flashcards-controls').classList.add('hidden');
+      document.getElementById('nav-coach-controls').classList.add('hidden');
+      document.getElementById('nav-papers-controls').classList.add('hidden');
+      document.getElementById('nav-official-controls').classList.add('hidden');
+      document.getElementById('nav-progress-controls').classList.add('hidden');
+      document.getElementById('nav-ta1-controls').classList.add('hidden');
+      document.getElementById('nav-ta3-controls').classList.add('hidden');
+      document.getElementById('nav-command-controls').classList.add('hidden');
+      document.getElementById('nav-warmup-controls').classList.add('hidden');
+      document.getElementById('nav-ta4-controls').classList.add('hidden');
+      document.getElementById('nav-ta56-controls').classList.add('hidden');
+
+      document.getElementById('mistake-bank-view').classList.remove('hidden');
+      document.getElementById('nav-mistake-bank-controls').classList.remove('hidden');
+
+      if (window.R050MistakeBank) {
+        window.R050MistakeBank.mount(document.getElementById('mistake-bank-root'));
       }
       window.scrollTo(0, 0);
     }
@@ -12426,6 +12842,58 @@
       shouldHandleFocusShortcut,
       getFocusModeToggleCopy,
     } from '/src/examFocusEngine.ts';
+    import {
+      initMistakeBankWorkspace,
+      renderMistakeBank,
+      getMistakeBankSummary,
+    } from '/src/mistakeBankUI.ts';
+    import { createPdfCanvasViewer } from '/src/pdfCanvasViewer.ts';
+    import {
+      classifyExamQuestionNavState,
+      getNavbarSyncStatusView,
+    } from '/src/examSyncState.ts';
+
+    window.R050ExamSync = {
+      classifyQuestion: classifyExamQuestionNavState,
+      getNavbarSyncView: getNavbarSyncStatusView,
+    };
+
+    const modalPdfHost = document.getElementById('pdf-preview-canvas-host');
+    const splitPdfHost = document.getElementById('official-pdf-canvas-host');
+
+    window.R050PdfViewer = {
+      modal: modalPdfHost
+        ? createPdfCanvasViewer({
+            host: modalPdfHost,
+            onStateChange: (pdfState) => {
+              const label = document.getElementById('pdf-preview-page-label');
+              if (!label) return;
+              if (pdfState.totalPages > 0) {
+                label.textContent = `Page ${pdfState.pageNumber} of ${pdfState.totalPages} · ${Math.round(pdfState.zoom * 100)}% zoom`;
+              } else if (pdfState.url) {
+                label.textContent = 'Loading pages…';
+              }
+            },
+          })
+        : null,
+      split: splitPdfHost
+        ? createPdfCanvasViewer({
+            host: splitPdfHost,
+            onStateChange: (pdfState) => {
+              if (pdfState.pageNumber > 0 && typeof officialState !== 'undefined') {
+                officialState.pdfPage = pdfState.pageNumber;
+              }
+              const label = document.getElementById('official-pdf-page-label');
+              if (!label) return;
+              if (pdfState.totalPages > 0) {
+                label.textContent = `Page ${pdfState.pageNumber} of ${pdfState.totalPages} · ${Math.round(pdfState.zoom * 100)}%`;
+              } else if (pdfState.url) {
+                label.textContent = `Page ${pdfState.pageNumber || 1}`;
+              }
+            },
+          })
+        : null,
+    };
 
     window.R050StudentHome = {
       normalizeHomeTab,
@@ -12535,6 +13003,9 @@
             if (typeof updateHomeDailyWarmupMeta === 'function') {
               updateHomeDailyWarmupMeta(summary);
             }
+            if (typeof updateMistakeBankBadges === 'function') {
+              updateMistakeBankBadges();
+            }
           },
           onLaunchPractice: (target) => {
             if (!target) return;
@@ -12608,8 +13079,52 @@
       getSummary: getTa56MasterySummary,
     };
 
+    window.R050MistakeBank = {
+      mount(container) {
+        if (!container) return;
+        initMistakeBankWorkspace(container, {
+          getCollectionInput: () => (typeof buildMistakeBankInput === 'function' ? buildMistakeBankInput() : { papers: [], warmupStorage: null }),
+          onSummaryChange: (summary) => {
+            if (typeof updateMistakeBankBadges === 'function') {
+              updateMistakeBankBadges(summary);
+            }
+          },
+          onStartWarmup: () => {
+            if (typeof openDailyWarmupWorkspace === 'function') {
+              openDailyWarmupWorkspace('warmup');
+            }
+          },
+          onStartPracticePaper: () => {
+            if (typeof launchExamSession === 'function') {
+              launchExamSession('practice');
+            } else if (typeof enterExamWorkspace === 'function') {
+              enterExamWorkspace();
+            }
+          },
+          onOpenQuickRef: (ta) => {
+            if (typeof openQuickReference === 'function') {
+              openQuickReference(ta, true);
+            }
+          },
+          onShowToast: (msg, type) => {
+            if (typeof showToast === 'function') {
+              showToast(msg, type);
+            }
+          },
+        });
+      },
+      render: renderMistakeBank,
+      getSummary: () =>
+        getMistakeBankSummary(() =>
+          typeof buildMistakeBankInput === 'function' ? buildMistakeBankInput() : { papers: [], warmupStorage: null }
+        ),
+    };
+
     if (typeof renderHomeProgressSummaryStrip === 'function') {
       renderHomeProgressSummaryStrip();
+    }
+    if (typeof updateMistakeBankBadges === 'function') {
+      updateMistakeBankBadges();
     }
     if (typeof updateHomeTa1TrainerMeta === 'function') {
       updateHomeTa1TrainerMeta();
@@ -12657,6 +13172,10 @@
     if (ta56El && !ta56El.classList.contains('hidden')) {
       window.R050Ta56Builder.mount(document.getElementById('ta56-builder-root'), 'connectivity');
     }
+    const mbEl = document.getElementById('mistake-bank-view');
+    if (mbEl && !mbEl.classList.contains('hidden')) {
+      window.R050MistakeBank.mount(document.getElementById('mistake-bank-root'));
+    }
 
     window.R050Auth = {
       open: openAuthModal,
@@ -12699,7 +13218,16 @@
         if (typeof loadOfficialStorage === 'function') loadOfficialStorage();
         if (typeof renderHomeScreen === 'function') renderHomeScreen();
       },
+      onSyncStateChange: (syncSnapshot) => {
+        if (typeof updateNavbarSyncStatusUI === 'function') {
+          updateNavbarSyncStatusUI(syncSnapshot);
+        }
+      },
     });
+
+    if (typeof updateNavbarSyncStatusUI === 'function') {
+      updateNavbarSyncStatusUI(getAuthSnapshot());
+    }
 
     if (typeof renderHomeScreen === 'function') {
       renderHomeScreen();

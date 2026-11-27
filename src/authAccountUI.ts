@@ -29,6 +29,12 @@ export interface AuthUIHooks {
   onShowToast?: (message: string, type?: string) => void;
   onProfileApplied?: (profile: StudentAccountProfile | null) => void;
   onCloudProgressRestored?: () => void;
+  onSyncStateChange?: (snapshot: {
+    isSignedIn: boolean;
+    syncState: 'idle' | 'syncing' | 'synced' | 'error';
+    lastSyncedAt: number | null;
+    username: string | null;
+  }) => void;
 }
 
 interface AuthUIState {
@@ -294,6 +300,13 @@ function updateHostSurfaces(): void {
       `;
     }
   }
+
+  hooks.onSyncStateChange?.({
+    isSignedIn: Boolean(uiState.userUid && uiState.profile),
+    syncState: uiState.syncState,
+    lastSyncedAt: uiState.lastSyncedAt,
+    username: uiState.profile?.username || null,
+  });
 }
 
 function renderConsoleEnableBanner(): string {
